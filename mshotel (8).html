@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">MS Hotel | Ushuaia, Patagonia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0d1f3c;--deep:#162847;--mid:#1e3a5f;
+  --ocean:#2a5298;--sky:#4a90d9;--ice:#a8cce8;
+  --frost:#ddeef8;--cream:#f7f3ee;--gold:#c9a84c;
+  --gold-light:#e8c97a;--white:#ffffff;
+  --text-dark:#1a1a2e;--text-mid:#3d4a6b;
+  --color-primary:#0d1f3c;
+  --color-secondary:#c9a84c;
+  --color-bg:#f7f3ee;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--color-bg);color:var(--text-dark);overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(13,31,60,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(168,204,232,0.15);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--white);letter-spacing:0.05em;text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--ice);text-decoration:none;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold-light);}
+.nav-cta{background:var(--gold);color:var(--navy)!important;padding:0.55rem 1.4rem;font-weight:500!important;border-radius:2px;}
+.nav-admin-btn{background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 0.9rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;}
+.nav-admin-btn:hover{border-color:var(--gold);color:var(--gold-light);}
+
+#inicio{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;animation:heroZoom 20s ease-in-out infinite alternate;}
+.hero-bg-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;z-index:-1;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,31,60,0.78),rgba(42,82,152,0.4));}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+.hero-accent{position:absolute;bottom:0;left:0;right:0;height:120px;background:var(--color-bg);clip-path:polygon(0 60%,100% 0,100% 100%,0 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem;animation:fadeUp 1.2s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.2rem;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:300;color:var(--white);line-height:1.0;margin-bottom:0.4rem;}
+.hero-title em{font-style:italic;color:var(--ice);}
+.hero-sub{font-size:0.9rem;letter-spacing:0.25em;color:var(--frost);text-transform:uppercase;margin-bottom:2.5rem;opacity:0.85;}
+.hero-btn{display:inline-block;padding:1rem 2.8rem;background:transparent;border:1px solid var(--gold);color:var(--white);text-decoration:none;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;font-family:'Jost',sans-serif;transition:all 0.35s;position:relative;overflow:hidden;}
+.hero-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease;z-index:-1;}
+.hero-btn:hover{color:var(--navy);}
+.hero-btn:hover::before{transform:scaleX(1);}
+
+/* PLACEHOLDER FOTOS */
+.img-placeholder{width:100%;background:#c8c8c8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:#666;font-family:'Jost',sans-serif;}
+.img-placeholder span{font-size:2rem;}
+.img-placeholder p{font-size:0.8rem;letter-spacing:0.05em;}
+
+section{padding:6rem 4rem;}
+.section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.8rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.15;margin-bottom:1.5rem;}
+.section-title em{font-style:italic;color:var(--ocean);}
+.divider{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:2rem;}
+
+#nosotros{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 6rem;}
+.about-text p{font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:1.2rem;}
+.about-text p strong{color:var(--navy);font-weight:500;}
+.about-img-wrap{position:relative;}
+.about-img-wrap img{width:100%;height:520px;object-fit:cover;display:block;}
+.about-img-wrap .img-placeholder{height:520px;}
+.about-img-border{position:absolute;top:-20px;right:-20px;width:100%;height:100%;border:2px solid var(--gold);z-index:-1;}
+.tribute-tag{display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;padding:0.7rem 1.2rem;background:var(--navy);color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;}
+
+#servicios{background:var(--color-bg);text-align:center;}
+#servicios .section-title,#servicios .section-label{text-align:center;}
+#servicios .divider{margin:0 auto 3rem;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;}
+.service-card{background:var(--white);padding:2rem 1.5rem;border-top:3px solid var(--ocean);transition:transform 0.3s,box-shadow 0.3s;}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(13,31,60,0.1);}
+.service-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--navy);margin-bottom:0.5rem;}
+.service-card p{font-size:0.85rem;color:var(--text-mid);line-height:1.6;}
+.service-note{font-size:0.72rem;color:var(--ocean);margin-top:0.4rem;font-style:italic;}
+
+#habitaciones{background:var(--color-primary);color:var(--white);}
+#habitaciones .section-label{color:var(--gold-light);}
+#habitaciones .section-title{color:var(--white);}
+#habitaciones .section-title em{color:var(--ice);}
+.rooms-tabs{display:flex;margin-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.15);}
+.tab-btn{background:none;border:none;padding:0.8rem 2rem;color:var(--ice);font-family:'Jost',sans-serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.3s;}
+.tab-btn.active,.tab-btn:hover{color:var(--gold-light);border-bottom-color:var(--gold);}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.room-card{background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.15);overflow:hidden;transition:all 0.3s;}
+.room-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(201,168,76,0.4);transform:translateY(-4px);}
+.room-img{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(0.85);transition:filter 0.4s;}
+.room-card:hover .room-img{filter:brightness(1);}
+.room-img.placeholder-room{height:200px;background:#444;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#aaa;gap:0.4rem;font-size:0.78rem;}
+.room-info{padding:1.5rem;}
+.room-type{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.4rem;}
+.room-info h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;}
+.room-info p{font-size:0.83rem;color:var(--ice);line-height:1.6;margin-bottom:1rem;}
+.room-features{display:flex;gap:0.8rem;flex-wrap:wrap;}
+.feat-badge{font-size:0.68rem;padding:0.25rem 0.7rem;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);color:var(--ice);border-radius:20px;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+#galeria{background:var(--white);text-align:center;}
+#galeria .divider{margin:0 auto 1rem;}
+.gallery-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.gallery-filter-btn{background:none;border:1px solid var(--ocean);color:var(--ocean);padding:0.4rem 1.2rem;font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;border-radius:20px;}
+.gallery-filter-btn.active,.gallery-filter-btn:hover{background:var(--ocean);color:var(--white);}
+.gallery-grid{columns:4;column-gap:0.7rem;}
+.gallery-item{break-inside:avoid;margin-bottom:0.7rem;overflow:hidden;position:relative;cursor:pointer;display:block;}
+.gallery-item img{width:100%;display:block;transition:transform 0.5s;filter:brightness(0.92);}
+.gallery-item:hover img{transform:scale(1.06);filter:brightness(1);}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,31,60,0.5),transparent);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+
+.lightbox{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.96);z-index:1000;align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border:1px solid rgba(168,204,232,0.2);}
+.lightbox-close{position:absolute;top:2rem;right:2rem;background:none;border:1px solid rgba(255,255,255,0.3);color:white;font-size:1.5rem;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lightbox-nav{position:absolute;background:none;border:1px solid rgba(255,255,255,0.2);color:white;font-size:1.8rem;width:50px;height:50px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
+.lightbox-nav:hover{border-color:var(--gold);color:var(--gold-light);}
+#lb-prev{left:2rem;}#lb-next{right:2rem;}
+
+#contacto{background:linear-gradient(135deg,var(--navy),var(--deep) 50%,var(--mid));position:relative;overflow:hidden;}
+#contacto::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(74,144,217,0.12),transparent 70%);pointer-events:none;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;}
+.contact-info .section-label{color:var(--gold-light);}
+.contact-info .section-title{color:var(--white);}
+.contact-info .section-title em{color:var(--ice);}
+.contact-detail{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
+.contact-icon{width:40px;height:40px;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.contact-detail-text h4{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.2rem;}
+.contact-detail-text p,.contact-detail-text a{font-size:0.92rem;color:var(--frost);text-decoration:none;transition:color 0.3s;}
+.contact-detail-text a:hover{color:var(--gold-light);}
+.contact-form{background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.15);padding:2.5rem;}
+.contact-form h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-bottom:1.8rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ice);margin-bottom:0.5rem;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.9rem;transition:border-color 0.3s;outline:none;appearance:none;}
+.form-group select option{background:var(--navy);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group textarea{resize:vertical;min-height:110px;}
+.form-submit{width:100%;padding:1rem;background:var(--gold);border:none;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 0.3s,transform 0.2s;}
+.form-submit:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(168,204,232,0.08);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ice);}
+.footer-logo span{color:var(--gold);}
+.footer-copy{font-size:0.75rem;color:rgba(168,204,232,0.4);}
+.footer-social a{color:var(--ice);text-decoration:none;font-size:0.78rem;border:1px solid rgba(168,204,232,0.2);padding:0.4rem 1rem;transition:all 0.3s;}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold-light);}
+.whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:200;font-size:1.6rem;transition:transform 0.3s;}
+.whatsapp-float:hover{transform:scale(1.1);}
+
+/* ═══ ADMIN ═══ */
+#admin-modal{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.97);z-index:500;overflow-y:auto;}
+#admin-modal.open{display:block;}
+.admin-login{display:flex;align-items:center;justify-content:center;min-height:100vh;}
+.admin-login-box{background:rgba(255,255,255,0.04);border:1px solid rgba(168,204,232,0.15);padding:3rem;width:380px;text-align:center;}
+.admin-login-box h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:0.5rem;}
+.admin-login-box p{font-size:0.82rem;color:var(--ice);margin-bottom:2rem;}
+.admin-input-field{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.95rem;outline:none;margin-bottom:1rem;}
+.admin-input-field:focus{border-color:var(--gold);}
+.admin-btn-primary{width:100%;padding:0.9rem;background:var(--gold);border:none;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
+.admin-btn-primary:hover{background:var(--gold-light);}
+.admin-error{color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;}
+.admin-panel{display:none;min-height:100vh;}
+.admin-panel.open{display:block;}
+.admin-header{background:rgba(13,31,60,0.8);border-bottom:1px solid rgba(168,204,232,0.15);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);}
+.admin-header h1{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);}
+.admin-header h1 span{color:var(--gold);}
+.admin-logout{background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 1rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.3s;}
+.admin-logout:hover{border-color:#ff6b6b;color:#ff6b6b;}
+.admin-tabs{display:flex;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(168,204,232,0.1);flex-wrap:wrap;}
+.admin-tab{padding:1rem 1.5rem;background:none;border:none;color:var(--ice);font-family:'Jost',sans-serif;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.3s;}
+.admin-tab.active{color:var(--gold-light);border-bottom-color:var(--gold);}
+.admin-content{padding:2rem;max-width:1100px;margin:0 auto;}
+.admin-section{display:none;}
+.admin-section.active{display:block;}
+.admin-card{background:rgba(255,255,255,0.04);border:1px solid rgba(168,204,232,0.12);padding:1.8rem;margin-bottom:1.5rem;}
+.admin-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1.2rem;border-bottom:1px solid rgba(168,204,232,0.1);padding-bottom:0.8rem;}
+.admin-field{margin-bottom:1.2rem;}
+.admin-field label{display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.5rem;}
+.admin-field input[type=text],.admin-field input[type=email],.admin-field input[type=password],.admin-field input[type=url],.admin-field textarea,.admin-field select{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.8rem 1rem;font-family:'Jost',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;}
+.admin-field input:focus,.admin-field textarea:focus{border-color:var(--gold);}
+.admin-field textarea{resize:vertical;min-height:100px;}
+.admin-save-btn{background:var(--gold);border:none;color:var(--navy);padding:0.7rem 2rem;font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
+.admin-save-btn:hover{background:var(--gold-light);}
+.admin-save-msg{display:inline-block;margin-left:1rem;font-size:0.82rem;color:#6bcb77;opacity:0;transition:opacity 0.3s;}
+
+/* UPLOAD */
+.upload-zone{border:2px dashed rgba(74,144,217,0.4);padding:3rem 2rem;text-align:center;cursor:pointer;transition:all 0.3s;margin-bottom:1.5rem;position:relative;}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--gold);background:rgba(201,168,76,0.05);}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-zone-icon{font-size:2.5rem;margin-bottom:0.8rem;display:block;}
+.upload-zone p{color:var(--ice);font-size:0.9rem;}
+.upload-zone small{color:rgba(168,204,232,0.5);font-size:0.78rem;}
+.admin-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.8rem;}
+.admin-gallery-item{position:relative;aspect-ratio:1;overflow:hidden;border:1px solid rgba(168,204,232,0.15);}
+.admin-gallery-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.admin-gallery-item-overlay{position:absolute;inset:0;background:rgba(13,31,60,0.75);opacity:0;transition:opacity 0.3s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem;}
+.admin-gallery-item:hover .admin-gallery-item-overlay{opacity:1;}
+.admin-gallery-item-overlay button{background:none;border:1px solid rgba(255,255,255,0.4);color:white;padding:0.3rem 0.7rem;font-size:0.7rem;cursor:pointer;font-family:'Jost',sans-serif;width:80%;}
+.admin-gallery-item-overlay .del-btn{border-color:rgba(255,100,100,0.5);color:#ff8080;}
+.category-badge{position:absolute;top:0.4rem;left:0.4rem;background:rgba(13,31,60,0.85);color:var(--gold-light);font-size:0.58rem;letter-spacing:0.1em;padding:0.2rem 0.5rem;text-transform:uppercase;}
+.upload-progress{background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.1);padding:1rem;margin-top:1rem;display:none;}
+.progress-bar-wrap{background:rgba(255,255,255,0.1);height:6px;margin-top:0.6rem;border-radius:3px;}
+.progress-bar{height:100%;background:var(--gold);width:0%;transition:width 0.2s;border-radius:3px;}
+.photo-count-badge{background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);color:var(--ice);padding:0.3rem 0.8rem;font-size:0.78rem;display:inline-block;margin-bottom:1.2rem;}
+
+/* DISEÑO TAB */
+.img-editor-row{display:grid;grid-template-columns:160px 1fr;gap:1.2rem;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(168,204,232,0.08);}
+.img-editor-row:last-child{border-bottom:none;}
+.img-preview-thumb{width:160px;height:100px;object-fit:cover;display:block;border:1px solid rgba(168,204,232,0.2);}
+.img-preview-placeholder{width:160px;height:100px;background:#333;display:flex;align-items:center;justify-content:center;color:#888;font-size:0.7rem;text-align:center;padding:0.5rem;border:1px solid rgba(168,204,232,0.15);}
+.img-editor-controls{display:flex;flex-direction:column;gap:0.6rem;}
+.img-editor-controls label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);}
+.img-editor-controls .img-name{font-size:0.9rem;color:var(--white);margin-bottom:0.3rem;}
+.img-btn-row{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;}
+.img-file-btn{position:relative;overflow:hidden;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.4);color:var(--ice);padding:0.4rem 1rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap;}
+.img-file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.img-url-input{flex:1;min-width:160px;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.4rem 0.7rem;font-family:'Jost',sans-serif;font-size:0.82rem;outline:none;}
+.img-url-input::placeholder{color:rgba(168,204,232,0.4);}
+.img-url-btn{background:var(--gold);border:none;color:var(--navy);padding:0.4rem 0.9rem;font-size:0.75rem;font-family:'Jost',sans-serif;cursor:pointer;white-space:nowrap;}
+
+.color-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.color-item{display:flex;flex-direction:column;gap:0.5rem;}
+.color-item label{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);}
+.color-item small{font-size:0.68rem;color:rgba(168,204,232,0.5);}
+.color-swatch-row{display:flex;gap:0.6rem;align-items:center;}
+.color-swatch-row input[type=color]{width:44px;height:36px;border:1px solid rgba(168,204,232,0.3);background:none;cursor:pointer;padding:2px;}
+.color-hex{width:90px;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.4rem 0.6rem;font-family:'Jost',sans-serif;font-size:0.85rem;outline:none;}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}.nav-links{display:none;}
+  section{padding:4rem 1.5rem;}
+  #nosotros{grid-template-columns:1fr;padding:4rem 1.5rem;}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .rooms-grid{grid-template-columns:1fr;}
+  .gallery-grid{columns:2;}
+  .contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .form-row{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+  .img-editor-row{grid-template-columns:1fr;}
+  .color-grid{grid-template-columns:1fr;}
+}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s,transform 0.7s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#inicio" class="nav-logo" id="nav-logo-text">MS <span>Hotel</span></a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#habitaciones">Habitaciones</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="openAdmin()">⚙ Admin</button>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg">
+    <img class="hero-bg-img" id="hero-img" src="" alt="Fondo hero" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="hero-eyebrow-text">Campos 26 · Ushuaia, Patagonia</p>
+    <h1 class="hero-title" id="hero-title-el">MS <em>Hotel</em></h1>
+    <p class="hero-sub" id="hero-slogan">Tu hogar en el fin del mundo</p>
+    <a href="#contacto" class="hero-btn">Consultar disponibilidad</a>
+  </div>
+  <div class="hero-accent"></div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="about-text reveal">
+    <p class="section-label">Nuestra Historia</p>
+    <h2 class="section-title">Un sueño <em>familiar</em><br>hecho realidad</h2>
+    <div class="divider"></div>
+    <p id="about-p1">MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.</p>
+    <p id="about-p2">Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.</p>
+    <p id="about-p3">Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.</p>
+    <div class="tribute-tag">✦ Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)</div>
+  </div>
+  <div class="about-img-wrap reveal">
+    <div id="about-img-wrap-inner">
+      <div class="img-placeholder" style="height:520px;" id="about-img-placeholder"><span>🏨</span><p>Subir foto aquí</p></div>
+    </div>
+    <div class="about-img-border"></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <p class="section-label">Lo que ofrecemos</p>
+  <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+  <div class="divider"></div>
+  <div class="services-grid">
+    <div class="service-card reveal"><span class="service-icon">🍳</span><h3>Desayuno Incluido</h3><p>Comenzá el día con energía. El desayuno está incluido en todas las estadías.</p></div>
+    <div class="service-card reveal"><span class="service-icon">🅿️</span><h3>Estacionamiento</h3><p>Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional.</p></div>
+    <div class="service-card reveal"><span class="service-icon">📶</span><h3>WiFi de Alta Velocidad</h3><p>Conexión WiFi gratuita en todas las habitaciones y espacios comunes.</p></div>
+    <div class="service-card reveal"><span class="service-icon">👕</span><h3>Lavandería</h3><p>Servicio de lavado de ropa disponible bajo solicitud.</p><p class="service-note">* Servicio con costo adicional</p></div>
+  </div>
+</section>
+
+<!-- HABITACIONES -->
+<section id="habitaciones">
+  <p class="section-label">Nuestras Unidades</p>
+  <h2 class="section-title">Habitaciones &amp; <em>Departamentos</em></h2>
+  <div class="divider" style="background:linear-gradient(90deg,var(--gold),transparent);"></div>
+  <div class="rooms-tabs">
+    <button class="tab-btn active" onclick="showTab('habitaciones-tab',this)">Habitaciones</button>
+    <button class="tab-btn" onclick="showTab('departamentos-tab',this)">Departamentos</button>
+  </div>
+  <div class="tab-panel active" id="habitaciones-tab">
+    <div class="rooms-grid">
+      <div class="room-card reveal"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Doble</p></div></div><div class="room-info"><p class="room-type">7 unidades disponibles</p><h3>Habitación Doble</h3><p>Cómoda habitación para dos personas, con todo lo necesario para disfrutar Ushuaia.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Triple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Triple</h3><p>Ideal para familias o grupos de tres, con espacio pensado para el confort de todos.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Cuádruple</h3><p>Amplia habitación para cuatro. La opción perfecta para grupos y familias numerosas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="departamentos-tab">
+    <div class="rooms-grid">
+      <div class="room-card reveal"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Doble</p></div></div><div class="room-info"><p class="room-type">1 unidad · Monoambiente</p><h3>Departamento Doble</h3><p>Monoambiente equipado para dos. Independencia y privacidad en el centro de Ushuaia.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Triple</p></div></div><div class="room-info"><p class="room-type">2 unidades · Monoambiente</p><h3>Departamento Triple</h3><p>Monoambiente cómodo para tres. Ideal para grupos que buscan autonomía.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad · 2 Ambientes</p><h3>Departamento Cuádruple</h3><p>Dos ambientes separados. Perfecto para familias que necesitan privacidad.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span><span class="feat-badge">2 Ambientes</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <p class="section-label">Imágenes</p>
+  <h2 class="section-title">Galería <em>Fotográfica</em></h2>
+  <div class="divider"></div>
+  <div class="gallery-controls">
+    <button class="gallery-filter-btn active" onclick="filterGallery('all',this)">Todas</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('exterior',this)">Exterior</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('habitaciones',this)">Habitaciones</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('departamentos',this)">Departamentos</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('espacios',this)">Espacios comunes</button>
+  </div>
+  <div class="gallery-grid" id="public-gallery"></div>
+  <p id="gallery-empty" style="text-align:center;color:var(--text-mid);font-style:italic;padding:3rem;display:none;">Las fotos del hotel se cargarán próximamente.</p>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-label">Estamos para ayudarte</p>
+      <h2 class="section-title">Contacto &amp;<br><em>Reservas</em></h2>
+      <div class="divider" style="background:linear-gradient(90deg,var(--gold),transparent);"></div>
+      <div class="contact-detail"><div class="contact-icon">📍</div><div class="contact-detail-text"><h4>Dirección</h4><p id="txt-address">Campos 26, Ushuaia · Tierra del Fuego</p></div></div>
+      <div class="contact-detail"><div class="contact-icon">📞</div><div class="contact-detail-text"><h4>Teléfono / WhatsApp</h4><a id="txt-phone" href="https://wa.me/542901307880">+54 2901 307880</a></div></div>
+      <div class="contact-detail"><div class="contact-icon">✉️</div><div class="contact-detail-text"><h4>Email</h4><a id="txt-email" href="mailto:mshotel22@yahoo.com">mshotel22@yahoo.com</a></div></div>
+      <div class="contact-detail"><div class="contact-icon">📸</div><div class="contact-detail-text"><h4>Instagram</h4><a id="txt-instagram" href="https://instagram.com/mshotelushuaia" target="_blank">@mshotelushuaia</a></div></div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>Consultar disponibilidad</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="tu@email.com"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Llegada</label><input type="date"/></div>
+        <div class="form-group"><label>Salida</label><input type="date"/></div>
+      </div>
+      <div class="form-group"><label>Tipo de unidad</label>
+        <select>
+          <option value="">Seleccioná una opción</option>
+          <optgroup label="Habitaciones"><option>Habitación Doble</option><option>Habitación Triple</option><option>Habitación Cuádruple</option></optgroup>
+          <optgroup label="Departamentos"><option>Departamento Doble</option><option>Departamento Triple</option><option>Departamento Cuádruple (2 ambientes)</option></optgroup>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensaje (opcional)</label><textarea placeholder="¿Alguna consulta especial?"></textarea></div>
+      <button class="form-submit" onclick="handleSubmit(this)">Enviar Consulta</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo" id="footer-logo-text">MS <span>Hotel</span></div>
+  <p class="footer-copy" id="footer-copy-text">© 2025 MS Hotel · Ushuaia, Tierra del Fuego</p>
+  <div class="footer-social"><a href="https://instagram.com/mshotelushuaia" target="_blank" id="footer-ig">Instagram ↗</a></div>
+</footer>
+
+<a href="https://wa.me/542901307880" class="whatsapp-float" id="wa-float" target="_blank">💬</a>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav" id="lb-prev" onclick="lbNav(-1)">‹</button>
+  <img id="lb-img" src="" alt=""/>
+  <button class="lightbox-nav" id="lb-next" onclick="lbNav(1)">›</button>
+</div>
+
+<!-- ═══════════ ADMIN MODAL ═══════════ -->
+<div id="admin-modal">
+  <div class="admin-login" id="admin-login-screen">
+    <div class="admin-login-box">
+      <h2>Panel <span style="color:var(--gold)">Admin</span></h2>
+      <p>Ingresá tu contraseña para editar la página</p>
+      <input class="admin-input-field" type="password" id="admin-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPass()"/>
+      <button class="admin-btn-primary" onclick="checkPass()">Ingresar</button>
+      <p class="admin-error" id="admin-error">Contraseña incorrecta.</p>
+      <button onclick="closeAdmin()" style="background:none;border:none;color:rgba(168,204,232,0.4);font-size:0.8rem;cursor:pointer;margin-top:1.5rem;font-family:'Jost',sans-serif;">Cancelar</button>
+    </div>
+  </div>
+
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-header">
+      <h1>MS <span>Hotel</span> — Edición</h1>
+      <div style="display:flex;gap:1rem;align-items:center;">
+        <button onclick="closeAdmin()" style="background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 1rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;">👁 Ver página</button>
+        <button class="admin-logout" onclick="logout()">Cerrar sesión</button>
+      </div>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="showAdminTab('tab-galeria',this)">📷 Galería</button>
+      <button class="admin-tab" onclick="showAdminTab('tab-textos',this)">✏️ Textos</button>
+      <button class="admin-tab" onclick="showAdminTab('tab-diseno',this)">🎨 Diseño</button>
+      <button class="admin-tab" onclick="showAdminTab('tab-contacto',this)">📞 Contacto</button>
+      <button class="admin-tab" onclick="showAdminTab('tab-pass',this)">🔐 Contraseña</button>
+    </div>
+    <div class="admin-content">
+
+      <!-- GALERÍA -->
+      <div class="admin-section active" id="tab-galeria">
+        <div class="admin-card">
+          <h3>📷 Subir fotos a la galería</h3>
+          <div class="admin-field">
+            <label>Categoría</label>
+            <select id="upload-category" style="width:auto;min-width:220px;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.6rem 1rem;font-family:'Jost',sans-serif;outline:none;">
+              <option value="exterior">Exterior del hotel</option>
+              <option value="habitaciones">Habitaciones</option>
+              <option value="departamentos">Departamentos</option>
+              <option value="espacios">Espacios comunes</option>
+            </select>
+          </div>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(this.files)"/>
+            <span class="upload-zone-icon">📁</span>
+            <p>Hacé clic acá o arrastrá las fotos</p>
+            <small>Podés subir varias a la vez · JPG, PNG, WEBP · Sin límite de cantidad</small>
+          </div>
+          <div class="upload-progress" id="upload-progress">
+            <p style="color:var(--ice);font-size:0.85rem;" id="upload-status">Procesando fotos...</p>
+            <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3>🖼 Fotos cargadas</h3>
+          <p class="photo-count-badge" id="photo-count">Cargando...</p>
+          <div class="admin-gallery-grid" id="admin-gallery-grid"></div>
+          <p id="no-photos-msg" style="color:rgba(168,204,232,0.5);font-style:italic;font-size:0.85rem;display:none;">Todavía no subiste fotos.</p>
+        </div>
+      </div>
+
+      <!-- TEXTOS -->
+      <div class="admin-section" id="tab-textos">
+        <div class="admin-card">
+          <h3>🏨 Nombre del hotel</h3>
+          <div class="admin-field"><label>Nombre del hotel (aparece en el logo, título y pie de página)</label><input type="text" id="edit-hotelname" placeholder="MS Hotel"/></div>
+          <button class="admin-save-btn" onclick="saveHotelName()">Guardar</button>
+          <span class="admin-save-msg" id="save-msg-name">✓ Guardado</span>
+        </div>
+        <div class="admin-card">
+          <h3>🏔 Inicio (Hero)</h3>
+          <div class="admin-field"><label>Slogan</label><input type="text" id="edit-slogan" placeholder="Tu hogar en el fin del mundo"/></div>
+          <div class="admin-field"><label>Subtítulo (debajo del logo)</label><input type="text" id="edit-eyebrow" placeholder="Campos 26 · Ushuaia, Patagonia"/></div>
+          <button class="admin-save-btn" onclick="saveTexts()">Guardar</button>
+          <span class="admin-save-msg" id="save-msg-hero">✓ Guardado</span>
+        </div>
+        <div class="admin-card">
+          <h3>📖 Nuestra Historia</h3>
+          <div class="admin-field"><label>Párrafo 1</label><textarea id="edit-p1"></textarea></div>
+          <div class="admin-field"><label>Párrafo 2</label><textarea id="edit-p2"></textarea></div>
+          <div class="admin-field"><label>Párrafo 3</label><textarea id="edit-p3"></textarea></div>
+          <button class="admin-save-btn" onclick="saveAbout()">Guardar</button>
+          <span class="admin-save-msg" id="save-msg-about">✓ Guardado</span>
+        </div>
+      </div>
+
+      <!-- DISEÑO -->
+      <div class="admin-section" id="tab-diseno">
+
+        <!-- COLORES -->
+        <div class="admin-card">
+          <h3>🎨 Colores del sitio</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Los cambios de color se aplican al instante en toda la página.</p>
+          <div class="color-grid">
+            <div class="color-item">
+              <label>Color Primario</label>
+              <small>Sección Habitaciones, nav, fondos oscuros</small>
+              <div class="color-swatch-row">
+                <input type="color" id="color-primary" value="#0d1f3c" oninput="applyColor('primary',this.value)" onchange="saveColors()"/>
+                <input type="text" class="color-hex" id="hex-primary" value="#0d1f3c" oninput="syncColorFromHex('primary',this.value)"/>
+              </div>
+            </div>
+            <div class="color-item">
+              <label>Color Secundario / Dorado</label>
+              <small>Botones, acentos, detalles</small>
+              <div class="color-swatch-row">
+                <input type="color" id="color-secondary" value="#c9a84c" oninput="applyColor('secondary',this.value)" onchange="saveColors()"/>
+                <input type="text" class="color-hex" id="hex-secondary" value="#c9a84c" oninput="syncColorFromHex('secondary',this.value)"/>
+              </div>
+            </div>
+            <div class="color-item">
+              <label>Color de Fondo</label>
+              <small>Fondo general de la página</small>
+              <div class="color-swatch-row">
+                <input type="color" id="color-bg" value="#f7f3ee" oninput="applyColor('bg',this.value)" onchange="saveColors()"/>
+                <input type="text" class="color-hex" id="hex-bg" value="#f7f3ee" oninput="syncColorFromHex('bg',this.value)"/>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <button class="admin-save-btn" onclick="saveColors()">Guardar colores</button>
+            <button onclick="resetColors()" style="background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.7rem 1.5rem;font-family:'Jost',sans-serif;font-size:0.82rem;cursor:pointer;margin-left:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">↩ Restaurar originales</button>
+            <span class="admin-save-msg" id="save-msg-colors">✓ Guardado</span>
+          </div>
+        </div>
+
+        <!-- IMÁGENES DE FONDO Y SECCIONES -->
+        <div class="admin-card">
+          <h3>🖼 Imágenes principales de la página</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Para cada imagen podés subir un archivo desde tu computadora o pegar una URL. Los placeholders grises se reemplazarán con tus fotos reales.</p>
+
+          <div class="img-editor-row">
+            <div id="thumb-hero"><div class="img-preview-placeholder">📷<br>Foto de fondo del inicio</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🏔 Foto de fondo del Inicio (Hero)</span>
+              <small style="color:rgba(168,204,232,0.5);">Imagen grande que se ve al abrir la página. Recomendado: foto de Ushuaia o del exterior del hotel, horizontal.</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="O pegá una URL de imagen..." id="url-hero"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-about"><div class="img-preview-placeholder">📷<br>Foto "Nosotros"</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🏨 Foto de "Nuestra Historia"</span>
+              <small style="color:rgba(168,204,232,0.5);">Aparece al lado del texto sobre el hotel. Recomendado: foto del hotel, vertical u horizontal.</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('about',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="O pegá una URL de imagen..." id="url-about"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('about')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-room-0"><div class="img-preview-placeholder">📷<br>Hab. Doble</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🛏 Foto Habitación Doble</span>
+              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Habitación Doble".</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-0',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-0"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('room-0')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-room-1"><div class="img-preview-placeholder">📷<br>Hab. Triple</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🛏 Foto Habitación Triple</span>
+              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Habitación Triple".</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-1',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-1"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('room-1')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-room-2"><div class="img-preview-placeholder">📷<br>Hab. Cuádruple</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🛏 Foto Habitación Cuádruple</span>
+              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Habitación Cuádruple".</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-2',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-2"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('room-2')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-room-3"><div class="img-preview-placeholder">📷<br>Depto. Doble</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🏠 Foto Departamento Doble</span>
+              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Departamento Doble".</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-3',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-3"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('room-3')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-room-4"><div class="img-preview-placeholder">📷<br>Depto. Triple</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🏠 Foto Departamento Triple</span>
+              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Departamento Triple".</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-4',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-4"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('room-4')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="img-editor-row">
+            <div id="thumb-room-5"><div class="img-preview-placeholder">📷<br>Depto. Cuádruple</div></div>
+            <div class="img-editor-controls">
+              <span class="img-name">🏠 Foto Departamento Cuádruple</span>
+              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Departamento Cuádruple".</small>
+              <div class="img-btn-row">
+                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-5',this)"/></label>
+                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-5"/>
+                <button class="img-url-btn" onclick="setPageImgUrl('room-5')">Aplicar URL</button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /card imágenes -->
+      </div><!-- /tab-diseno -->
+
+      <!-- CONTACTO -->
+      <div class="admin-section" id="tab-contacto">
+        <div class="admin-card">
+          <h3>📞 Datos de contacto</h3>
+          <div class="admin-field"><label>Teléfono / WhatsApp (solo números, sin espacios ni +)</label><input type="text" id="edit-phone" placeholder="542901307880"/></div>
+          <div class="admin-field"><label>Email</label><input type="email" id="edit-email"/></div>
+          <div class="admin-field"><label>Instagram (sin @)</label><input type="text" id="edit-instagram"/></div>
+          <div class="admin-field"><label>Dirección</label><input type="text" id="edit-address"/></div>
+          <button class="admin-save-btn" onclick="saveContact()">Guardar</button>
+          <span class="admin-save-msg" id="save-msg-contact">✓ Guardado</span>
+        </div>
+      </div>
+
+      <!-- CONTRASEÑA -->
+      <div class="admin-section" id="tab-pass">
+        <div class="admin-card">
+          <h3>🔐 Cambiar contraseña</h3>
+          <div class="admin-field"><label>Contraseña actual</label><input type="password" id="old-pass"/></div>
+          <div class="admin-field"><label>Nueva contraseña</label><input type="password" id="new-pass"/></div>
+          <div class="admin-field"><label>Repetir nueva contraseña</label><input type="password" id="new-pass2"/></div>
+          <button class="admin-save-btn" onclick="changePass()">Cambiar</button>
+          <span class="admin-save-msg" id="save-msg-pass">✓ Actualizada</span>
+          <p id="pass-error" style="color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;"></p>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-panel -->
+</div><!-- /admin-modal -->
+
+<script>
+// ════════════════════════════════════════
+// IndexedDB
+// ════════════════════════════════════════
+const DB_NAME='mshotel_db', DB_VER=2;
+let db;
+function initDB(){
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open(DB_NAME,DB_VER);
+    req.onupgradeneeded=e=>{
+      const d=e.target.result;
+      if(!d.objectStoreNames.contains('photos')) d.createObjectStore('photos',{keyPath:'id',autoIncrement:true});
+      if(!d.objectStoreNames.contains('settings')) d.createObjectStore('settings',{keyPath:'key'});
+      if(!d.objectStoreNames.contains('pageimgs')) d.createObjectStore('pageimgs',{keyPath:'key'});
+    };
+    req.onsuccess=e=>{db=e.target.result;res();};
+    req.onerror=()=>rej(req.error);
+  });
+}
+function dbGetAll(s){return new Promise((r,j)=>{const t=db.transaction(s,'readonly'),q=t.objectStore(s).getAll();q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});}
+function dbGet(s,k){return new Promise((r,j)=>{const t=db.transaction(s,'readonly'),q=t.objectStore(s).get(k);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});}
+function dbPut(s,v){return new Promise((r,j)=>{const t=db.transaction(s,'readwrite'),q=t.objectStore(s).put(v);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});}
+function dbDelete(s,k){return new Promise((r,j)=>{const t=db.transaction(s,'readwrite'),q=t.objectStore(s).delete(k);q.onsuccess=()=>r();q.onerror=()=>j(q.error);});}
+async function getSetting(k,def){const r=await dbGet('settings',k);return r?r.value:def;}
+async function setSetting(k,v){await dbPut('settings',{key:k,value:v});}
+async function getPageImg(k){const r=await dbGet('pageimgs',k);return r?r.data:null;}
+async function setPageImgDB(k,data){await dbPut('pageimgs',{key:k,data});}
+
+// ════════════════════════════════════════
+// ESTADO GLOBAL
+// ════════════════════════════════════════
+let photos=[], ADMIN_PASS='mshotel2024';
+let siteColors={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
+let siteTexts={
+  hotelname:'MS Hotel',
+  slogan:'Tu hogar en el fin del mundo',
+  eyebrow:'Campos 26 · Ushuaia, Patagonia',
+  p1:'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.',
+  p2:'Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.',
+  p3:'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.'
+};
+let siteContact={phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego'};
+
+const PAGE_IMG_KEYS=['hero','about','room-0','room-1','room-2','room-3','room-4','room-5'];
+
+async function loadSettings(){
+  ADMIN_PASS=await getSetting('pass','mshotel2024');
+  const t=await getSetting('texts',null); if(t) siteTexts=t;
+  const c=await getSetting('contact',null); if(c) siteContact=c;
+  const col=await getSetting('colors',null); if(col) siteColors=col;
+  photos=await dbGetAll('photos');
+}
+
+// ════════════════════════════════════════
+// APLICAR DATOS A LA PÁGINA
+// ════════════════════════════════════════
+function applyData(){
+  const name=siteTexts.hotelname||'MS Hotel';
+  const parts=name.split(' ');
+  const first=parts[0]; const rest=parts.slice(1).join(' ');
+  document.getElementById('nav-logo-text').innerHTML=`${first} <span>${rest||''}</span>`;
+  document.getElementById('footer-logo-text').innerHTML=`${first} <span>${rest||''}</span>`;
+  document.getElementById('hero-title-el').innerHTML=`${first} <em>${rest||''}</em>`;
+  document.title=name+' | Ushuaia, Patagonia';
+
+  document.getElementById('hero-slogan').textContent=siteTexts.slogan;
+  document.getElementById('hero-eyebrow-text').textContent=siteTexts.eyebrow;
+  document.getElementById('about-p1').innerHTML=siteTexts.p1;
+  document.getElementById('about-p2').innerHTML=siteTexts.p2;
+  document.getElementById('about-p3').innerHTML=siteTexts.p3;
+
+  const phone=siteContact.phone, email=siteContact.email, ig=siteContact.instagram;
+  document.getElementById('txt-address').textContent=siteContact.address;
+  const phonEl=document.getElementById('txt-phone');
+  phonEl.href='https://wa.me/'+phone;
+  phonEl.textContent='+'+phone;
+  document.getElementById('txt-email').href='mailto:'+email;
+  document.getElementById('txt-email').textContent=email;
+  document.getElementById('txt-instagram').href='https://instagram.com/'+ig;
+  document.getElementById('txt-instagram').textContent='@'+ig;
+  document.getElementById('wa-float').href='https://wa.me/'+phone;
+  document.getElementById('footer-ig').href='https://instagram.com/'+ig;
+
+  applyColors(siteColors,false);
+  renderPublicGallery('all');
+}
+
+async function applyPageImages(){
+  for(const key of PAGE_IMG_KEYS){
+    const data=await getPageImg(key);
+    if(data) renderPageImg(key,data);
+  }
+}
+
+function renderPageImg(key,src){
+  if(key==='hero'){
+    const img=document.getElementById('hero-img');
+    img.src=src; img.style.display='block';
+    // update thumb
+    setThumb('thumb-hero',src);
+  } else if(key==='about'){
+    const wrap=document.getElementById('about-img-wrap-inner');
+    wrap.innerHTML=`<img src="${src}" alt="Nosotros" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
+    setThumb('thumb-about',src);
+  } else if(key.startsWith('room-')){
+    const idx=key.split('-')[1];
+    const wrap=document.getElementById('room-img-'+idx+'-wrap');
+    if(wrap) wrap.innerHTML=`<img src="${src}" class="room-img" alt="Habitación"/>`;
+    setThumb('thumb-'+key,src);
+  }
+}
+
+function setThumb(thumbId,src){
+  const el=document.getElementById(thumbId);
+  if(el) el.innerHTML=`<img class="img-preview-thumb" src="${src}" alt="preview"/>`;
+}
+
+// ════════════════════════════════════════
+// COLORES
+// ════════════════════════════════════════
+const DEFAULT_COLORS={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
+
+function applyColors(col,save=true){
+  const r=document.documentElement.style;
+  r.setProperty('--color-primary',col.primary);
+  r.setProperty('--navy',col.primary);
+  r.setProperty('--deep',col.primary);
+  r.setProperty('--color-secondary',col.secondary);
+  r.setProperty('--gold',col.secondary);
+  r.setProperty('--gold-light',lightenHex(col.secondary,20));
+  r.setProperty('--color-bg',col.bg);
+  r.setProperty('--cream',col.bg);
+  r.setProperty('--hero-accent-bg',col.bg);
+  document.querySelector('.hero-accent').style.background=col.bg;
+  siteColors=col;
+}
+function applyColor(which,val){
+  const col={...siteColors};
+  col[which]=val;
+  applyColors(col,false);
+  document.getElementById('hex-'+which).value=val;
+}
+function syncColorFromHex(which,val){
+  if(/^#[0-9a-fA-F]{6}$/.test(val)){
+    document.getElementById('color-'+which).value=val;
+    applyColor(which,val);
+  }
+}
+async function saveColors(){
+  await setSetting('colors',siteColors);
+  showSaveMsg('save-msg-colors');
+}
+async function resetColors(){
+  applyColors(DEFAULT_COLORS,false);
+  syncAdminColorInputs(DEFAULT_COLORS);
+  await setSetting('colors',DEFAULT_COLORS);
+  showSaveMsg('save-msg-colors');
+}
+function syncAdminColorInputs(col){
+  ['primary','secondary','bg'].forEach(k=>{
+    const ci=document.getElementById('color-'+k);
+    const hi=document.getElementById('hex-'+k);
+    if(ci) ci.value=col[k];
+    if(hi) hi.value=col[k];
+  });
+}
+function lightenHex(hex,amount){
+  let r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  r=Math.min(255,r+amount);g=Math.min(255,g+amount);b=Math.min(255,b+amount);
+  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+// ════════════════════════════════════════
+// IMÁGENES DE PÁGINA (subir/URL)
+// ════════════════════════════════════════
+function setPageImg(key,input){
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=async e=>{
+    await setPageImgDB(key,e.target.result);
+    renderPageImg(key,e.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+async function setPageImgUrl(key){
+  const url=document.getElementById('url-'+key).value.trim();
+  if(!url){ alert('Pegá una URL válida primero.'); return; }
+  await setPageImgDB(key,url);
+  renderPageImg(key,url);
+  document.getElementById('url-'+key).value='';
+}
+
+// ════════════════════════════════════════
+// GALERÍA PÚBLICA
+// ════════════════════════════════════════
+let lbPhotos=[],lbIndex=0;
+function renderPublicGallery(filter){
+  const grid=document.getElementById('public-gallery');
+  const empty=document.getElementById('gallery-empty');
+  lbPhotos=filter==='all'?[...photos]:photos.filter(p=>p.cat===filter);
+  grid.innerHTML='';
+  if(lbPhotos.length===0){empty.style.display='block';return;}
+  empty.style.display='none';
+  lbPhotos.forEach((p,i)=>{
+    const div=document.createElement('div');
+    div.className='gallery-item';
+    div.innerHTML=`<img src="${p.data}" alt="${p.name}" loading="lazy"/><div class="gallery-overlay">🔍</div>`;
+    div.onclick=()=>openLightbox(i);
+    grid.appendChild(div);
+  });
+}
+function filterGallery(cat,btn){
+  document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); renderPublicGallery(cat);
+}
+function openLightbox(i){lbIndex=i;document.getElementById('lb-img').src=lbPhotos[i].data;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+function lbNav(dir){lbIndex=(lbIndex+dir+lbPhotos.length)%lbPhotos.length;document.getElementById('lb-img').src=lbPhotos[lbIndex].data;}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('open'))return;
+  if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();
+});
+
+// ════════════════════════════════════════
+// ADMIN LOGIN
+// ════════════════════════════════════════
+function openAdmin(){document.getElementById('admin-modal').classList.add('open');document.getElementById('admin-pass').value='';document.getElementById('admin-error').style.display='none';}
+function closeAdmin(){document.getElementById('admin-modal').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';document.getElementById('admin-panel').classList.remove('open');}
+function checkPass(){
+  if(document.getElementById('admin-pass').value===ADMIN_PASS){
+    document.getElementById('admin-login-screen').style.display='none';
+    document.getElementById('admin-panel').classList.add('open');
+    loadAdminData();
+  } else { document.getElementById('admin-error').style.display='block'; document.getElementById('admin-pass').value=''; }
+}
+function logout(){document.getElementById('admin-panel').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';}
+
+function showAdminTab(id,btn){
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active'); btn.classList.add('active');
+}
+
+function loadAdminData(){
+  document.getElementById('edit-hotelname').value=siteTexts.hotelname||'MS Hotel';
+  document.getElementById('edit-slogan').value=siteTexts.slogan;
+  document.getElementById('edit-eyebrow').value=siteTexts.eyebrow;
+  document.getElementById('edit-p1').value=siteTexts.p1.replace(/<[^>]+>/g,'');
+  document.getElementById('edit-p2').value=siteTexts.p2.replace(/<[^>]+>/g,'');
+  document.getElementById('edit-p3').value=siteTexts.p3.replace(/<[^>]+>/g,'');
+  document.getElementById('edit-phone').value=siteContact.phone;
+  document.getElementById('edit-email').value=siteContact.email;
+  document.getElementById('edit-instagram').value=siteContact.instagram;
+  document.getElementById('edit-address').value=siteContact.address;
+  syncAdminColorInputs(siteColors);
+  renderAdminGallery();
+}
+
+// ════════════════════════════════════════
+// ADMIN — GALERÍA
+// ════════════════════════════════════════
+const uploadZone=document.getElementById('upload-zone');
+uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('drag-over');});
+uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('drag-over'));
+uploadZone.addEventListener('drop',e=>{e.preventDefault();uploadZone.classList.remove('drag-over');handleFiles(e.dataTransfer.files);});
+
+function handleFiles(files){
+  if(!files||files.length===0)return;
+  const cat=document.getElementById('upload-category').value;
+  const prog=document.getElementById('upload-progress');
+  const bar=document.getElementById('progress-bar');
+  const status=document.getElementById('upload-status');
+  prog.style.display='block'; bar.style.width='0%';
+  const valid=Array.from(files).filter(f=>f.type.startsWith('image/'));
+  const total=valid.length; if(total===0){prog.style.display='none';return;}
+  status.textContent=`Procesando 0 de ${total} fotos...`;
+  let done=0;
+  valid.forEach((file,idx)=>{
+    const reader=new FileReader();
+    reader.onload=async e=>{
+      await dbPut('photos',{data:e.target.result,name:file.name,cat,ts:Date.now()+idx});
+      photos=await dbGetAll('photos');
+      done++;
+      bar.style.width=(done/total*100)+'%';
+      status.textContent=`Procesando ${done} de ${total} fotos...`;
+      if(done===total){
+        setTimeout(()=>{prog.style.display='none';bar.style.width='0%';document.getElementById('file-input').value='';renderAdminGallery();renderPublicGallery('all');document.querySelectorAll('.gallery-filter-btn').forEach((b,i)=>{i===0?b.classList.add('active'):b.classList.remove('active');});},500);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+const CAT_LABELS={exterior:'Exterior',habitaciones:'Habitaciones',departamentos:'Departamentos',espacios:'Espacios comunes'};
+function renderAdminGallery(){
+  const grid=document.getElementById('admin-gallery-grid');
+  const noMsg=document.getElementById('no-photos-msg');
+  document.getElementById('photo-count').textContent=photos.length+' foto'+(photos.length!==1?'s':'')+' en la galería';
+  if(photos.length===0){grid.innerHTML='';noMsg.style.display='block';return;}
+  noMsg.style.display='none'; grid.innerHTML='';
+  photos.forEach(p=>{
+    const div=document.createElement('div');
+    div.className='admin-gallery-item';
+    div.innerHTML=`<img src="${p.data}" alt="${p.name}" loading="lazy"/><span class="category-badge">${CAT_LABELS[p.cat]||p.cat}</span><div class="admin-gallery-item-overlay"><button onclick="cycleCategory(${p.id})">📁 ${CAT_LABELS[p.cat]||p.cat}</button><button class="del-btn" onclick="deletePhoto(${p.id})">🗑 Borrar</button></div>`;
+    grid.appendChild(div);
+  });
+}
+async function deletePhoto(id){if(!confirm('¿Borrar esta foto?'))return;await dbDelete('photos',id);photos=await dbGetAll('photos');renderAdminGallery();renderPublicGallery('all');}
+async function cycleCategory(id){
+  const cats=['exterior','habitaciones','departamentos','espacios'];
+  const p=photos.find(x=>x.id===id); if(!p)return;
+  p.cat=cats[(cats.indexOf(p.cat)+1)%cats.length];
+  await dbPut('photos',p); photos=await dbGetAll('photos');
+  renderAdminGallery(); renderPublicGallery('all');
+}
+
+// ════════════════════════════════════════
+// ADMIN — GUARDAR TEXTOS / CONTACTO / PASS
+// ════════════════════════════════════════
+async function saveHotelName(){
+  siteTexts.hotelname=document.getElementById('edit-hotelname').value||siteTexts.hotelname;
+  await setSetting('texts',siteTexts); applyData(); showSaveMsg('save-msg-name');
+}
+async function saveTexts(){
+  siteTexts.slogan=document.getElementById('edit-slogan').value||siteTexts.slogan;
+  siteTexts.eyebrow=document.getElementById('edit-eyebrow').value||siteTexts.eyebrow;
+  await setSetting('texts',siteTexts); applyData(); showSaveMsg('save-msg-hero');
+}
+async function saveAbout(){
+  siteTexts.p1=document.getElementById('edit-p1').value||siteTexts.p1;
+  siteTexts.p2=document.getElementById('edit-p2').value||siteTexts.p2;
+  siteTexts.p3=document.getElementById('edit-p3').value||siteTexts.p3;
+  await setSetting('texts',siteTexts); applyData(); showSaveMsg('save-msg-about');
+}
+async function saveContact(){
+  siteContact.phone=document.getElementById('edit-phone').value||siteContact.phone;
+  siteContact.email=document.getElementById('edit-email').value||siteContact.email;
+  siteContact.instagram=document.getElementById('edit-instagram').value||siteContact.instagram;
+  siteContact.address=document.getElementById('edit-address').value||siteContact.address;
+  await setSetting('contact',siteContact); applyData(); showSaveMsg('save-msg-contact');
+}
+async function changePass(){
+  const old=document.getElementById('old-pass').value;
+  const n1=document.getElementById('new-pass').value;
+  const n2=document.getElementById('new-pass2').value;
+  const err=document.getElementById('pass-error'); err.style.display='none';
+  if(old!==ADMIN_PASS){err.textContent='Contraseña actual incorrecta.';err.style.display='block';return;}
+  if(n1.length<4){err.textContent='Mínimo 4 caracteres.';err.style.display='block';return;}
+  if(n1!==n2){err.textContent='Las contraseñas no coinciden.';err.style.display='block';return;}
+  ADMIN_PASS=n1; await setSetting('pass',n1);
+  ['old-pass','new-pass','new-pass2'].forEach(id=>document.getElementById(id).value='');
+  showSaveMsg('save-msg-pass');
+}
+function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',2500);}
+
+// ════════════════════════════════════════
+// MISC
+// ════════════════════════════════════════
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active'); btn.classList.add('active');
+}
+function handleSubmit(btn){
+  btn.textContent='✓ ¡Consulta enviada!';btn.style.background='#2a5298';btn.style.color='#fff';
+  setTimeout(()=>{btn.textContent='Enviar Consulta';btn.style.background='';btn.style.color='';},3000);
+}
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// INICIO
+initDB().then(async()=>{
+  await loadSettings();
+  applyData();
+  await applyPageImages();
+}).catch(err=>{console.error('DB error:',err);applyData();});
+</script>
+</body>
+</html>
