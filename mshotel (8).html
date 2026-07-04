@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">MS Hotel | Ushuaia, Patagonia</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
   --navy:#0d1f3c;--deep:#162847;--mid:#1e3a5f;
@@ -12,14 +13,11 @@
   --frost:#ddeef8;--cream:#f7f3ee;--gold:#c9a84c;
   --gold-light:#e8c97a;--white:#ffffff;
   --text-dark:#1a1a2e;--text-mid:#3d4a6b;
-  --color-primary:#0d1f3c;
-  --color-secondary:#c9a84c;
-  --color-bg:#f7f3ee;
+  --color-primary:#0d1f3c;--color-secondary:#c9a84c;--color-bg:#f7f3ee;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Jost',sans-serif;background:var(--color-bg);color:var(--text-dark);overflow-x:hidden;}
-
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(13,31,60,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(168,204,232,0.15);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--white);letter-spacing:0.05em;text-decoration:none;}
 .nav-logo span{color:var(--gold);}
@@ -29,7 +27,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-cta{background:var(--gold);color:var(--navy)!important;padding:0.55rem 1.4rem;font-weight:500!important;border-radius:2px;}
 .nav-admin-btn{background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 0.9rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;}
 .nav-admin-btn:hover{border-color:var(--gold);color:var(--gold-light);}
-
 #inicio{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;animation:heroZoom 20s ease-in-out infinite alternate;}
 .hero-bg-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;z-index:-1;}
@@ -46,18 +43,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease;z-index:-1;}
 .hero-btn:hover{color:var(--navy);}
 .hero-btn:hover::before{transform:scaleX(1);}
-
-/* PLACEHOLDER FOTOS */
 .img-placeholder{width:100%;background:#c8c8c8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:#666;font-family:'Jost',sans-serif;}
 .img-placeholder span{font-size:2rem;}
 .img-placeholder p{font-size:0.8rem;letter-spacing:0.05em;}
-
 section{padding:6rem 4rem;}
 .section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.8rem;}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.15;margin-bottom:1.5rem;}
 .section-title em{font-style:italic;color:var(--ocean);}
 .divider{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:2rem;}
-
 #nosotros{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 6rem;}
 .about-text p{font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:1.2rem;}
 .about-text p strong{color:var(--navy);font-weight:500;}
@@ -66,7 +59,6 @@ section{padding:6rem 4rem;}
 .about-img-wrap .img-placeholder{height:520px;}
 .about-img-border{position:absolute;top:-20px;right:-20px;width:100%;height:100%;border:2px solid var(--gold);z-index:-1;}
 .tribute-tag{display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;padding:0.7rem 1.2rem;background:var(--navy);color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;}
-
 #servicios{background:var(--color-bg);text-align:center;}
 #servicios .section-title,#servicios .section-label{text-align:center;}
 #servicios .divider{margin:0 auto 3rem;}
@@ -77,7 +69,6 @@ section{padding:6rem 4rem;}
 .service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--navy);margin-bottom:0.5rem;}
 .service-card p{font-size:0.85rem;color:var(--text-mid);line-height:1.6;}
 .service-note{font-size:0.72rem;color:var(--ocean);margin-top:0.4rem;font-style:italic;}
-
 #habitaciones{background:var(--color-primary);color:var(--white);}
 #habitaciones .section-label{color:var(--gold-light);}
 #habitaciones .section-title{color:var(--white);}
@@ -90,7 +81,6 @@ section{padding:6rem 4rem;}
 .room-card:hover{background:rgba(255,255,255,0.09);border-color:rgba(201,168,76,0.4);transform:translateY(-4px);}
 .room-img{width:100%;height:200px;object-fit:cover;display:block;filter:brightness(0.85);transition:filter 0.4s;}
 .room-card:hover .room-img{filter:brightness(1);}
-.room-img.placeholder-room{height:200px;background:#444;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#aaa;gap:0.4rem;font-size:0.78rem;}
 .room-info{padding:1.5rem;}
 .room-type{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.4rem;}
 .room-info h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);margin-bottom:0.6rem;}
@@ -99,7 +89,6 @@ section{padding:6rem 4rem;}
 .feat-badge{font-size:0.68rem;padding:0.25rem 0.7rem;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);color:var(--ice);border-radius:20px;}
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
-
 #galeria{background:var(--white);text-align:center;}
 #galeria .divider{margin:0 auto 1rem;}
 .gallery-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
@@ -111,7 +100,6 @@ section{padding:6rem 4rem;}
 .gallery-item:hover img{transform:scale(1.06);filter:brightness(1);}
 .gallery-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,31,60,0.5),transparent);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
 .gallery-item:hover .gallery-overlay{opacity:1;}
-
 .lightbox{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.96);z-index:1000;align-items:center;justify-content:center;}
 .lightbox.open{display:flex;}
 .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border:1px solid rgba(168,204,232,0.2);}
@@ -119,7 +107,6 @@ section{padding:6rem 4rem;}
 .lightbox-nav{position:absolute;background:none;border:1px solid rgba(255,255,255,0.2);color:white;font-size:1.8rem;width:50px;height:50px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
 .lightbox-nav:hover{border-color:var(--gold);color:var(--gold-light);}
 #lb-prev{left:2rem;}#lb-next{right:2rem;}
-
 #contacto{background:linear-gradient(135deg,var(--navy),var(--deep) 50%,var(--mid));position:relative;overflow:hidden;}
 #contacto::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(74,144,217,0.12),transparent 70%);pointer-events:none;}
 .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;}
@@ -142,7 +129,6 @@ section{padding:6rem 4rem;}
 .form-group textarea{resize:vertical;min-height:110px;}
 .form-submit{width:100%;padding:1rem;background:var(--gold);border:none;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 0.3s,transform 0.2s;}
 .form-submit:hover{background:var(--gold-light);transform:translateY(-1px);}
-
 footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(168,204,232,0.08);}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ice);}
 .footer-logo span{color:var(--gold);}
@@ -151,8 +137,12 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .footer-social a:hover{border-color:var(--gold);color:var(--gold-light);}
 .whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:200;font-size:1.6rem;transition:transform 0.3s;}
 .whatsapp-float:hover{transform:scale(1.1);}
-
-/* ═══ ADMIN ═══ */
+/* LOADING */
+.db-loading{position:fixed;inset:0;background:rgba(13,31,60,0.92);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
+.db-loading p{color:var(--ice);font-family:'Jost',sans-serif;font-size:0.9rem;letter-spacing:0.1em;}
+.spinner{width:40px;height:40px;border:3px solid rgba(168,204,232,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* ADMIN */
 #admin-modal{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.97);z-index:500;overflow-y:auto;}
 #admin-modal.open{display:block;}
 .admin-login{display:flex;align-items:center;justify-content:center;min-height:100vh;}
@@ -187,8 +177,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .admin-save-btn{background:var(--gold);border:none;color:var(--navy);padding:0.7rem 2rem;font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
 .admin-save-btn:hover{background:var(--gold-light);}
 .admin-save-msg{display:inline-block;margin-left:1rem;font-size:0.82rem;color:#6bcb77;opacity:0;transition:opacity 0.3s;}
-
-/* UPLOAD */
 .upload-zone{border:2px dashed rgba(74,144,217,0.4);padding:3rem 2rem;text-align:center;cursor:pointer;transition:all 0.3s;margin-bottom:1.5rem;position:relative;}
 .upload-zone:hover,.upload-zone.drag-over{border-color:var(--gold);background:rgba(201,168,76,0.05);}
 .upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
@@ -207,22 +195,17 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .progress-bar-wrap{background:rgba(255,255,255,0.1);height:6px;margin-top:0.6rem;border-radius:3px;}
 .progress-bar{height:100%;background:var(--gold);width:0%;transition:width 0.2s;border-radius:3px;}
 .photo-count-badge{background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);color:var(--ice);padding:0.3rem 0.8rem;font-size:0.78rem;display:inline-block;margin-bottom:1.2rem;}
-
-/* DISEÑO TAB */
 .img-editor-row{display:grid;grid-template-columns:160px 1fr;gap:1.2rem;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(168,204,232,0.08);}
 .img-editor-row:last-child{border-bottom:none;}
 .img-preview-thumb{width:160px;height:100px;object-fit:cover;display:block;border:1px solid rgba(168,204,232,0.2);}
 .img-preview-placeholder{width:160px;height:100px;background:#333;display:flex;align-items:center;justify-content:center;color:#888;font-size:0.7rem;text-align:center;padding:0.5rem;border:1px solid rgba(168,204,232,0.15);}
 .img-editor-controls{display:flex;flex-direction:column;gap:0.6rem;}
-.img-editor-controls label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);}
 .img-editor-controls .img-name{font-size:0.9rem;color:var(--white);margin-bottom:0.3rem;}
 .img-btn-row{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;}
 .img-file-btn{position:relative;overflow:hidden;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.4);color:var(--ice);padding:0.4rem 1rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap;}
 .img-file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .img-url-input{flex:1;min-width:160px;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.4rem 0.7rem;font-family:'Jost',sans-serif;font-size:0.82rem;outline:none;}
-.img-url-input::placeholder{color:rgba(168,204,232,0.4);}
-.img-url-btn{background:var(--gold);border:none;color:var(--navy);padding:0.4rem 0.9rem;font-size:0.75rem;font-family:'Jost',sans-serif;cursor:pointer;white-space:nowrap;}
-
+.img-url-btn{background:var(--gold);border:none;color:var(--navy);padding:0.4rem 0.9rem;font-size:0.75rem;font-family:'Jost',sans-serif;cursor:pointer;}
 .color-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
 .color-item{display:flex;flex-direction:column;gap:0.5rem;}
 .color-item label{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);}
@@ -230,7 +213,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .color-swatch-row{display:flex;gap:0.6rem;align-items:center;}
 .color-swatch-row input[type=color]{width:44px;height:36px;border:1px solid rgba(168,204,232,0.3);background:none;cursor:pointer;padding:2px;}
 .color-hex{width:90px;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.4rem 0.6rem;font-family:'Jost',sans-serif;font-size:0.85rem;outline:none;}
-
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}.nav-links{display:none;}
   section{padding:4rem 1.5rem;}
@@ -250,6 +232,12 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 </head>
 <body>
 
+<!-- LOADING -->
+<div class="db-loading" id="db-loading">
+  <div class="spinner"></div>
+  <p>Cargando MS Hotel...</p>
+</div>
+
 <nav>
   <a href="#inicio" class="nav-logo" id="nav-logo-text">MS <span>Hotel</span></a>
   <ul class="nav-links">
@@ -262,10 +250,9 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <button class="nav-admin-btn" onclick="openAdmin()">⚙ Admin</button>
 </nav>
 
-<!-- HERO -->
 <section id="inicio">
   <div class="hero-bg">
-    <img class="hero-bg-img" id="hero-img" src="" alt="Fondo hero" onerror="this.style.display='none'"/>
+    <img class="hero-bg-img" id="hero-img" src="" alt="Fondo" style="display:none"/>
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
@@ -277,7 +264,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <div class="hero-accent"></div>
 </section>
 
-<!-- NOSOTROS -->
 <section id="nosotros">
   <div class="about-text reveal">
     <p class="section-label">Nuestra Historia</p>
@@ -290,13 +276,12 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
   <div class="about-img-wrap reveal">
     <div id="about-img-wrap-inner">
-      <div class="img-placeholder" style="height:520px;" id="about-img-placeholder"><span>🏨</span><p>Subir foto aquí</p></div>
+      <div class="img-placeholder" style="height:520px;"><span>🏨</span><p>Subir foto aquí</p></div>
     </div>
     <div class="about-img-border"></div>
   </div>
 </section>
 
-<!-- SERVICIOS -->
 <section id="servicios">
   <p class="section-label">Lo que ofrecemos</p>
   <h2 class="section-title">Nuestros <em>Servicios</em></h2>
@@ -309,7 +294,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
 </section>
 
-<!-- HABITACIONES -->
 <section id="habitaciones">
   <p class="section-label">Nuestras Unidades</p>
   <h2 class="section-title">Habitaciones &amp; <em>Departamentos</em></h2>
@@ -334,7 +318,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
 </section>
 
-<!-- GALERÍA -->
 <section id="galeria">
   <p class="section-label">Imágenes</p>
   <h2 class="section-title">Galería <em>Fotográfica</em></h2>
@@ -350,7 +333,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <p id="gallery-empty" style="text-align:center;color:var(--text-mid);font-style:italic;padding:3rem;display:none;">Las fotos del hotel se cargarán próximamente.</p>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto">
   <div class="contact-grid">
     <div class="contact-info">
@@ -365,21 +347,21 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     <div class="contact-form reveal">
       <h3>Consultar disponibilidad</h3>
       <div class="form-row">
-        <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre"/></div>
-        <div class="form-group"><label>Email</label><input type="email" placeholder="tu@email.com"/></div>
+        <div class="form-group"><label>Nombre</label><input type="text" id="form-nombre" placeholder="Tu nombre"/></div>
+        <div class="form-group"><label>Email</label><input type="email" id="form-email" placeholder="tu@email.com"/></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>Llegada</label><input type="date"/></div>
-        <div class="form-group"><label>Salida</label><input type="date"/></div>
+        <div class="form-group"><label>Llegada</label><input type="date" id="form-llegada"/></div>
+        <div class="form-group"><label>Salida</label><input type="date" id="form-salida"/></div>
       </div>
       <div class="form-group"><label>Tipo de unidad</label>
-        <select>
+        <select id="form-unidad">
           <option value="">Seleccioná una opción</option>
           <optgroup label="Habitaciones"><option>Habitación Doble</option><option>Habitación Triple</option><option>Habitación Cuádruple</option></optgroup>
           <optgroup label="Departamentos"><option>Departamento Doble</option><option>Departamento Triple</option><option>Departamento Cuádruple (2 ambientes)</option></optgroup>
         </select>
       </div>
-      <div class="form-group"><label>Mensaje (opcional)</label><textarea placeholder="¿Alguna consulta especial?"></textarea></div>
+      <div class="form-group"><label>Mensaje (opcional)</label><textarea id="form-mensaje" placeholder="¿Alguna consulta especial?"></textarea></div>
       <button class="form-submit" onclick="handleSubmit(this)">Enviar Consulta</button>
     </div>
   </div>
@@ -387,10 +369,9 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 
 <footer>
   <div class="footer-logo" id="footer-logo-text">MS <span>Hotel</span></div>
-  <p class="footer-copy" id="footer-copy-text">© 2025 MS Hotel · Ushuaia, Tierra del Fuego</p>
+  <p class="footer-copy">© 2025 MS Hotel · Ushuaia, Tierra del Fuego</p>
   <div class="footer-social"><a href="https://instagram.com/mshotelushuaia" target="_blank" id="footer-ig">Instagram ↗</a></div>
 </footer>
-
 <a href="https://wa.me/542901307880" class="whatsapp-float" id="wa-float" target="_blank">💬</a>
 
 <div class="lightbox" id="lightbox">
@@ -400,7 +381,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <button class="lightbox-nav" id="lb-next" onclick="lbNav(1)">›</button>
 </div>
 
-<!-- ═══════════ ADMIN MODAL ═══════════ -->
+<!-- ADMIN -->
 <div id="admin-modal">
   <div class="admin-login" id="admin-login-screen">
     <div class="admin-login-box">
@@ -412,7 +393,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
       <button onclick="closeAdmin()" style="background:none;border:none;color:rgba(168,204,232,0.4);font-size:0.8rem;cursor:pointer;margin-top:1.5rem;font-family:'Jost',sans-serif;">Cancelar</button>
     </div>
   </div>
-
   <div class="admin-panel" id="admin-panel">
     <div class="admin-header">
       <h1>MS <span>Hotel</span> — Edición</h1>
@@ -430,7 +410,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     </div>
     <div class="admin-content">
 
-      <!-- GALERÍA -->
       <div class="admin-section active" id="tab-galeria">
         <div class="admin-card">
           <h3>📷 Subir fotos a la galería</h3>
@@ -447,10 +426,10 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
             <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(this.files)"/>
             <span class="upload-zone-icon">📁</span>
             <p>Hacé clic acá o arrastrá las fotos</p>
-            <small>Podés subir varias a la vez · JPG, PNG, WEBP · Sin límite de cantidad</small>
+            <small>Podés subir varias a la vez · JPG, PNG, WEBP · Sin límite</small>
           </div>
           <div class="upload-progress" id="upload-progress">
-            <p style="color:var(--ice);font-size:0.85rem;" id="upload-status">Procesando fotos...</p>
+            <p style="color:var(--ice);font-size:0.85rem;" id="upload-status">Procesando...</p>
             <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
           </div>
         </div>
@@ -462,20 +441,19 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
         </div>
       </div>
 
-      <!-- TEXTOS -->
       <div class="admin-section" id="tab-textos">
         <div class="admin-card">
           <h3>🏨 Nombre del hotel</h3>
-          <div class="admin-field"><label>Nombre del hotel (aparece en el logo, título y pie de página)</label><input type="text" id="edit-hotelname" placeholder="MS Hotel"/></div>
+          <div class="admin-field"><label>Nombre (aparece en logo, título y pie de página)</label><input type="text" id="edit-hotelname" placeholder="MS Hotel"/></div>
           <button class="admin-save-btn" onclick="saveHotelName()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-name">✓ Guardado</span>
+          <span class="admin-save-msg" id="save-msg-name">✓ Guardado en la nube</span>
         </div>
         <div class="admin-card">
-          <h3>🏔 Inicio (Hero)</h3>
-          <div class="admin-field"><label>Slogan</label><input type="text" id="edit-slogan" placeholder="Tu hogar en el fin del mundo"/></div>
-          <div class="admin-field"><label>Subtítulo (debajo del logo)</label><input type="text" id="edit-eyebrow" placeholder="Campos 26 · Ushuaia, Patagonia"/></div>
+          <h3>🏔 Inicio</h3>
+          <div class="admin-field"><label>Slogan</label><input type="text" id="edit-slogan"/></div>
+          <div class="admin-field"><label>Subtítulo</label><input type="text" id="edit-eyebrow"/></div>
           <button class="admin-save-btn" onclick="saveTexts()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-hero">✓ Guardado</span>
+          <span class="admin-save-msg" id="save-msg-hero">✓ Guardado en la nube</span>
         </div>
         <div class="admin-card">
           <h3>📖 Nuestra Historia</h3>
@@ -483,176 +461,73 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <div class="admin-field"><label>Párrafo 2</label><textarea id="edit-p2"></textarea></div>
           <div class="admin-field"><label>Párrafo 3</label><textarea id="edit-p3"></textarea></div>
           <button class="admin-save-btn" onclick="saveAbout()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-about">✓ Guardado</span>
+          <span class="admin-save-msg" id="save-msg-about">✓ Guardado en la nube</span>
         </div>
       </div>
 
-      <!-- DISEÑO -->
       <div class="admin-section" id="tab-diseno">
-
-        <!-- COLORES -->
         <div class="admin-card">
           <h3>🎨 Colores del sitio</h3>
-          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Los cambios de color se aplican al instante en toda la página.</p>
           <div class="color-grid">
-            <div class="color-item">
-              <label>Color Primario</label>
-              <small>Sección Habitaciones, nav, fondos oscuros</small>
-              <div class="color-swatch-row">
-                <input type="color" id="color-primary" value="#0d1f3c" oninput="applyColor('primary',this.value)" onchange="saveColors()"/>
-                <input type="text" class="color-hex" id="hex-primary" value="#0d1f3c" oninput="syncColorFromHex('primary',this.value)"/>
-              </div>
-            </div>
-            <div class="color-item">
-              <label>Color Secundario / Dorado</label>
-              <small>Botones, acentos, detalles</small>
-              <div class="color-swatch-row">
-                <input type="color" id="color-secondary" value="#c9a84c" oninput="applyColor('secondary',this.value)" onchange="saveColors()"/>
-                <input type="text" class="color-hex" id="hex-secondary" value="#c9a84c" oninput="syncColorFromHex('secondary',this.value)"/>
-              </div>
-            </div>
-            <div class="color-item">
-              <label>Color de Fondo</label>
-              <small>Fondo general de la página</small>
-              <div class="color-swatch-row">
-                <input type="color" id="color-bg" value="#f7f3ee" oninput="applyColor('bg',this.value)" onchange="saveColors()"/>
-                <input type="text" class="color-hex" id="hex-bg" value="#f7f3ee" oninput="syncColorFromHex('bg',this.value)"/>
-              </div>
-            </div>
+            <div class="color-item"><label>Color Primario</label><small>Habitaciones, nav, fondos oscuros</small><div class="color-swatch-row"><input type="color" id="color-primary" value="#0d1f3c" oninput="applyColor('primary',this.value)"/><input type="text" class="color-hex" id="hex-primary" value="#0d1f3c" oninput="syncColorFromHex('primary',this.value)"/></div></div>
+            <div class="color-item"><label>Color Secundario / Dorado</label><small>Botones y acentos</small><div class="color-swatch-row"><input type="color" id="color-secondary" value="#c9a84c" oninput="applyColor('secondary',this.value)"/><input type="text" class="color-hex" id="hex-secondary" value="#c9a84c" oninput="syncColorFromHex('secondary',this.value)"/></div></div>
+            <div class="color-item"><label>Color de Fondo</label><small>Fondo general</small><div class="color-swatch-row"><input type="color" id="color-bg" value="#f7f3ee" oninput="applyColor('bg',this.value)"/><input type="text" class="color-hex" id="hex-bg" value="#f7f3ee" oninput="syncColorFromHex('bg',this.value)"/></div></div>
           </div>
           <div style="margin-top:1.5rem;">
             <button class="admin-save-btn" onclick="saveColors()">Guardar colores</button>
-            <button onclick="resetColors()" style="background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.7rem 1.5rem;font-family:'Jost',sans-serif;font-size:0.82rem;cursor:pointer;margin-left:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">↩ Restaurar originales</button>
-            <span class="admin-save-msg" id="save-msg-colors">✓ Guardado</span>
+            <button onclick="resetColors()" style="background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.7rem 1.5rem;font-family:'Jost',sans-serif;font-size:0.82rem;cursor:pointer;margin-left:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">↩ Restaurar</button>
+            <span class="admin-save-msg" id="save-msg-colors">✓ Guardado en la nube</span>
           </div>
         </div>
-
-        <!-- IMÁGENES DE FONDO Y SECCIONES -->
         <div class="admin-card">
-          <h3>🖼 Imágenes principales de la página</h3>
-          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Para cada imagen podés subir un archivo desde tu computadora o pegar una URL. Los placeholders grises se reemplazarán con tus fotos reales.</p>
-
+          <h3>🖼 Imágenes principales</h3>
           <div class="img-editor-row">
-            <div id="thumb-hero"><div class="img-preview-placeholder">📷<br>Foto de fondo del inicio</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🏔 Foto de fondo del Inicio (Hero)</span>
-              <small style="color:rgba(168,204,232,0.5);">Imagen grande que se ve al abrir la página. Recomendado: foto de Ushuaia o del exterior del hotel, horizontal.</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="O pegá una URL de imagen..." id="url-hero"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-hero"><div class="img-preview-placeholder">📷 Fondo inicio</div></div>
+            <div class="img-editor-controls"><span class="img-name">🏔 Foto de fondo del Inicio</span><small style="color:rgba(168,204,232,0.5);">Foto grande al abrir la página. Recomendado: exterior o Ushuaia.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-hero"/><button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-about"><div class="img-preview-placeholder">📷<br>Foto "Nosotros"</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🏨 Foto de "Nuestra Historia"</span>
-              <small style="color:rgba(168,204,232,0.5);">Aparece al lado del texto sobre el hotel. Recomendado: foto del hotel, vertical u horizontal.</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('about',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="O pegá una URL de imagen..." id="url-about"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('about')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-about"><div class="img-preview-placeholder">📷 Nosotros</div></div>
+            <div class="img-editor-controls"><span class="img-name">🏨 Foto de "Nuestra Historia"</span><small style="color:rgba(168,204,232,0.5);">Al lado del texto sobre el hotel.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('about',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-about"/><button class="img-url-btn" onclick="setPageImgUrl('about')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-room-0"><div class="img-preview-placeholder">📷<br>Hab. Doble</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🛏 Foto Habitación Doble</span>
-              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Habitación Doble".</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-0',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-0"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('room-0')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-room-0"><div class="img-preview-placeholder">📷 Hab. Doble</div></div>
+            <div class="img-editor-controls"><span class="img-name">🛏 Habitación Doble</span><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('room-0',this)"/></label><input class="img-url-input" type="url" placeholder="URL..." id="url-room-0"/><button class="img-url-btn" onclick="setPageImgUrl('room-0')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-room-1"><div class="img-preview-placeholder">📷<br>Hab. Triple</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🛏 Foto Habitación Triple</span>
-              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Habitación Triple".</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-1',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-1"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('room-1')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-room-1"><div class="img-preview-placeholder">📷 Hab. Triple</div></div>
+            <div class="img-editor-controls"><span class="img-name">🛏 Habitación Triple</span><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('room-1',this)"/></label><input class="img-url-input" type="url" placeholder="URL..." id="url-room-1"/><button class="img-url-btn" onclick="setPageImgUrl('room-1')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-room-2"><div class="img-preview-placeholder">📷<br>Hab. Cuádruple</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🛏 Foto Habitación Cuádruple</span>
-              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Habitación Cuádruple".</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-2',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-2"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('room-2')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-room-2"><div class="img-preview-placeholder">📷 Hab. Cuádruple</div></div>
+            <div class="img-editor-controls"><span class="img-name">🛏 Habitación Cuádruple</span><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('room-2',this)"/></label><input class="img-url-input" type="url" placeholder="URL..." id="url-room-2"/><button class="img-url-btn" onclick="setPageImgUrl('room-2')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-room-3"><div class="img-preview-placeholder">📷<br>Depto. Doble</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🏠 Foto Departamento Doble</span>
-              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Departamento Doble".</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-3',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-3"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('room-3')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-room-3"><div class="img-preview-placeholder">📷 Depto. Doble</div></div>
+            <div class="img-editor-controls"><span class="img-name">🏠 Departamento Doble</span><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('room-3',this)"/></label><input class="img-url-input" type="url" placeholder="URL..." id="url-room-3"/><button class="img-url-btn" onclick="setPageImgUrl('room-3')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-room-4"><div class="img-preview-placeholder">📷<br>Depto. Triple</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🏠 Foto Departamento Triple</span>
-              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Departamento Triple".</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-4',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-4"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('room-4')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-room-4"><div class="img-preview-placeholder">📷 Depto. Triple</div></div>
+            <div class="img-editor-controls"><span class="img-name">🏠 Departamento Triple</span><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('room-4',this)"/></label><input class="img-url-input" type="url" placeholder="URL..." id="url-room-4"/><button class="img-url-btn" onclick="setPageImgUrl('room-4')">Aplicar</button></div></div>
           </div>
-
           <div class="img-editor-row">
-            <div id="thumb-room-5"><div class="img-preview-placeholder">📷<br>Depto. Cuádruple</div></div>
-            <div class="img-editor-controls">
-              <span class="img-name">🏠 Foto Departamento Cuádruple</span>
-              <small style="color:rgba(168,204,232,0.5);">Se muestra en la tarjeta de "Departamento Cuádruple".</small>
-              <div class="img-btn-row">
-                <label class="img-file-btn">📁 Subir archivo<input type="file" accept="image/*" onchange="setPageImg('room-5',this)"/></label>
-                <input class="img-url-input" type="url" placeholder="URL de imagen..." id="url-room-5"/>
-                <button class="img-url-btn" onclick="setPageImgUrl('room-5')">Aplicar URL</button>
-              </div>
-            </div>
+            <div id="thumb-room-5"><div class="img-preview-placeholder">📷 Depto. Cuádruple</div></div>
+            <div class="img-editor-controls"><span class="img-name">🏠 Departamento Cuádruple</span><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('room-5',this)"/></label><input class="img-url-input" type="url" placeholder="URL..." id="url-room-5"/><button class="img-url-btn" onclick="setPageImgUrl('room-5')">Aplicar</button></div></div>
           </div>
+        </div>
+      </div>
 
-        </div><!-- /card imágenes -->
-      </div><!-- /tab-diseno -->
-
-      <!-- CONTACTO -->
       <div class="admin-section" id="tab-contacto">
         <div class="admin-card">
           <h3>📞 Datos de contacto</h3>
-          <div class="admin-field"><label>Teléfono / WhatsApp (solo números, sin espacios ni +)</label><input type="text" id="edit-phone" placeholder="542901307880"/></div>
+          <div class="admin-field"><label>Teléfono / WhatsApp (solo números)</label><input type="text" id="edit-phone"/></div>
           <div class="admin-field"><label>Email</label><input type="email" id="edit-email"/></div>
           <div class="admin-field"><label>Instagram (sin @)</label><input type="text" id="edit-instagram"/></div>
           <div class="admin-field"><label>Dirección</label><input type="text" id="edit-address"/></div>
           <button class="admin-save-btn" onclick="saveContact()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-contact">✓ Guardado</span>
+          <span class="admin-save-msg" id="save-msg-contact">✓ Guardado en la nube</span>
         </div>
       </div>
 
-      <!-- CONTRASEÑA -->
       <div class="admin-section" id="tab-pass">
         <div class="admin-card">
           <h3>🔐 Cambiar contraseña</h3>
@@ -660,118 +535,108 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <div class="admin-field"><label>Nueva contraseña</label><input type="password" id="new-pass"/></div>
           <div class="admin-field"><label>Repetir nueva contraseña</label><input type="password" id="new-pass2"/></div>
           <button class="admin-save-btn" onclick="changePass()">Cambiar</button>
-          <span class="admin-save-msg" id="save-msg-pass">✓ Actualizada</span>
+          <span class="admin-save-msg" id="save-msg-pass">✓ Actualizada en la nube</span>
           <p id="pass-error" style="color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;"></p>
         </div>
       </div>
 
-    </div><!-- /admin-content -->
-  </div><!-- /admin-panel -->
-</div><!-- /admin-modal -->
+    </div>
+  </div>
+</div>
 
 <script>
-// ════════════════════════════════════════
-// IndexedDB
-// ════════════════════════════════════════
-const DB_NAME='mshotel_db', DB_VER=2;
-let db;
-function initDB(){
-  return new Promise((res,rej)=>{
-    const req=indexedDB.open(DB_NAME,DB_VER);
-    req.onupgradeneeded=e=>{
-      const d=e.target.result;
-      if(!d.objectStoreNames.contains('photos')) d.createObjectStore('photos',{keyPath:'id',autoIncrement:true});
-      if(!d.objectStoreNames.contains('settings')) d.createObjectStore('settings',{keyPath:'key'});
-      if(!d.objectStoreNames.contains('pageimgs')) d.createObjectStore('pageimgs',{keyPath:'key'});
-    };
-    req.onsuccess=e=>{db=e.target.result;res();};
-    req.onerror=()=>rej(req.error);
-  });
-}
-function dbGetAll(s){return new Promise((r,j)=>{const t=db.transaction(s,'readonly'),q=t.objectStore(s).getAll();q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});}
-function dbGet(s,k){return new Promise((r,j)=>{const t=db.transaction(s,'readonly'),q=t.objectStore(s).get(k);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});}
-function dbPut(s,v){return new Promise((r,j)=>{const t=db.transaction(s,'readwrite'),q=t.objectStore(s).put(v);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});}
-function dbDelete(s,k){return new Promise((r,j)=>{const t=db.transaction(s,'readwrite'),q=t.objectStore(s).delete(k);q.onsuccess=()=>r();q.onerror=()=>j(q.error);});}
-async function getSetting(k,def){const r=await dbGet('settings',k);return r?r.value:def;}
-async function setSetting(k,v){await dbPut('settings',{key:k,value:v});}
-async function getPageImg(k){const r=await dbGet('pageimgs',k);return r?r.data:null;}
-async function setPageImgDB(k,data){await dbPut('pageimgs',{key:k,data});}
+// ════════════════════════════════════
+// SUPABASE
+// ════════════════════════════════════
+const SUPA_URL = 'https://fefmfxlgetofoajilwdx.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlZm1meGxnZXRvZm9hamlsd2R4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5MjgzMjAsImV4cCI6MjA5ODUwNDMyMH0.qmVTK7qd6AQdMHNPl-ASHI9KbSSGLf48JZpADcpyYEE';
+const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-// ════════════════════════════════════════
+// ════════════════════════════════════
 // ESTADO GLOBAL
-// ════════════════════════════════════════
-let photos=[], ADMIN_PASS='mshotel2024';
-let siteColors={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
-let siteTexts={
-  hotelname:'MS Hotel',
-  slogan:'Tu hogar en el fin del mundo',
+// ════════════════════════════════════
+let photos = [];
+let ADMIN_PASS = 'mshotel2024';
+let siteColors = {primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
+let siteTexts = {
+  hotelname:'MS Hotel',slogan:'Tu hogar en el fin del mundo',
   eyebrow:'Campos 26 · Ushuaia, Patagonia',
   p1:'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.',
   p2:'Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.',
   p3:'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.'
 };
-let siteContact={phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego'};
+let siteContact = {phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego'};
 
-const PAGE_IMG_KEYS=['hero','about','room-0','room-1','room-2','room-3','room-4','room-5'];
-
-async function loadSettings(){
-  ADMIN_PASS=await getSetting('pass','mshotel2024');
-  const t=await getSetting('texts',null); if(t) siteTexts=t;
-  const c=await getSetting('contact',null); if(c) siteContact=c;
-  const col=await getSetting('colors',null); if(col) siteColors=col;
-  photos=await dbGetAll('photos');
+// ════════════════════════════════════
+// CARGAR DATOS DESDE SUPABASE
+// ════════════════════════════════════
+async function loadFromSupabase() {
+  try {
+    // Settings
+    const {data:settings} = await supa.from('settings').select('*');
+    if(settings) {
+      settings.forEach(s => {
+        if(s.key==='texts') siteTexts={...siteTexts,...s.value};
+        if(s.key==='contact') siteContact={...siteContact,...s.value};
+        if(s.key==='colors') siteColors={...siteColors,...s.value};
+        if(s.key==='pass') ADMIN_PASS=s.value;
+      });
+    }
+    // Fotos
+    const {data:ph} = await supa.from('photos').select('*').order('ts',{ascending:true});
+    if(ph) photos=ph;
+    // Imágenes de página
+    const {data:imgs} = await supa.from('pageimgs').select('*');
+    if(imgs) imgs.forEach(img=>renderPageImg(img.key,img.data));
+  } catch(e) { console.error('Error cargando datos:',e); }
 }
 
-// ════════════════════════════════════════
-// APLICAR DATOS A LA PÁGINA
-// ════════════════════════════════════════
-function applyData(){
-  const name=siteTexts.hotelname||'MS Hotel';
-  const parts=name.split(' ');
-  const first=parts[0]; const rest=parts.slice(1).join(' ');
-  document.getElementById('nav-logo-text').innerHTML=`${first} <span>${rest||''}</span>`;
-  document.getElementById('footer-logo-text').innerHTML=`${first} <span>${rest||''}</span>`;
-  document.getElementById('hero-title-el').innerHTML=`${first} <em>${rest||''}</em>`;
-  document.title=name+' | Ushuaia, Patagonia';
+async function saveSetting(key, value) {
+  await supa.from('settings').upsert({key, value}, {onConflict:'key'});
+}
 
+// ════════════════════════════════════
+// APLICAR DATOS A LA PÁGINA
+// ════════════════════════════════════
+function applyData() {
+  const name = siteTexts.hotelname||'MS Hotel';
+  const parts = name.split(' ');
+  const first = parts[0]; const rest = parts.slice(1).join(' ');
+  document.getElementById('nav-logo-text').innerHTML=`${first} <span>${rest}</span>`;
+  document.getElementById('footer-logo-text').innerHTML=`${first} <span>${rest}</span>`;
+  document.getElementById('hero-title-el').innerHTML=`${first} <em>${rest}</em>`;
+  document.title = name+' | Ushuaia, Patagonia';
   document.getElementById('hero-slogan').textContent=siteTexts.slogan;
   document.getElementById('hero-eyebrow-text').textContent=siteTexts.eyebrow;
   document.getElementById('about-p1').innerHTML=siteTexts.p1;
   document.getElementById('about-p2').innerHTML=siteTexts.p2;
   document.getElementById('about-p3').innerHTML=siteTexts.p3;
-
-  const phone=siteContact.phone, email=siteContact.email, ig=siteContact.instagram;
+  const p=siteContact.phone, e=siteContact.email, ig=siteContact.instagram;
   document.getElementById('txt-address').textContent=siteContact.address;
-  const phonEl=document.getElementById('txt-phone');
-  phonEl.href='https://wa.me/'+phone;
-  phonEl.textContent='+'+phone;
-  document.getElementById('txt-email').href='mailto:'+email;
-  document.getElementById('txt-email').textContent=email;
+  document.getElementById('txt-phone').href='https://wa.me/'+p;
+  document.getElementById('txt-phone').textContent='+'+p;
+  document.getElementById('txt-email').href='mailto:'+e;
+  document.getElementById('txt-email').textContent=e;
   document.getElementById('txt-instagram').href='https://instagram.com/'+ig;
   document.getElementById('txt-instagram').textContent='@'+ig;
-  document.getElementById('wa-float').href='https://wa.me/'+phone;
+  document.getElementById('wa-float').href='https://wa.me/'+p;
   document.getElementById('footer-ig').href='https://instagram.com/'+ig;
-
-  applyColors(siteColors,false);
+  applyColors(siteColors);
   renderPublicGallery('all');
 }
 
-async function applyPageImages(){
-  for(const key of PAGE_IMG_KEYS){
-    const data=await getPageImg(key);
-    if(data) renderPageImg(key,data);
-  }
-}
+// ════════════════════════════════════
+// IMÁGENES DE PÁGINA
+// ════════════════════════════════════
+const PAGE_IMG_KEYS=['hero','about','room-0','room-1','room-2','room-3','room-4','room-5'];
 
 function renderPageImg(key,src){
   if(key==='hero'){
     const img=document.getElementById('hero-img');
-    img.src=src; img.style.display='block';
-    // update thumb
+    img.src=src;img.style.display='block';
     setThumb('thumb-hero',src);
   } else if(key==='about'){
-    const wrap=document.getElementById('about-img-wrap-inner');
-    wrap.innerHTML=`<img src="${src}" alt="Nosotros" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
+    document.getElementById('about-img-wrap-inner').innerHTML=`<img src="${src}" alt="Nosotros" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
     setThumb('thumb-about',src);
   } else if(key.startsWith('room-')){
     const idx=key.split('-')[1];
@@ -780,35 +645,46 @@ function renderPageImg(key,src){
     setThumb('thumb-'+key,src);
   }
 }
-
-function setThumb(thumbId,src){
-  const el=document.getElementById(thumbId);
+function setThumb(id,src){
+  const el=document.getElementById(id);
   if(el) el.innerHTML=`<img class="img-preview-thumb" src="${src}" alt="preview"/>`;
 }
+function setPageImg(key,input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async e=>{
+    await supa.from('pageimgs').upsert({key,data:e.target.result},{onConflict:'key'});
+    renderPageImg(key,e.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+async function setPageImgUrl(key){
+  const url=document.getElementById('url-'+key).value.trim();
+  if(!url){alert('Pegá una URL válida primero.');return;}
+  await supa.from('pageimgs').upsert({key,data:url},{onConflict:'key'});
+  renderPageImg(key,url);
+  document.getElementById('url-'+key).value='';
+}
 
-// ════════════════════════════════════════
+// ════════════════════════════════════
 // COLORES
-// ════════════════════════════════════════
+// ════════════════════════════════════
 const DEFAULT_COLORS={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
-
-function applyColors(col,save=true){
+function applyColors(col){
   const r=document.documentElement.style;
   r.setProperty('--color-primary',col.primary);
   r.setProperty('--navy',col.primary);
-  r.setProperty('--deep',col.primary);
   r.setProperty('--color-secondary',col.secondary);
   r.setProperty('--gold',col.secondary);
   r.setProperty('--gold-light',lightenHex(col.secondary,20));
   r.setProperty('--color-bg',col.bg);
   r.setProperty('--cream',col.bg);
-  r.setProperty('--hero-accent-bg',col.bg);
   document.querySelector('.hero-accent').style.background=col.bg;
   siteColors=col;
 }
 function applyColor(which,val){
-  const col={...siteColors};
-  col[which]=val;
-  applyColors(col,false);
+  const col={...siteColors};col[which]=val;
+  applyColors(col);
   document.getElementById('hex-'+which).value=val;
 }
 function syncColorFromHex(which,val){
@@ -818,21 +694,20 @@ function syncColorFromHex(which,val){
   }
 }
 async function saveColors(){
-  await setSetting('colors',siteColors);
+  await saveSetting('colors',siteColors);
   showSaveMsg('save-msg-colors');
 }
 async function resetColors(){
-  applyColors(DEFAULT_COLORS,false);
+  applyColors(DEFAULT_COLORS);
   syncAdminColorInputs(DEFAULT_COLORS);
-  await setSetting('colors',DEFAULT_COLORS);
+  await saveSetting('colors',DEFAULT_COLORS);
   showSaveMsg('save-msg-colors');
 }
 function syncAdminColorInputs(col){
   ['primary','secondary','bg'].forEach(k=>{
     const ci=document.getElementById('color-'+k);
     const hi=document.getElementById('hex-'+k);
-    if(ci) ci.value=col[k];
-    if(hi) hi.value=col[k];
+    if(ci)ci.value=col[k];if(hi)hi.value=col[k];
   });
 }
 function lightenHex(hex,amount){
@@ -841,29 +716,9 @@ function lightenHex(hex,amount){
   return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 
-// ════════════════════════════════════════
-// IMÁGENES DE PÁGINA (subir/URL)
-// ════════════════════════════════════════
-function setPageImg(key,input){
-  const file=input.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=async e=>{
-    await setPageImgDB(key,e.target.result);
-    renderPageImg(key,e.target.result);
-  };
-  reader.readAsDataURL(file);
-}
-async function setPageImgUrl(key){
-  const url=document.getElementById('url-'+key).value.trim();
-  if(!url){ alert('Pegá una URL válida primero.'); return; }
-  await setPageImgDB(key,url);
-  renderPageImg(key,url);
-  document.getElementById('url-'+key).value='';
-}
-
-// ════════════════════════════════════════
+// ════════════════════════════════════
 // GALERÍA PÚBLICA
-// ════════════════════════════════════════
+// ════════════════════════════════════
 let lbPhotos=[],lbIndex=0;
 function renderPublicGallery(filter){
   const grid=document.getElementById('public-gallery');
@@ -875,14 +730,14 @@ function renderPublicGallery(filter){
   lbPhotos.forEach((p,i)=>{
     const div=document.createElement('div');
     div.className='gallery-item';
-    div.innerHTML=`<img src="${p.data}" alt="${p.name}" loading="lazy"/><div class="gallery-overlay">🔍</div>`;
+    div.innerHTML=`<img src="${p.data}" alt="${p.name||''}" loading="lazy"/><div class="gallery-overlay">🔍</div>`;
     div.onclick=()=>openLightbox(i);
     grid.appendChild(div);
   });
 }
 function filterGallery(cat,btn){
   document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); renderPublicGallery(cat);
+  btn.classList.add('active');renderPublicGallery(cat);
 }
 function openLightbox(i){lbIndex=i;document.getElementById('lb-img').src=lbPhotos[i].data;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
@@ -893,9 +748,9 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();
 });
 
-// ════════════════════════════════════════
+// ════════════════════════════════════
 // ADMIN LOGIN
-// ════════════════════════════════════════
+// ════════════════════════════════════
 function openAdmin(){document.getElementById('admin-modal').classList.add('open');document.getElementById('admin-pass').value='';document.getElementById('admin-error').style.display='none';}
 function closeAdmin(){document.getElementById('admin-modal').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';document.getElementById('admin-panel').classList.remove('open');}
 function checkPass(){
@@ -903,16 +758,14 @@ function checkPass(){
     document.getElementById('admin-login-screen').style.display='none';
     document.getElementById('admin-panel').classList.add('open');
     loadAdminData();
-  } else { document.getElementById('admin-error').style.display='block'; document.getElementById('admin-pass').value=''; }
+  } else {document.getElementById('admin-error').style.display='block';document.getElementById('admin-pass').value='';}
 }
 function logout(){document.getElementById('admin-panel').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';}
-
 function showAdminTab(id,btn){
   document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active'); btn.classList.add('active');
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
 }
-
 function loadAdminData(){
   document.getElementById('edit-hotelname').value=siteTexts.hotelname||'MS Hotel';
   document.getElementById('edit-slogan').value=siteTexts.slogan;
@@ -928,9 +781,9 @@ function loadAdminData(){
   renderAdminGallery();
 }
 
-// ════════════════════════════════════════
+// ════════════════════════════════════
 // ADMIN — GALERÍA
-// ════════════════════════════════════════
+// ════════════════════════════════════
 const uploadZone=document.getElementById('upload-zone');
 uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('drag-over');});
 uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('drag-over'));
@@ -942,21 +795,27 @@ function handleFiles(files){
   const prog=document.getElementById('upload-progress');
   const bar=document.getElementById('progress-bar');
   const status=document.getElementById('upload-status');
-  prog.style.display='block'; bar.style.width='0%';
+  prog.style.display='block';bar.style.width='0%';
   const valid=Array.from(files).filter(f=>f.type.startsWith('image/'));
-  const total=valid.length; if(total===0){prog.style.display='none';return;}
-  status.textContent=`Procesando 0 de ${total} fotos...`;
+  const total=valid.length;if(total===0){prog.style.display='none';return;}
+  status.textContent=`Procesando 0 de ${total}...`;
   let done=0;
   valid.forEach((file,idx)=>{
     const reader=new FileReader();
     reader.onload=async e=>{
-      await dbPut('photos',{data:e.target.result,name:file.name,cat,ts:Date.now()+idx});
-      photos=await dbGetAll('photos');
+      const photo={data:e.target.result,name:file.name,cat,ts:Date.now()+idx};
+      const {data:inserted}=await supa.from('photos').insert(photo).select();
+      if(inserted&&inserted[0]) photos.push(inserted[0]);
       done++;
       bar.style.width=(done/total*100)+'%';
-      status.textContent=`Procesando ${done} de ${total} fotos...`;
+      status.textContent=`Subiendo ${done} de ${total} fotos a la nube...`;
       if(done===total){
-        setTimeout(()=>{prog.style.display='none';bar.style.width='0%';document.getElementById('file-input').value='';renderAdminGallery();renderPublicGallery('all');document.querySelectorAll('.gallery-filter-btn').forEach((b,i)=>{i===0?b.classList.add('active'):b.classList.remove('active');});},500);
+        setTimeout(()=>{
+          prog.style.display='none';bar.style.width='0%';
+          document.getElementById('file-input').value='';
+          renderAdminGallery();renderPublicGallery('all');
+          document.querySelectorAll('.gallery-filter-btn').forEach((b,i)=>{i===0?b.classList.add('active'):b.classList.remove('active');});
+        },500);
       }
     };
     reader.readAsDataURL(file);
@@ -967,85 +826,115 @@ const CAT_LABELS={exterior:'Exterior',habitaciones:'Habitaciones',departamentos:
 function renderAdminGallery(){
   const grid=document.getElementById('admin-gallery-grid');
   const noMsg=document.getElementById('no-photos-msg');
-  document.getElementById('photo-count').textContent=photos.length+' foto'+(photos.length!==1?'s':'')+' en la galería';
+  document.getElementById('photo-count').textContent=photos.length+' foto'+(photos.length!==1?'s':'')+' guardadas en la nube ☁️';
   if(photos.length===0){grid.innerHTML='';noMsg.style.display='block';return;}
-  noMsg.style.display='none'; grid.innerHTML='';
+  noMsg.style.display='none';grid.innerHTML='';
   photos.forEach(p=>{
     const div=document.createElement('div');
     div.className='admin-gallery-item';
-    div.innerHTML=`<img src="${p.data}" alt="${p.name}" loading="lazy"/><span class="category-badge">${CAT_LABELS[p.cat]||p.cat}</span><div class="admin-gallery-item-overlay"><button onclick="cycleCategory(${p.id})">📁 ${CAT_LABELS[p.cat]||p.cat}</button><button class="del-btn" onclick="deletePhoto(${p.id})">🗑 Borrar</button></div>`;
+    div.innerHTML=`<img src="${p.data}" alt="${p.name||''}" loading="lazy"/><span class="category-badge">${CAT_LABELS[p.cat]||p.cat}</span><div class="admin-gallery-item-overlay"><button onclick="cycleCategory(${p.id})">📁 ${CAT_LABELS[p.cat]||p.cat}</button><button class="del-btn" onclick="deletePhoto(${p.id})">🗑 Borrar</button></div>`;
     grid.appendChild(div);
   });
 }
-async function deletePhoto(id){if(!confirm('¿Borrar esta foto?'))return;await dbDelete('photos',id);photos=await dbGetAll('photos');renderAdminGallery();renderPublicGallery('all');}
+async function deletePhoto(id){
+  if(!confirm('¿Borrar esta foto?'))return;
+  await supa.from('photos').delete().eq('id',id);
+  photos=photos.filter(p=>p.id!==id);
+  renderAdminGallery();renderPublicGallery('all');
+}
 async function cycleCategory(id){
   const cats=['exterior','habitaciones','departamentos','espacios'];
-  const p=photos.find(x=>x.id===id); if(!p)return;
+  const p=photos.find(x=>x.id===id);if(!p)return;
   p.cat=cats[(cats.indexOf(p.cat)+1)%cats.length];
-  await dbPut('photos',p); photos=await dbGetAll('photos');
-  renderAdminGallery(); renderPublicGallery('all');
+  await supa.from('photos').update({cat:p.cat}).eq('id',id);
+  renderAdminGallery();renderPublicGallery('all');
 }
 
-// ════════════════════════════════════════
-// ADMIN — GUARDAR TEXTOS / CONTACTO / PASS
-// ════════════════════════════════════════
+// ════════════════════════════════════
+// GUARDAR TEXTOS / CONTACTO / PASS
+// ════════════════════════════════════
 async function saveHotelName(){
   siteTexts.hotelname=document.getElementById('edit-hotelname').value||siteTexts.hotelname;
-  await setSetting('texts',siteTexts); applyData(); showSaveMsg('save-msg-name');
+  await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-name');
 }
 async function saveTexts(){
   siteTexts.slogan=document.getElementById('edit-slogan').value||siteTexts.slogan;
   siteTexts.eyebrow=document.getElementById('edit-eyebrow').value||siteTexts.eyebrow;
-  await setSetting('texts',siteTexts); applyData(); showSaveMsg('save-msg-hero');
+  await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-hero');
 }
 async function saveAbout(){
   siteTexts.p1=document.getElementById('edit-p1').value||siteTexts.p1;
   siteTexts.p2=document.getElementById('edit-p2').value||siteTexts.p2;
   siteTexts.p3=document.getElementById('edit-p3').value||siteTexts.p3;
-  await setSetting('texts',siteTexts); applyData(); showSaveMsg('save-msg-about');
+  await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-about');
 }
 async function saveContact(){
   siteContact.phone=document.getElementById('edit-phone').value||siteContact.phone;
   siteContact.email=document.getElementById('edit-email').value||siteContact.email;
   siteContact.instagram=document.getElementById('edit-instagram').value||siteContact.instagram;
   siteContact.address=document.getElementById('edit-address').value||siteContact.address;
-  await setSetting('contact',siteContact); applyData(); showSaveMsg('save-msg-contact');
+  await saveSetting('contact',siteContact);applyData();showSaveMsg('save-msg-contact');
 }
 async function changePass(){
   const old=document.getElementById('old-pass').value;
   const n1=document.getElementById('new-pass').value;
   const n2=document.getElementById('new-pass2').value;
-  const err=document.getElementById('pass-error'); err.style.display='none';
+  const err=document.getElementById('pass-error');err.style.display='none';
   if(old!==ADMIN_PASS){err.textContent='Contraseña actual incorrecta.';err.style.display='block';return;}
   if(n1.length<4){err.textContent='Mínimo 4 caracteres.';err.style.display='block';return;}
   if(n1!==n2){err.textContent='Las contraseñas no coinciden.';err.style.display='block';return;}
-  ADMIN_PASS=n1; await setSetting('pass',n1);
+  ADMIN_PASS=n1;
+  await saveSetting('pass',n1);
   ['old-pass','new-pass','new-pass2'].forEach(id=>document.getElementById(id).value='');
   showSaveMsg('save-msg-pass');
 }
-function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',2500);}
+function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',3000);}
 
-// ════════════════════════════════════════
+// ════════════════════════════════════
+// FORMULARIO DE CONTACTO
+// ════════════════════════════════════
+async function handleSubmit(btn){
+  const nombre=document.getElementById('form-nombre').value.trim();
+  const email=document.getElementById('form-email').value.trim();
+  const llegada=document.getElementById('form-llegada').value;
+  const salida=document.getElementById('form-salida').value;
+  const unidad=document.getElementById('form-unidad').value;
+  const mensaje=document.getElementById('form-mensaje').value.trim();
+  if(!nombre||!email){alert('Por favor completá al menos nombre y email.');return;}
+  btn.textContent='Enviando...';btn.disabled=true;
+  try {
+    await supa.from('consultas').insert({nombre,email,llegada,salida,unidad,mensaje,fecha:new Date().toISOString()});
+    btn.textContent='✓ ¡Consulta enviada!';btn.style.background='#2a5298';btn.style.color='#fff';
+    ['form-nombre','form-email','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('form-unidad').selectedIndex=0;
+  } catch(e){
+    btn.textContent='Error al enviar';btn.style.background='#8b0000';btn.style.color='#fff';
+  }
+  setTimeout(()=>{btn.textContent='Enviar Consulta';btn.style.background='';btn.style.color='';btn.disabled=false;},4000);
+}
+
+// ════════════════════════════════════
 // MISC
-// ════════════════════════════════════════
+// ════════════════════════════════════
 function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active'); btn.classList.add('active');
-}
-function handleSubmit(btn){
-  btn.textContent='✓ ¡Consulta enviada!';btn.style.background='#2a5298';btn.style.color='#fff';
-  setTimeout(()=>{btn.textContent='Enviar Consulta';btn.style.background='';btn.style.color='';},3000);
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
 }
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// INICIO
-initDB().then(async()=>{
-  await loadSettings();
+// ════════════════════════════════════
+// INICIO — carga todo desde Supabase
+// ════════════════════════════════════
+(async()=>{
+  try {
+    await loadFromSupabase();
+  } catch(e){ console.error(e); }
   applyData();
-  await applyPageImages();
-}).catch(err=>{console.error('DB error:',err);applyData();});
+  document.getElementById('db-loading').style.display='none';
+})();
 </script>
 </body>
 </html>
+
