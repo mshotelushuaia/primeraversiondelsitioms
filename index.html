@@ -45,7 +45,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-btn:hover::before{transform:scaleX(1);}
 .img-placeholder{width:100%;background:#c8c8c8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:#666;font-family:'Jost',sans-serif;}
 .img-placeholder span{font-size:2rem;}
-.img-placeholder p{font-size:0.8rem;letter-spacing:0.05em;}
+.img-placeholder p{font-size:0.8rem;}
 section{padding:6rem 4rem;}
 .section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.8rem;}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.15;margin-bottom:1.5rem;}
@@ -87,8 +87,7 @@ section{padding:6rem 4rem;}
 .room-info p{font-size:0.83rem;color:var(--ice);line-height:1.6;margin-bottom:1rem;}
 .room-features{display:flex;gap:0.8rem;flex-wrap:wrap;}
 .feat-badge{font-size:0.68rem;padding:0.25rem 0.7rem;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);color:var(--ice);border-radius:20px;}
-.tab-panel{display:none;}
-.tab-panel.active{display:block;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
 #galeria{background:var(--white);text-align:center;}
 #galeria .divider{margin:0 auto 1rem;}
 .gallery-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
@@ -137,12 +136,10 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .footer-social a:hover{border-color:var(--gold);color:var(--gold-light);}
 .whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:200;font-size:1.6rem;transition:transform 0.3s;}
 .whatsapp-float:hover{transform:scale(1.1);}
-/* LOADING */
-.db-loading{position:fixed;inset:0;background:rgba(13,31,60,0.92);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
+.db-loading{position:fixed;inset:0;background:rgba(13,31,60,0.95);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
 .db-loading p{color:var(--ice);font-family:'Jost',sans-serif;font-size:0.9rem;letter-spacing:0.1em;}
 .spinner{width:40px;height:40px;border:3px solid rgba(168,204,232,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* ADMIN */
 #admin-modal{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.97);z-index:500;overflow-y:auto;}
 #admin-modal.open{display:block;}
 .admin-login{display:flex;align-items:center;justify-content:center;min-height:100vh;}
@@ -154,8 +151,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .admin-btn-primary{width:100%;padding:0.9rem;background:var(--gold);border:none;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
 .admin-btn-primary:hover{background:var(--gold-light);}
 .admin-error{color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;}
-.admin-panel{display:none;min-height:100vh;}
-.admin-panel.open{display:block;}
+.admin-panel{display:none;min-height:100vh;}.admin-panel.open{display:block;}
 .admin-header{background:rgba(13,31,60,0.8);border-bottom:1px solid rgba(168,204,232,0.15);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);}
 .admin-header h1{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);}
 .admin-header h1 span{color:var(--gold);}
@@ -165,13 +161,12 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .admin-tab{padding:1rem 1.5rem;background:none;border:none;color:var(--ice);font-family:'Jost',sans-serif;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.3s;}
 .admin-tab.active{color:var(--gold-light);border-bottom-color:var(--gold);}
 .admin-content{padding:2rem;max-width:1100px;margin:0 auto;}
-.admin-section{display:none;}
-.admin-section.active{display:block;}
+.admin-section{display:none;}.admin-section.active{display:block;}
 .admin-card{background:rgba(255,255,255,0.04);border:1px solid rgba(168,204,232,0.12);padding:1.8rem;margin-bottom:1.5rem;}
 .admin-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1.2rem;border-bottom:1px solid rgba(168,204,232,0.1);padding-bottom:0.8rem;}
 .admin-field{margin-bottom:1.2rem;}
 .admin-field label{display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.5rem;}
-.admin-field input[type=text],.admin-field input[type=email],.admin-field input[type=password],.admin-field input[type=url],.admin-field textarea,.admin-field select{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.8rem 1rem;font-family:'Jost',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;}
+.admin-field input[type=text],.admin-field input[type=email],.admin-field input[type=password],.admin-field input[type=url],.admin-field textarea{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.8rem 1rem;font-family:'Jost',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;}
 .admin-field input:focus,.admin-field textarea:focus{border-color:var(--gold);}
 .admin-field textarea{resize:vertical;min-height:100px;}
 .admin-save-btn{background:var(--gold);border:none;color:var(--navy);padding:0.7rem 2rem;font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
@@ -232,7 +227,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 </head>
 <body>
 
-<!-- LOADING -->
 <div class="db-loading" id="db-loading">
   <div class="spinner"></div>
   <p>Cargando MS Hotel...</p>
@@ -275,9 +269,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     <div class="tribute-tag">✦ Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)</div>
   </div>
   <div class="about-img-wrap reveal">
-    <div id="about-img-wrap-inner">
-      <div class="img-placeholder" style="height:520px;"><span>🏨</span><p>Subir foto aquí</p></div>
-    </div>
+    <div id="about-img-wrap-inner"><div class="img-placeholder" style="height:520px;"><span>🏨</span><p>Subir foto aquí</p></div></div>
     <div class="about-img-border"></div>
   </div>
 </section>
@@ -304,16 +296,16 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
   <div class="tab-panel active" id="habitaciones-tab">
     <div class="rooms-grid">
-      <div class="room-card reveal"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Doble</p></div></div><div class="room-info"><p class="room-type">7 unidades disponibles</p><h3>Habitación Doble</h3><p>Cómoda habitación para dos personas, con todo lo necesario para disfrutar Ushuaia.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Triple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Triple</h3><p>Ideal para familias o grupos de tres, con espacio pensado para el confort de todos.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Cuádruple</h3><p>Amplia habitación para cuatro. La opción perfecta para grupos y familias numerosas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Doble</p></div></div><div class="room-info"><p class="room-type">7 unidades disponibles</p><h3>Habitación Doble</h3><p>Cómoda habitación para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Triple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Triple</h3><p>Ideal para familias o grupos de tres.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Cuádruple</h3><p>Amplia habitación para cuatro personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
     </div>
   </div>
   <div class="tab-panel" id="departamentos-tab">
     <div class="rooms-grid">
-      <div class="room-card reveal"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Doble</p></div></div><div class="room-info"><p class="room-type">1 unidad · Monoambiente</p><h3>Departamento Doble</h3><p>Monoambiente equipado para dos. Independencia y privacidad en el centro de Ushuaia.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Triple</p></div></div><div class="room-info"><p class="room-type">2 unidades · Monoambiente</p><h3>Departamento Triple</h3><p>Monoambiente cómodo para tres. Ideal para grupos que buscan autonomía.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad · 2 Ambientes</p><h3>Departamento Cuádruple</h3><p>Dos ambientes separados. Perfecto para familias que necesitan privacidad.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span><span class="feat-badge">2 Ambientes</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Doble</p></div></div><div class="room-info"><p class="room-type">1 unidad · Monoambiente</p><h3>Departamento Doble</h3><p>Monoambiente equipado para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Triple</p></div></div><div class="room-info"><p class="room-type">2 unidades · Monoambiente</p><h3>Departamento Triple</h3><p>Monoambiente cómodo para tres personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad · 2 Ambientes</p><h3>Departamento Cuádruple</h3><p>Dos ambientes separados para familias.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span><span class="feat-badge">2 Ambientes</span></div></div></div>
     </div>
   </div>
 </section>
@@ -381,7 +373,6 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <button class="lightbox-nav" id="lb-next" onclick="lbNav(1)">›</button>
 </div>
 
-<!-- ADMIN -->
 <div id="admin-modal">
   <div class="admin-login" id="admin-login-screen">
     <div class="admin-login-box">
@@ -444,16 +435,16 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
       <div class="admin-section" id="tab-textos">
         <div class="admin-card">
           <h3>🏨 Nombre del hotel</h3>
-          <div class="admin-field"><label>Nombre (aparece en logo, título y pie de página)</label><input type="text" id="edit-hotelname" placeholder="MS Hotel"/></div>
+          <div class="admin-field"><label>Nombre del hotel</label><input type="text" id="edit-hotelname" placeholder="MS Hotel"/></div>
           <button class="admin-save-btn" onclick="saveHotelName()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-name">✓ Guardado en la nube</span>
+          <span class="admin-save-msg" id="save-msg-name">✓ Guardado en la nube ☁️</span>
         </div>
         <div class="admin-card">
           <h3>🏔 Inicio</h3>
           <div class="admin-field"><label>Slogan</label><input type="text" id="edit-slogan"/></div>
           <div class="admin-field"><label>Subtítulo</label><input type="text" id="edit-eyebrow"/></div>
           <button class="admin-save-btn" onclick="saveTexts()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-hero">✓ Guardado en la nube</span>
+          <span class="admin-save-msg" id="save-msg-hero">✓ Guardado en la nube ☁️</span>
         </div>
         <div class="admin-card">
           <h3>📖 Nuestra Historia</h3>
@@ -461,7 +452,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <div class="admin-field"><label>Párrafo 2</label><textarea id="edit-p2"></textarea></div>
           <div class="admin-field"><label>Párrafo 3</label><textarea id="edit-p3"></textarea></div>
           <button class="admin-save-btn" onclick="saveAbout()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-about">✓ Guardado en la nube</span>
+          <span class="admin-save-msg" id="save-msg-about">✓ Guardado en la nube ☁️</span>
         </div>
       </div>
 
@@ -469,25 +460,25 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
         <div class="admin-card">
           <h3>🎨 Colores del sitio</h3>
           <div class="color-grid">
-            <div class="color-item"><label>Color Primario</label><small>Habitaciones, nav, fondos oscuros</small><div class="color-swatch-row"><input type="color" id="color-primary" value="#0d1f3c" oninput="applyColor('primary',this.value)"/><input type="text" class="color-hex" id="hex-primary" value="#0d1f3c" oninput="syncColorFromHex('primary',this.value)"/></div></div>
-            <div class="color-item"><label>Color Secundario / Dorado</label><small>Botones y acentos</small><div class="color-swatch-row"><input type="color" id="color-secondary" value="#c9a84c" oninput="applyColor('secondary',this.value)"/><input type="text" class="color-hex" id="hex-secondary" value="#c9a84c" oninput="syncColorFromHex('secondary',this.value)"/></div></div>
+            <div class="color-item"><label>Color Primario</label><small>Habitaciones, nav, fondos</small><div class="color-swatch-row"><input type="color" id="color-primary" value="#0d1f3c" oninput="applyColor('primary',this.value)"/><input type="text" class="color-hex" id="hex-primary" value="#0d1f3c" oninput="syncColorFromHex('primary',this.value)"/></div></div>
+            <div class="color-item"><label>Color Secundario</label><small>Botones y acentos</small><div class="color-swatch-row"><input type="color" id="color-secondary" value="#c9a84c" oninput="applyColor('secondary',this.value)"/><input type="text" class="color-hex" id="hex-secondary" value="#c9a84c" oninput="syncColorFromHex('secondary',this.value)"/></div></div>
             <div class="color-item"><label>Color de Fondo</label><small>Fondo general</small><div class="color-swatch-row"><input type="color" id="color-bg" value="#f7f3ee" oninput="applyColor('bg',this.value)"/><input type="text" class="color-hex" id="hex-bg" value="#f7f3ee" oninput="syncColorFromHex('bg',this.value)"/></div></div>
           </div>
           <div style="margin-top:1.5rem;">
             <button class="admin-save-btn" onclick="saveColors()">Guardar colores</button>
             <button onclick="resetColors()" style="background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.7rem 1.5rem;font-family:'Jost',sans-serif;font-size:0.82rem;cursor:pointer;margin-left:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">↩ Restaurar</button>
-            <span class="admin-save-msg" id="save-msg-colors">✓ Guardado en la nube</span>
+            <span class="admin-save-msg" id="save-msg-colors">✓ Guardado en la nube ☁️</span>
           </div>
         </div>
         <div class="admin-card">
           <h3>🖼 Imágenes principales</h3>
           <div class="img-editor-row">
             <div id="thumb-hero"><div class="img-preview-placeholder">📷 Fondo inicio</div></div>
-            <div class="img-editor-controls"><span class="img-name">🏔 Foto de fondo del Inicio</span><small style="color:rgba(168,204,232,0.5);">Foto grande al abrir la página. Recomendado: exterior o Ushuaia.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-hero"/><button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar</button></div></div>
+            <div class="img-editor-controls"><span class="img-name">🏔 Foto de fondo del Inicio</span><small style="color:rgba(168,204,232,0.5);">Foto grande al abrir la página.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-hero"/><button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar</button></div></div>
           </div>
           <div class="img-editor-row">
             <div id="thumb-about"><div class="img-preview-placeholder">📷 Nosotros</div></div>
-            <div class="img-editor-controls"><span class="img-name">🏨 Foto de "Nuestra Historia"</span><small style="color:rgba(168,204,232,0.5);">Al lado del texto sobre el hotel.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('about',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-about"/><button class="img-url-btn" onclick="setPageImgUrl('about')">Aplicar</button></div></div>
+            <div class="img-editor-controls"><span class="img-name">🏨 Foto "Nuestra Historia"</span><small style="color:rgba(168,204,232,0.5);">Al lado del texto sobre el hotel.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('about',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-about"/><button class="img-url-btn" onclick="setPageImgUrl('about')">Aplicar</button></div></div>
           </div>
           <div class="img-editor-row">
             <div id="thumb-room-0"><div class="img-preview-placeholder">📷 Hab. Doble</div></div>
@@ -524,7 +515,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <div class="admin-field"><label>Instagram (sin @)</label><input type="text" id="edit-instagram"/></div>
           <div class="admin-field"><label>Dirección</label><input type="text" id="edit-address"/></div>
           <button class="admin-save-btn" onclick="saveContact()">Guardar</button>
-          <span class="admin-save-msg" id="save-msg-contact">✓ Guardado en la nube</span>
+          <span class="admin-save-msg" id="save-msg-contact">✓ Guardado en la nube ☁️</span>
         </div>
       </div>
 
@@ -535,7 +526,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <div class="admin-field"><label>Nueva contraseña</label><input type="password" id="new-pass"/></div>
           <div class="admin-field"><label>Repetir nueva contraseña</label><input type="password" id="new-pass2"/></div>
           <button class="admin-save-btn" onclick="changePass()">Cambiar</button>
-          <span class="admin-save-msg" id="save-msg-pass">✓ Actualizada en la nube</span>
+          <span class="admin-save-msg" id="save-msg-pass">✓ Actualizada en la nube ☁️</span>
           <p id="pass-error" style="color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;"></p>
         </div>
       </div>
@@ -545,73 +536,67 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 </div>
 
 <script>
-// ════════════════════════════════════
-// SUPABASE
-// ════════════════════════════════════
-const SUPA_URL = 'https://fefmfxlgetofoajilwdx.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlZm1meGxnZXRvZm9hamlsd2R4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5MjgzMjAsImV4cCI6MjA5ODUwNDMyMH0.qmVTK7qd6AQdMHNPl-ASHI9KbSSGLf48JZpADcpyYEE';
-const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
+const SUPA_URL='https://fefmfxlgetofoajilwdx.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlZm1meGxnZXRvZm9hamlsd2R4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5MjgzMjAsImV4cCI6MjA5ODUwNDMyMH0.qmVTK7qd6AQdMHNPl-ASHI9KbSSGLf48JZpADcpyYEE';
+const supa=supabase.createClient(SUPA_URL,SUPA_KEY);
+const BUCKET='photos';
 
-// ════════════════════════════════════
-// ESTADO GLOBAL
-// ════════════════════════════════════
-let photos = [];
-let ADMIN_PASS = 'mshotel2024';
-let siteColors = {primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
-let siteTexts = {
+let photos=[];
+let ADMIN_PASS='mshotel2024';
+let siteColors={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
+let siteTexts={
   hotelname:'MS Hotel',slogan:'Tu hogar en el fin del mundo',
   eyebrow:'Campos 26 · Ushuaia, Patagonia',
   p1:'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.',
   p2:'Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.',
   p3:'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.'
 };
-let siteContact = {phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego'};
+let siteContact={phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego'};
 
-// ════════════════════════════════════
-// CARGAR DATOS DESDE SUPABASE
-// ════════════════════════════════════
-async function loadFromSupabase() {
-  try {
-    // Settings
-    const {data:settings} = await supa.from('settings').select('*');
-    if(settings) {
-      settings.forEach(s => {
-        if(s.key==='texts') siteTexts={...siteTexts,...s.value};
-        if(s.key==='contact') siteContact={...siteContact,...s.value};
-        if(s.key==='colors') siteColors={...siteColors,...s.value};
-        if(s.key==='pass') ADMIN_PASS=s.value;
-      });
+// ── CARGAR DESDE SUPABASE ──
+async function loadFromSupabase(){
+  try{
+    const {data:settings}=await supa.from('settings').select('*');
+    if(settings) settings.forEach(s=>{
+      if(s.key==='texts') siteTexts={...siteTexts,...s.value};
+      if(s.key==='contact') siteContact={...siteContact,...s.value};
+      if(s.key==='colors') siteColors={...siteColors,...s.value};
+      if(s.key==='pass') ADMIN_PASS=s.value;
+    });
+    // Fotos desde Storage
+    const {data:files}=await supa.storage.from(BUCKET).list('gallery',{limit:500,sortBy:{column:'created_at',order:'asc'}});
+    if(files){
+      photos=files.filter(f=>f.name!=='.emptyFolderPlaceholder').map(f=>({
+        id:f.id, name:f.name,
+        url:supa.storage.from(BUCKET).getPublicUrl('gallery/'+f.name).data.publicUrl,
+        cat:f.name.split('__')[0]||'exterior'
+      }));
     }
-    // Fotos
-    const {data:ph} = await supa.from('photos').select('*').order('ts',{ascending:true});
-    if(ph) photos=ph;
-    // Imágenes de página
-    const {data:imgs} = await supa.from('pageimgs').select('*');
+    // Imágenes de página desde settings
+    const {data:imgs}=await supa.from('pageimgs').select('*');
     if(imgs) imgs.forEach(img=>renderPageImg(img.key,img.data));
-  } catch(e) { console.error('Error cargando datos:',e); }
+  }catch(e){console.error('Error:',e);}
 }
 
-async function saveSetting(key, value) {
-  await supa.from('settings').upsert({key, value}, {onConflict:'key'});
+async function saveSetting(key,value){
+  await supa.from('settings').upsert({key,value},{onConflict:'key'});
 }
 
-// ════════════════════════════════════
-// APLICAR DATOS A LA PÁGINA
-// ════════════════════════════════════
-function applyData() {
-  const name = siteTexts.hotelname||'MS Hotel';
-  const parts = name.split(' ');
-  const first = parts[0]; const rest = parts.slice(1).join(' ');
+// ── APLICAR DATOS ──
+function applyData(){
+  const name=siteTexts.hotelname||'MS Hotel';
+  const parts=name.split(' ');
+  const first=parts[0];const rest=parts.slice(1).join(' ');
   document.getElementById('nav-logo-text').innerHTML=`${first} <span>${rest}</span>`;
   document.getElementById('footer-logo-text').innerHTML=`${first} <span>${rest}</span>`;
   document.getElementById('hero-title-el').innerHTML=`${first} <em>${rest}</em>`;
-  document.title = name+' | Ushuaia, Patagonia';
+  document.title=name+' | Ushuaia, Patagonia';
   document.getElementById('hero-slogan').textContent=siteTexts.slogan;
   document.getElementById('hero-eyebrow-text').textContent=siteTexts.eyebrow;
   document.getElementById('about-p1').innerHTML=siteTexts.p1;
   document.getElementById('about-p2').innerHTML=siteTexts.p2;
   document.getElementById('about-p3').innerHTML=siteTexts.p3;
-  const p=siteContact.phone, e=siteContact.email, ig=siteContact.instagram;
+  const p=siteContact.phone,e=siteContact.email,ig=siteContact.instagram;
   document.getElementById('txt-address').textContent=siteContact.address;
   document.getElementById('txt-phone').href='https://wa.me/'+p;
   document.getElementById('txt-phone').textContent='+'+p;
@@ -625,20 +610,16 @@ function applyData() {
   renderPublicGallery('all');
 }
 
-// ════════════════════════════════════
-// IMÁGENES DE PÁGINA
-// ════════════════════════════════════
-const PAGE_IMG_KEYS=['hero','about','room-0','room-1','room-2','room-3','room-4','room-5'];
-
+// ── IMÁGENES DE PÁGINA ──
 function renderPageImg(key,src){
   if(key==='hero'){
     const img=document.getElementById('hero-img');
     img.src=src;img.style.display='block';
     setThumb('thumb-hero',src);
-  } else if(key==='about'){
+  }else if(key==='about'){
     document.getElementById('about-img-wrap-inner').innerHTML=`<img src="${src}" alt="Nosotros" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
     setThumb('thumb-about',src);
-  } else if(key.startsWith('room-')){
+  }else if(key.startsWith('room-')){
     const idx=key.split('-')[1];
     const wrap=document.getElementById('room-img-'+idx+'-wrap');
     if(wrap) wrap.innerHTML=`<img src="${src}" class="room-img" alt="Habitación"/>`;
@@ -666,9 +647,7 @@ async function setPageImgUrl(key){
   document.getElementById('url-'+key).value='';
 }
 
-// ════════════════════════════════════
-// COLORES
-// ════════════════════════════════════
+// ── COLORES ──
 const DEFAULT_COLORS={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
 function applyColors(col){
   const r=document.documentElement.style;
@@ -682,43 +661,14 @@ function applyColors(col){
   document.querySelector('.hero-accent').style.background=col.bg;
   siteColors=col;
 }
-function applyColor(which,val){
-  const col={...siteColors};col[which]=val;
-  applyColors(col);
-  document.getElementById('hex-'+which).value=val;
-}
-function syncColorFromHex(which,val){
-  if(/^#[0-9a-fA-F]{6}$/.test(val)){
-    document.getElementById('color-'+which).value=val;
-    applyColor(which,val);
-  }
-}
-async function saveColors(){
-  await saveSetting('colors',siteColors);
-  showSaveMsg('save-msg-colors');
-}
-async function resetColors(){
-  applyColors(DEFAULT_COLORS);
-  syncAdminColorInputs(DEFAULT_COLORS);
-  await saveSetting('colors',DEFAULT_COLORS);
-  showSaveMsg('save-msg-colors');
-}
-function syncAdminColorInputs(col){
-  ['primary','secondary','bg'].forEach(k=>{
-    const ci=document.getElementById('color-'+k);
-    const hi=document.getElementById('hex-'+k);
-    if(ci)ci.value=col[k];if(hi)hi.value=col[k];
-  });
-}
-function lightenHex(hex,amount){
-  let r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-  r=Math.min(255,r+amount);g=Math.min(255,g+amount);b=Math.min(255,b+amount);
-  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
-}
+function applyColor(which,val){const col={...siteColors};col[which]=val;applyColors(col);document.getElementById('hex-'+which).value=val;}
+function syncColorFromHex(which,val){if(/^#[0-9a-fA-F]{6}$/.test(val)){document.getElementById('color-'+which).value=val;applyColor(which,val);}}
+async function saveColors(){await saveSetting('colors',siteColors);showSaveMsg('save-msg-colors');}
+async function resetColors(){applyColors(DEFAULT_COLORS);syncAdminColorInputs(DEFAULT_COLORS);await saveSetting('colors',DEFAULT_COLORS);showSaveMsg('save-msg-colors');}
+function syncAdminColorInputs(col){['primary','secondary','bg'].forEach(k=>{const ci=document.getElementById('color-'+k);const hi=document.getElementById('hex-'+k);if(ci)ci.value=col[k];if(hi)hi.value=col[k];});}
+function lightenHex(hex,amount){let r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);r=Math.min(255,r+amount);g=Math.min(255,g+amount);b=Math.min(255,b+amount);return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');}
 
-// ════════════════════════════════════
-// GALERÍA PÚBLICA
-// ════════════════════════════════════
+// ── GALERÍA PÚBLICA ──
 let lbPhotos=[],lbIndex=0;
 function renderPublicGallery(filter){
   const grid=document.getElementById('public-gallery');
@@ -730,27 +680,19 @@ function renderPublicGallery(filter){
   lbPhotos.forEach((p,i)=>{
     const div=document.createElement('div');
     div.className='gallery-item';
-    div.innerHTML=`<img src="${p.data}" alt="${p.name||''}" loading="lazy"/><div class="gallery-overlay">🔍</div>`;
+    div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy"/><div class="gallery-overlay">🔍</div>`;
     div.onclick=()=>openLightbox(i);
     grid.appendChild(div);
   });
 }
-function filterGallery(cat,btn){
-  document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');renderPublicGallery(cat);
-}
-function openLightbox(i){lbIndex=i;document.getElementById('lb-img').src=lbPhotos[i].data;document.getElementById('lightbox').classList.add('open');}
+function filterGallery(cat,btn){document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPublicGallery(cat);}
+function openLightbox(i){lbIndex=i;document.getElementById('lb-img').src=lbPhotos[i].url;document.getElementById('lightbox').classList.add('open');}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
-function lbNav(dir){lbIndex=(lbIndex+dir+lbPhotos.length)%lbPhotos.length;document.getElementById('lb-img').src=lbPhotos[lbIndex].data;}
+function lbNav(dir){lbIndex=(lbIndex+dir+lbPhotos.length)%lbPhotos.length;document.getElementById('lb-img').src=lbPhotos[lbIndex].url;}
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
-document.addEventListener('keydown',e=>{
-  if(!document.getElementById('lightbox').classList.contains('open'))return;
-  if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();
-});
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();});
 
-// ════════════════════════════════════
-// ADMIN LOGIN
-// ════════════════════════════════════
+// ── ADMIN LOGIN ──
 function openAdmin(){document.getElementById('admin-modal').classList.add('open');document.getElementById('admin-pass').value='';document.getElementById('admin-error').style.display='none';}
 function closeAdmin(){document.getElementById('admin-modal').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';document.getElementById('admin-panel').classList.remove('open');}
 function checkPass(){
@@ -758,14 +700,10 @@ function checkPass(){
     document.getElementById('admin-login-screen').style.display='none';
     document.getElementById('admin-panel').classList.add('open');
     loadAdminData();
-  } else {document.getElementById('admin-error').style.display='block';document.getElementById('admin-pass').value='';}
+  }else{document.getElementById('admin-error').style.display='block';document.getElementById('admin-pass').value='';}
 }
 function logout(){document.getElementById('admin-panel').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';}
-function showAdminTab(id,btn){
-  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');btn.classList.add('active');
-}
+function showAdminTab(id,btn){document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
 function loadAdminData(){
   document.getElementById('edit-hotelname').value=siteTexts.hotelname||'MS Hotel';
   document.getElementById('edit-slogan').value=siteTexts.slogan;
@@ -781,15 +719,13 @@ function loadAdminData(){
   renderAdminGallery();
 }
 
-// ════════════════════════════════════
-// ADMIN — GALERÍA
-// ════════════════════════════════════
+// ── GALERÍA ADMIN — USA STORAGE ──
 const uploadZone=document.getElementById('upload-zone');
 uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('drag-over');});
 uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('drag-over'));
 uploadZone.addEventListener('drop',e=>{e.preventDefault();uploadZone.classList.remove('drag-over');handleFiles(e.dataTransfer.files);});
 
-function handleFiles(files){
+async function handleFiles(files){
   if(!files||files.length===0)return;
   const cat=document.getElementById('upload-category').value;
   const prog=document.getElementById('upload-progress');
@@ -798,28 +734,26 @@ function handleFiles(files){
   prog.style.display='block';bar.style.width='0%';
   const valid=Array.from(files).filter(f=>f.type.startsWith('image/'));
   const total=valid.length;if(total===0){prog.style.display='none';return;}
-  status.textContent=`Procesando 0 de ${total}...`;
+  status.textContent=`Subiendo 0 de ${total} fotos...`;
   let done=0;
-  valid.forEach((file,idx)=>{
-    const reader=new FileReader();
-    reader.onload=async e=>{
-      const photo={data:e.target.result,name:file.name,cat,ts:Date.now()+idx};
-      const {data:inserted}=await supa.from('photos').insert(photo).select();
-      if(inserted&&inserted[0]) photos.push(inserted[0]);
-      done++;
-      bar.style.width=(done/total*100)+'%';
-      status.textContent=`Subiendo ${done} de ${total} fotos a la nube...`;
-      if(done===total){
-        setTimeout(()=>{
-          prog.style.display='none';bar.style.width='0%';
-          document.getElementById('file-input').value='';
-          renderAdminGallery();renderPublicGallery('all');
-          document.querySelectorAll('.gallery-filter-btn').forEach((b,i)=>{i===0?b.classList.add('active'):b.classList.remove('active');});
-        },500);
-      }
-    };
-    reader.readAsDataURL(file);
-  });
+  for(const file of valid){
+    const ext=file.name.split('.').pop();
+    const filename=`${cat}__${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+    const {error}=await supa.storage.from(BUCKET).upload(`gallery/${filename}`,file,{cacheControl:'3600',upsert:false});
+    if(!error){
+      const url=supa.storage.from(BUCKET).getPublicUrl(`gallery/${filename}`).data.publicUrl;
+      photos.push({id:filename,name:filename,url,cat});
+    }
+    done++;
+    bar.style.width=(done/total*100)+'%';
+    status.textContent=`Subiendo ${done} de ${total} fotos a la nube...`;
+  }
+  setTimeout(()=>{
+    prog.style.display='none';bar.style.width='0%';
+    document.getElementById('file-input').value='';
+    renderAdminGallery();renderPublicGallery('all');
+    document.querySelectorAll('.gallery-filter-btn').forEach((b,i)=>{i===0?b.classList.add('active'):b.classList.remove('active');});
+  },500);
 }
 
 const CAT_LABELS={exterior:'Exterior',habitaciones:'Habitaciones',departamentos:'Departamentos',espacios:'Espacios comunes'};
@@ -830,51 +764,25 @@ function renderAdminGallery(){
   if(photos.length===0){grid.innerHTML='';noMsg.style.display='block';return;}
   noMsg.style.display='none';grid.innerHTML='';
   photos.forEach(p=>{
+    const cat=p.name.split('__')[0]||'exterior';
     const div=document.createElement('div');
     div.className='admin-gallery-item';
-    div.innerHTML=`<img src="${p.data}" alt="${p.name||''}" loading="lazy"/><span class="category-badge">${CAT_LABELS[p.cat]||p.cat}</span><div class="admin-gallery-item-overlay"><button onclick="cycleCategory(${p.id})">📁 ${CAT_LABELS[p.cat]||p.cat}</button><button class="del-btn" onclick="deletePhoto(${p.id})">🗑 Borrar</button></div>`;
+    div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy"/><span class="category-badge">${CAT_LABELS[cat]||cat}</span><div class="admin-gallery-item-overlay"><button class="del-btn" onclick="deletePhoto('${p.name}')">🗑 Borrar</button></div>`;
     grid.appendChild(div);
   });
 }
-async function deletePhoto(id){
+async function deletePhoto(name){
   if(!confirm('¿Borrar esta foto?'))return;
-  await supa.from('photos').delete().eq('id',id);
-  photos=photos.filter(p=>p.id!==id);
-  renderAdminGallery();renderPublicGallery('all');
-}
-async function cycleCategory(id){
-  const cats=['exterior','habitaciones','departamentos','espacios'];
-  const p=photos.find(x=>x.id===id);if(!p)return;
-  p.cat=cats[(cats.indexOf(p.cat)+1)%cats.length];
-  await supa.from('photos').update({cat:p.cat}).eq('id',id);
+  await supa.storage.from(BUCKET).remove([`gallery/${name}`]);
+  photos=photos.filter(p=>p.name!==name);
   renderAdminGallery();renderPublicGallery('all');
 }
 
-// ════════════════════════════════════
-// GUARDAR TEXTOS / CONTACTO / PASS
-// ════════════════════════════════════
-async function saveHotelName(){
-  siteTexts.hotelname=document.getElementById('edit-hotelname').value||siteTexts.hotelname;
-  await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-name');
-}
-async function saveTexts(){
-  siteTexts.slogan=document.getElementById('edit-slogan').value||siteTexts.slogan;
-  siteTexts.eyebrow=document.getElementById('edit-eyebrow').value||siteTexts.eyebrow;
-  await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-hero');
-}
-async function saveAbout(){
-  siteTexts.p1=document.getElementById('edit-p1').value||siteTexts.p1;
-  siteTexts.p2=document.getElementById('edit-p2').value||siteTexts.p2;
-  siteTexts.p3=document.getElementById('edit-p3').value||siteTexts.p3;
-  await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-about');
-}
-async function saveContact(){
-  siteContact.phone=document.getElementById('edit-phone').value||siteContact.phone;
-  siteContact.email=document.getElementById('edit-email').value||siteContact.email;
-  siteContact.instagram=document.getElementById('edit-instagram').value||siteContact.instagram;
-  siteContact.address=document.getElementById('edit-address').value||siteContact.address;
-  await saveSetting('contact',siteContact);applyData();showSaveMsg('save-msg-contact');
-}
+// ── GUARDAR ──
+async function saveHotelName(){siteTexts.hotelname=document.getElementById('edit-hotelname').value||siteTexts.hotelname;await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-name');}
+async function saveTexts(){siteTexts.slogan=document.getElementById('edit-slogan').value||siteTexts.slogan;siteTexts.eyebrow=document.getElementById('edit-eyebrow').value||siteTexts.eyebrow;await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-hero');}
+async function saveAbout(){siteTexts.p1=document.getElementById('edit-p1').value||siteTexts.p1;siteTexts.p2=document.getElementById('edit-p2').value||siteTexts.p2;siteTexts.p3=document.getElementById('edit-p3').value||siteTexts.p3;await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-about');}
+async function saveContact(){siteContact.phone=document.getElementById('edit-phone').value||siteContact.phone;siteContact.email=document.getElementById('edit-email').value||siteContact.email;siteContact.instagram=document.getElementById('edit-instagram').value||siteContact.instagram;siteContact.address=document.getElementById('edit-address').value||siteContact.address;await saveSetting('contact',siteContact);applyData();showSaveMsg('save-msg-contact');}
 async function changePass(){
   const old=document.getElementById('old-pass').value;
   const n1=document.getElementById('new-pass').value;
@@ -883,58 +791,45 @@ async function changePass(){
   if(old!==ADMIN_PASS){err.textContent='Contraseña actual incorrecta.';err.style.display='block';return;}
   if(n1.length<4){err.textContent='Mínimo 4 caracteres.';err.style.display='block';return;}
   if(n1!==n2){err.textContent='Las contraseñas no coinciden.';err.style.display='block';return;}
-  ADMIN_PASS=n1;
-  await saveSetting('pass',n1);
+  ADMIN_PASS=n1;await saveSetting('pass',n1);
   ['old-pass','new-pass','new-pass2'].forEach(id=>document.getElementById(id).value='');
   showSaveMsg('save-msg-pass');
 }
 function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',3000);}
 
-// ════════════════════════════════════
-// FORMULARIO DE CONTACTO
-// ════════════════════════════════════
+// ── FORMULARIO ──
 async function handleSubmit(btn){
   const nombre=document.getElementById('form-nombre').value.trim();
   const email=document.getElementById('form-email').value.trim();
-  const llegada=document.getElementById('form-llegada').value;
-  const salida=document.getElementById('form-salida').value;
-  const unidad=document.getElementById('form-unidad').value;
-  const mensaje=document.getElementById('form-mensaje').value.trim();
   if(!nombre||!email){alert('Por favor completá al menos nombre y email.');return;}
   btn.textContent='Enviando...';btn.disabled=true;
-  try {
-    await supa.from('consultas').insert({nombre,email,llegada,salida,unidad,mensaje,fecha:new Date().toISOString()});
+  try{
+    await supa.from('consultas').insert({
+      nombre,email,
+      llegada:document.getElementById('form-llegada').value,
+      salida:document.getElementById('form-salida').value,
+      unidad:document.getElementById('form-unidad').value,
+      mensaje:document.getElementById('form-mensaje').value.trim(),
+      fecha:new Date().toISOString()
+    });
     btn.textContent='✓ ¡Consulta enviada!';btn.style.background='#2a5298';btn.style.color='#fff';
     ['form-nombre','form-email','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('form-unidad').selectedIndex=0;
-  } catch(e){
-    btn.textContent='Error al enviar';btn.style.background='#8b0000';btn.style.color='#fff';
-  }
+  }catch(e){btn.textContent='Error al enviar';btn.style.background='#8b0000';btn.style.color='#fff';}
   setTimeout(()=>{btn.textContent='Enviar Consulta';btn.style.background='';btn.style.color='';btn.disabled=false;},4000);
 }
 
-// ════════════════════════════════════
-// MISC
-// ════════════════════════════════════
-function showTab(id,btn){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');btn.classList.add('active');
-}
+// ── MISC ──
+function showTab(id,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// ════════════════════════════════════
-// INICIO — carga todo desde Supabase
-// ════════════════════════════════════
+// ── INICIO ──
 (async()=>{
-  try {
-    await loadFromSupabase();
-  } catch(e){ console.error(e); }
+  try{await loadFromSupabase();}catch(e){console.error(e);}
   applyData();
   document.getElementById('db-loading').style.display='none';
 })();
 </script>
 </body>
 </html>
-
