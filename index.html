@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">MS Hotel | Ushuaia, Patagonia</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
@@ -14,10 +14,18 @@
   --gold-light:#e8c97a;--white:#ffffff;
   --text-dark:#1a1a2e;--text-mid:#3d4a6b;
   --color-primary:#0d1f3c;--color-secondary:#c9a84c;--color-bg:#f7f3ee;
+  --font-main:'Inter',sans-serif;
+  --font-title:'Inter',sans-serif;
+  --sec-nosotros-bg:none;
+  --sec-servicios-bg:none;
+  --sec-galeria-bg:none;
+  --sec-nosotros-overlay:0;
+  --sec-servicios-overlay:0;
+  --sec-galeria-overlay:0;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Jost',sans-serif;background:var(--color-bg);color:var(--text-dark);overflow-x:hidden;}
+body{font-family:var(--font-main);background:var(--color-bg);color:var(--text-dark);overflow-x:hidden;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(13,31,60,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(168,204,232,0.15);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--white);letter-spacing:0.05em;text-decoration:none;}
 .nav-logo span{color:var(--gold);}
@@ -48,10 +56,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .img-placeholder p{font-size:0.8rem;}
 section{padding:6rem 4rem;}
 .section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.8rem;}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.15;margin-bottom:1.5rem;}
+.section-title{font-family:var(--font-title);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.15;margin-bottom:1.5rem;}
 .section-title em{font-style:italic;color:var(--ocean);}
 .divider{width:60px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:2rem;}
-#nosotros{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 6rem;}
+#nosotros{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:6rem 6rem;position:relative;}
+#nosotros.has-bg{background-color:transparent!important;}
+#nosotros .sec-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;opacity:var(--sec-nosotros-overlay);}
+#nosotros>*{position:relative;z-index:1;}
+#servicios.has-bg{background-color:transparent!important;}
+#servicios .sec-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;opacity:var(--sec-servicios-overlay);}
+#servicios>*:not(.sec-bg){position:relative;z-index:1;}
+#galeria.has-bg{background-color:transparent!important;}
+#galeria .sec-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;opacity:var(--sec-galeria-overlay);}
+#galeria>*:not(.sec-bg){position:relative;z-index:1;}
 .about-text p{font-size:1rem;line-height:1.85;color:var(--text-mid);margin-bottom:1.2rem;}
 .about-text p strong{color:var(--navy);font-weight:500;}
 .about-img-wrap{position:relative;}
@@ -59,7 +76,7 @@ section{padding:6rem 4rem;}
 .about-img-wrap .img-placeholder{height:520px;}
 .about-img-border{position:absolute;top:-20px;right:-20px;width:100%;height:100%;border:2px solid var(--gold);z-index:-1;}
 .tribute-tag{display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;padding:0.7rem 1.2rem;background:var(--navy);color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;}
-#servicios{background:var(--color-bg);text-align:center;}
+#servicios{background:var(--color-bg);text-align:center;position:relative;}
 #servicios .section-title,#servicios .section-label{text-align:center;}
 #servicios .divider{margin:0 auto 3rem;}
 .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto;}
@@ -88,7 +105,7 @@ section{padding:6rem 4rem;}
 .room-features{display:flex;gap:0.8rem;flex-wrap:wrap;}
 .feat-badge{font-size:0.68rem;padding:0.25rem 0.7rem;background:rgba(74,144,217,0.2);border:1px solid rgba(74,144,217,0.3);color:var(--ice);border-radius:20px;}
 .tab-panel{display:none;}.tab-panel.active{display:block;}
-#galeria{background:var(--white);text-align:center;}
+#galeria{background:var(--white);text-align:center;position:relative;}
 #galeria .divider{margin:0 auto 1rem;}
 .gallery-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
 .gallery-filter-btn{background:none;border:1px solid var(--ocean);color:var(--ocean);padding:0.4rem 1.2rem;font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;border-radius:20px;}
@@ -258,7 +275,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <div class="hero-accent"></div>
 </section>
 
-<section id="nosotros">
+<section id="nosotros"><div class="sec-bg" id="sec-bg-nosotros"></div>
   <div class="about-text reveal">
     <p class="section-label">Nuestra Historia</p>
     <h2 class="section-title">Un sueño <em>familiar</em><br>hecho realidad</h2>
@@ -274,7 +291,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
 </section>
 
-<section id="servicios">
+<section id="servicios"><div class="sec-bg" id="sec-bg-servicios"></div>
   <p class="section-label">Lo que ofrecemos</p>
   <h2 class="section-title">Nuestros <em>Servicios</em></h2>
   <div class="divider"></div>
@@ -310,7 +327,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
 </section>
 
-<section id="galeria">
+<section id="galeria"><div class="sec-bg" id="sec-bg-galeria"></div>
   <p class="section-label">Imágenes</p>
   <h2 class="section-title">Galería <em>Fotográfica</em></h2>
   <div class="divider"></div>
@@ -488,6 +505,93 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 
       <div class="admin-section" id="tab-diseno">
         <div class="admin-card">
+          <h3>🔤 Tipografía</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Elegí la fuente que más te guste. El cambio se aplica al instante.</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:1.5rem;" id="font-grid">
+            <div class="font-option" onclick="selectFont('Inter')" data-font="Inter" style="background:rgba(255,255,255,0.05);border:2px solid var(--gold);padding:1rem;cursor:pointer;border-radius:4px;">
+              <p style="font-family:'Inter',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:0.3rem;">Inter</p>
+              <small style="font-family:'Inter',sans-serif;color:var(--ice);font-size:0.78rem;">Moderna · Tecnológica · Legible</small>
+            </div>
+            <div class="font-option" onclick="selectFont('Outfit')" data-font="Outfit" style="background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.2);padding:1rem;cursor:pointer;border-radius:4px;">
+              <p style="font-family:'Outfit',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:0.3rem;">Outfit</p>
+              <small style="font-family:'Outfit',sans-serif;color:var(--ice);font-size:0.78rem;">Elegante · Contemporánea · Clara</small>
+            </div>
+            <div class="font-option" onclick="selectFont('DM Sans')" data-font="DM Sans" style="background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.2);padding:1rem;cursor:pointer;border-radius:4px;">
+              <p style="font-family:'DM Sans',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:0.3rem;">DM Sans</p>
+              <small style="font-family:'DM Sans',sans-serif;color:var(--ice);font-size:0.78rem;">Suave · Profesional · Amigable</small>
+            </div>
+            <div class="font-option" onclick="selectFont('Raleway')" data-font="Raleway" style="background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.2);padding:1rem;cursor:pointer;border-radius:4px;">
+              <p style="font-family:'Raleway',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:0.3rem;">Raleway</p>
+              <small style="font-family:'Raleway',sans-serif;color:var(--ice);font-size:0.78rem;">Distinguida · Espaciada · Premium</small>
+            </div>
+            <div class="font-option" onclick="selectFont('Nunito')" data-font="Nunito" style="background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.2);padding:1rem;cursor:pointer;border-radius:4px;">
+              <p style="font-family:'Nunito',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:0.3rem;">Nunito</p>
+              <small style="font-family:'Nunito',sans-serif;color:var(--ice);font-size:0.78rem;">Cálida · Redondeada · Acogedora</small>
+            </div>
+            <div class="font-option" onclick="selectFont('Jost')" data-font="Jost" style="background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.2);padding:1rem;cursor:pointer;border-radius:4px;">
+              <p style="font-family:'Jost',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:0.3rem;">Jost</p>
+              <small style="font-family:'Jost',sans-serif;color:var(--ice);font-size:0.78rem;">Geométrica · Minimalista · Original</small>
+            </div>
+          </div>
+          <button class="admin-save-btn" onclick="saveFont()">Guardar tipografía</button>
+          <span class="admin-save-msg" id="save-msg-font">✓ Guardado en la nube ☁️</span>
+        </div>
+
+        <div class="admin-card">
+          <h3>🖼 Fondos de secciones</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Podés agregar una imagen de fondo a cada sección. Ajustá la opacidad para que el texto siga legible.</p>
+
+          <div style="margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(168,204,232,0.1);">
+            <p style="color:var(--white);font-size:0.9rem;margin-bottom:1rem;font-weight:500;">Sección "Nuestra Historia"</p>
+            <div class="img-btn-row" style="margin-bottom:0.8rem;">
+              <label class="img-file-btn">📁 Subir imagen<input type="file" accept="image/*" onchange="setSectionBg('nosotros',this)"/></label>
+              <input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-bg-nosotros"/>
+              <button class="img-url-btn" onclick="setSectionBgUrl('nosotros')">Aplicar</button>
+              <button onclick="clearSectionBg('nosotros')" style="background:none;border:1px solid rgba(255,100,100,0.4);color:#ff8080;padding:0.4rem 0.8rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;">✕ Quitar</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <label style="font-size:0.72rem;color:var(--gold-light);letter-spacing:0.1em;text-transform:uppercase;">Opacidad del fondo:</label>
+              <input type="range" min="0.05" max="1" step="0.05" value="0.15" id="opacity-nosotros" oninput="updateSectionOpacity('nosotros',this.value)" style="flex:1;accent-color:var(--gold);"/>
+              <span id="opacity-nosotros-val" style="color:var(--ice);font-size:0.82rem;min-width:35px;">15%</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(168,204,232,0.1);">
+            <p style="color:var(--white);font-size:0.9rem;margin-bottom:1rem;font-weight:500;">Sección "Servicios"</p>
+            <div class="img-btn-row" style="margin-bottom:0.8rem;">
+              <label class="img-file-btn">📁 Subir imagen<input type="file" accept="image/*" onchange="setSectionBg('servicios',this)"/></label>
+              <input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-bg-servicios"/>
+              <button class="img-url-btn" onclick="setSectionBgUrl('servicios')">Aplicar</button>
+              <button onclick="clearSectionBg('servicios')" style="background:none;border:1px solid rgba(255,100,100,0.4);color:#ff8080;padding:0.4rem 0.8rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;">✕ Quitar</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <label style="font-size:0.72rem;color:var(--gold-light);letter-spacing:0.1em;text-transform:uppercase;">Opacidad:</label>
+              <input type="range" min="0.05" max="1" step="0.05" value="0.15" id="opacity-servicios" oninput="updateSectionOpacity('servicios',this.value)" style="flex:1;accent-color:var(--gold);"/>
+              <span id="opacity-servicios-val" style="color:var(--ice);font-size:0.82rem;min-width:35px;">15%</span>
+            </div>
+          </div>
+
+          <div>
+            <p style="color:var(--white);font-size:0.9rem;margin-bottom:1rem;font-weight:500;">Sección "Galería"</p>
+            <div class="img-btn-row" style="margin-bottom:0.8rem;">
+              <label class="img-file-btn">📁 Subir imagen<input type="file" accept="image/*" onchange="setSectionBg('galeria',this)"/></label>
+              <input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-bg-galeria"/>
+              <button class="img-url-btn" onclick="setSectionBgUrl('galeria')">Aplicar</button>
+              <button onclick="clearSectionBg('galeria')" style="background:none;border:1px solid rgba(255,100,100,0.4);color:#ff8080;padding:0.4rem 0.8rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;">✕ Quitar</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <label style="font-size:0.72rem;color:var(--gold-light);letter-spacing:0.1em;text-transform:uppercase;">Opacidad:</label>
+              <input type="range" min="0.05" max="1" step="0.05" value="0.15" id="opacity-galeria" oninput="updateSectionOpacity('galeria',this.value)" style="flex:1;accent-color:var(--gold);"/>
+              <span id="opacity-galeria-val" style="color:var(--ice);font-size:0.82rem;min-width:35px;">15%</span>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <button class="admin-save-btn" onclick="saveSectionBgs()">Guardar fondos</button>
+            <span class="admin-save-msg" id="save-msg-secbg">✓ Guardado en la nube ☁️</span>
+          </div>
+        </div>
+
+        <div class="admin-card">
           <h3>🎨 Colores del sitio</h3>
           <div class="color-grid">
             <div class="color-item"><label>Color Primario</label><small>Habitaciones, nav, fondos</small><div class="color-swatch-row"><input type="color" id="color-primary" value="#0d1f3c" oninput="applyColor('primary',this.value)"/><input type="text" class="color-hex" id="hex-primary" value="#0d1f3c" oninput="syncColorFromHex('primary',this.value)"/></div></div>
@@ -605,6 +709,12 @@ async function loadFromSupabase(){
     // Imágenes de página desde settings
     const {data:imgs}=await supa.from('pageimgs').select('*');
     if(imgs) imgs.forEach(img=>renderPageImg(img.key,img.data));
+    // Fuente
+    const fontSetting=settings?settings.find(s=>s.key==='font'):null;
+    if(fontSetting) applyFont(fontSetting.value);
+    // Fondos de secciones
+    const secBgSetting=settings?settings.find(s=>s.key==='sectionbgs'):null;
+    if(secBgSetting) loadSectionBgsFromData(secBgSetting.value);
   }catch(e){console.error('Error:',e);}
 }
 
@@ -735,6 +845,7 @@ function checkPass(){
 function logout(){document.getElementById('admin-panel').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';}
 function showAdminTab(id,btn){document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
 function loadAdminData(){
+  syncFontUI(currentFont);
   document.getElementById('edit-hotelname').value=siteTexts.hotelname||'MS Hotel';
   document.getElementById('edit-slogan').value=siteTexts.slogan;
   document.getElementById('edit-eyebrow').value=siteTexts.eyebrow;
@@ -911,6 +1022,111 @@ async function handleSubmit(btn,via){
   ['form-nombre','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('form-unidad').selectedIndex=0;
   document.getElementById('form-personas').selectedIndex=0;
+}
+
+// ── FUENTE ──
+let currentFont = 'Inter';
+function selectFont(font){
+  currentFont=font;
+  document.documentElement.style.setProperty('--font-main',"'"+font+"',sans-serif");
+  document.documentElement.style.setProperty('--font-title',"'"+font+"',sans-serif");
+  document.querySelectorAll('.font-option').forEach(el=>{
+    el.style.border=el.dataset.font===font?'2px solid var(--gold)':'1px solid rgba(168,204,232,0.2)';
+    el.style.background=el.dataset.font===font?'rgba(201,168,76,0.1)':'rgba(255,255,255,0.05)';
+  });
+}
+async function saveFont(){
+  await saveSetting('font',currentFont);
+  showSaveMsg('save-msg-font');
+}
+function syncFontUI(font){
+  currentFont=font;
+  document.querySelectorAll('.font-option').forEach(el=>{
+    el.style.border=el.dataset.font===font?'2px solid var(--gold)':'1px solid rgba(168,204,232,0.2)';
+    el.style.background=el.dataset.font===font?'rgba(201,168,76,0.1)':'rgba(255,255,255,0.05)';
+  });
+}
+function applyFont(font){
+  if(!font) return;
+  currentFont=font;
+  document.documentElement.style.setProperty('--font-main',"'"+font+"',sans-serif");
+  document.documentElement.style.setProperty('--font-title',"'"+font+"',sans-serif");
+}
+
+// ── FONDOS DE SECCIONES ──
+let sectionBgs={nosotros:{url:'',opacity:0.15},servicios:{url:'',opacity:0.15},galeria:{url:'',opacity:0.15}};
+
+function applySectionBg(sec,url,opacity){
+  const el=document.getElementById('sec-bg-'+sec);
+  const section=document.getElementById(sec);
+  if(!el||!section) return;
+  if(!url){
+    el.style.backgroundImage='none';
+    section.classList.remove('has-bg');
+    section.style.removeProperty('background-image');
+    return;
+  }
+  el.style.backgroundImage='url('+url+')';
+  el.style.backgroundSize='cover';
+  el.style.backgroundPosition='center';
+  el.style.opacity=opacity;
+  section.classList.add('has-bg');
+  sectionBgs[sec]={url,opacity:parseFloat(opacity)};
+}
+
+function updateSectionOpacity(sec,val){
+  document.getElementById('opacity-'+sec+'-val').textContent=Math.round(val*100)+'%';
+  if(sectionBgs[sec]&&sectionBgs[sec].url){
+    const el=document.getElementById('sec-bg-'+sec);
+    if(el) el.style.opacity=val;
+    sectionBgs[sec].opacity=parseFloat(val);
+  }
+}
+
+function setSectionBg(sec,input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async e=>{
+    const url=e.target.result;
+    const opacity=parseFloat(document.getElementById('opacity-'+sec).value)||0.15;
+    applySectionBg(sec,url,opacity);
+    sectionBgs[sec]={url,opacity};
+  };
+  reader.readAsDataURL(file);
+}
+
+function setSectionBgUrl(sec){
+  const url=document.getElementById('url-bg-'+sec).value.trim();
+  if(!url){alert('Pegá una URL válida.');return;}
+  const opacity=parseFloat(document.getElementById('opacity-'+sec).value)||0.15;
+  applySectionBg(sec,url,opacity);
+  document.getElementById('url-bg-'+sec).value='';
+}
+
+function clearSectionBg(sec){
+  sectionBgs[sec]={url:'',opacity:0.15};
+  applySectionBg(sec,'',0.15);
+  document.getElementById('opacity-'+sec).value=0.15;
+  document.getElementById('opacity-'+sec+'-val').textContent='15%';
+}
+
+async function saveSectionBgs(){
+  await saveSetting('sectionbgs',sectionBgs);
+  showSaveMsg('save-msg-secbg');
+}
+
+function loadSectionBgsFromData(data){
+  if(!data) return;
+  Object.keys(data).forEach(sec=>{
+    const {url,opacity}=data[sec];
+    if(url){
+      applySectionBg(sec,url,opacity);
+      const slider=document.getElementById('opacity-'+sec);
+      const label=document.getElementById('opacity-'+sec+'-val');
+      if(slider){slider.value=opacity;}
+      if(label){label.textContent=Math.round(opacity*100)+'%';}
+    }
+  });
 }
 
 // ── MISC ──
