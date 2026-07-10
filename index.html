@@ -389,7 +389,12 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <p class="footer-copy">© 2025 MS Hotel · Ushuaia, Tierra del Fuego</p>
   <div class="footer-social"><a href="https://instagram.com/mshotelushuaia" target="_blank" id="footer-ig">Instagram ↗</a></div>
 </footer>
-<a href="https://wa.me/542901307880" class="whatsapp-float" id="wa-float" target="_blank">💬</a>
+<a href="https://wa.me/542901307880" class="whatsapp-float" id="wa-float" target="_blank" title="Contactar por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.17 1.535 5.943L.057 23.571a.75.75 0 00.921.921l5.663-1.484A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.711 9.711 0 01-4.953-1.354l-.355-.212-3.656.958.975-3.563-.232-.368A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+  </svg>
+</a>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -822,7 +827,7 @@ async function changePass(){
 }
 function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',3000);}
 
-// ── FORMULARIO → WHATSAPP ──
+// ── FORMULARIO ──
 function formatDate(dateStr){
   if(!dateStr) return 'No especificada';
   const [y,m,d]=dateStr.split('-');
@@ -838,68 +843,71 @@ async function handleSubmit(btn,via){
   const unidad=document.getElementById('form-unidad').value;
   const mensaje=document.getElementById('form-mensaje').value.trim();
 
-  if(!nombre){alert('Por favor ingresá tu nombre.');return;}
-  if(!personas){alert('Por favor indicá la cantidad de personas.');return;}
-  if(!llegada||!salida){alert('Por favor seleccioná las fechas de llegada y salida.');return;}
-  if(!unidad){alert('Por favor seleccioná el tipo de unidad.');return;}
+  if(!nombre){alert('Por favor ingresa tu nombre.');return;}
+  if(!personas){alert('Por favor indica la cantidad de personas.');return;}
+  if(!llegada||!salida){alert('Por favor selecciona las fechas de llegada y salida.');return;}
+  if(!unidad){alert('Por favor selecciona el tipo de unidad.');return;}
 
-  // Calcular noches
   const diff=Math.round((new Date(salida)-new Date(llegada))/(1000*60*60*24));
-  const noches=diff>0?diff+' noche'+(diff>1?'s':''):'fechas inválidas';
+  if(diff<=0){alert('La fecha de salida debe ser posterior a la llegada.');return;}
+  const noches=diff+' noche'+(diff>1?'s':'');
 
-  // Armar mensaje de WhatsApp
-  const msg=
-    'Hola MS Hotel! 👋 Me comunico desde su página web.%0A%0A'+
-    '📋 *CONSULTA DE DISPONIBILIDAD*%0A%0A'+
-    '👤 *Nombre:* '+encodeURIComponent(nombre)+'%0A'+
-    '👥 *Personas:* '+encodeURIComponent(personas)+'%0A'+
-    '📅 *Llegada:* '+encodeURIComponent(formatDate(llegada))+'%0A'+
-    '📅 *Salida:* '+encodeURIComponent(formatDate(salida))+'%0A'+
-    '🌙 *Noches:* '+encodeURIComponent(noches)+'%0A'+
-    '🛏 *Unidad:* '+encodeURIComponent(unidad)+
-    (mensaje?'%0A💬 *Consulta:* '+encodeURIComponent(mensaje):'')+'%0A%0A'+
-    '¿Tienen disponibilidad?';
-
-  // Guardar en Supabase también
+  // Guardar en Supabase
   try{
-    await supa.from('consultas').insert({
-      nombre,personas,
-      llegada,salida,noches,unidad,mensaje,
-      fecha:new Date().toISOString()
-    });
-  }catch(e){console.log('Supabase error:',e);}
+    await supa.from('consultas').insert({nombre,personas,llegada,salida,noches,unidad,mensaje,fecha:new Date().toISOString()});
+  }catch(e){console.log('Supabase:',e);}
 
   if(via==='whatsapp'){
-    // Abrir WhatsApp
-    const phone='542901307880';
-    window.open('https://wa.me/'+phone+'?text='+msg,'_blank');
-    btn.textContent='✓ Abriendo WhatsApp...';
+    // Mensaje WhatsApp limpio y profesional
+    const lineas=[
+      'Hola, me comunico desde la pagina web de MS Hotel.',
+      '',
+      'CONSULTA DE DISPONIBILIDAD',
+      'Nombre: '+nombre,
+      'Personas: '+personas,
+      'Llegada: '+formatDate(llegada),
+      'Salida: '+formatDate(salida),
+      'Noches: '+noches,
+      'Unidad: '+unidad,
+      mensaje?'Consulta adicional: '+mensaje:'',
+      '',
+      'Quedo a la espera. Gracias.'
+    ].filter(l=>l!==undefined);
+    const msg=lineas.map(l=>encodeURIComponent(l)).join('%0A');
+    window.open('https://wa.me/542901307880?text='+msg,'_blank');
+    btn.textContent='Abriendo WhatsApp...';
     btn.style.background='#25d366';btn.style.color='#fff';
-    setTimeout(()=>{btn.textContent='💬 WhatsApp';btn.style.background='';btn.style.color='';},4000);
+    setTimeout(()=>{btn.textContent='WhatsApp';btn.style.background='';btn.style.color='';},4000);
   } else {
-    // Abrir Email
-    const emailTo='mshotel22@yahoo.com';
-    const subject=encodeURIComponent('Consulta de disponibilidad - MS Hotel');
-    const body=
-      'Hola MS Hotel!%0A%0A'+
-      'Me comunico desde su página web.%0A%0A'+
-      'CONSULTA DE DISPONIBILIDAD%0A'+
-      '-----------------------------%0A'+
-      'Nombre: '+encodeURIComponent(nombre)+'%0A'+
-      'Personas: '+encodeURIComponent(personas)+'%0A'+
-      'Llegada: '+encodeURIComponent(formatDate(llegada))+'%0A'+
-      'Salida: '+encodeURIComponent(formatDate(salida))+'%0A'+
-      'Noches: '+encodeURIComponent(noches)+'%0A'+
-      'Unidad: '+encodeURIComponent(unidad)+
-      (mensaje?'%0AConsulta: '+encodeURIComponent(mensaje):'')+
-      '%0A%0ADo you have availability?%0A%0AThank you!';
-    window.open('mailto:'+emailTo+'?subject='+subject+'&body='+body,'_blank');
-    btn.textContent='✓ Abriendo Email...';
+    // Mensaje Email limpio y profesional (en español e inglés)
+    const subject=encodeURIComponent('Availability Inquiry / Consulta de disponibilidad - MS Hotel');
+    const cuerpo=[
+      'Dear MS Hotel team,',
+      '',
+      'I am contacting you through your website.',
+      '',
+      'AVAILABILITY INQUIRY',
+      'Name / Nombre: '+nombre,
+      'Guests / Personas: '+personas,
+      'Check-in / Llegada: '+formatDate(llegada),
+      'Check-out / Salida: '+formatDate(salida),
+      'Nights / Noches: '+noches,
+      'Room type / Unidad: '+unidad,
+      mensaje?'Additional notes / Consulta: '+mensaje:'',
+      '',
+      'Please let me know if you have availability.',
+      'Thank you / Muchas gracias.',
+      '',
+      nombre
+    ].filter(l=>l!==undefined);
+    const body=cuerpo.map(l=>encodeURIComponent(l)).join('%0A');
+    window.location.href='mailto:mshotel22@yahoo.com?subject='+subject+'&body='+body;
+    btn.textContent='Abriendo Email...';
     btn.style.background='#2a5298';btn.style.color='#fff';
-    setTimeout(()=>{btn.textContent='📧 Email';btn.style.background='';btn.style.color='';},4000);
+    setTimeout(()=>{btn.textContent='Email';btn.style.background='';btn.style.color='';},4000);
   }
 
-  // Limpiar formulario
+  // Limpiar
   ['form-nombre','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('form-unidad').selectedIndex=0;
   document.getElementById('form-personas').selectedIndex=0;
