@@ -375,7 +375,11 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
         </select>
       </div>
       <div class="form-group"><label>Consulta adicional (opcional)</label><textarea id="form-mensaje" placeholder="Ej: viajamos con niños, llegamos tarde..."></textarea></div>
-      <button class="form-submit" onclick="handleSubmit(this)">💬 Consultar por WhatsApp</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem;">
+        <button class="form-submit" onclick="handleSubmit(this,'whatsapp')" style="background:var(--gold);">💬 WhatsApp</button>
+        <button class="form-submit" onclick="handleSubmit(this,'email')" style="background:var(--ocean);">📧 Email</button>
+      </div>
+      <p style="text-align:center;font-size:0.72rem;color:rgba(168,204,232,0.5);margin-top:0.8rem;">WhatsApp para clientes locales · Email para clientes internacionales</p>
     </div>
   </div>
 </section>
@@ -826,7 +830,7 @@ function formatDate(dateStr){
   return d+' de '+meses[parseInt(m)-1]+' de '+y;
 }
 
-async function handleSubmit(btn){
+async function handleSubmit(btn,via){
   const nombre=document.getElementById('form-nombre').value.trim();
   const personas=document.getElementById('form-personas').value;
   const llegada=document.getElementById('form-llegada').value;
@@ -865,17 +869,40 @@ async function handleSubmit(btn){
     });
   }catch(e){console.log('Supabase error:',e);}
 
-  // Abrir WhatsApp
-  const phone='542901307880';
-  window.open('https://wa.me/'+phone+'?text='+msg,'_blank');
+  if(via==='whatsapp'){
+    // Abrir WhatsApp
+    const phone='542901307880';
+    window.open('https://wa.me/'+phone+'?text='+msg,'_blank');
+    btn.textContent='✓ Abriendo WhatsApp...';
+    btn.style.background='#25d366';btn.style.color='#fff';
+    setTimeout(()=>{btn.textContent='💬 WhatsApp';btn.style.background='';btn.style.color='';},4000);
+  } else {
+    // Abrir Email
+    const emailTo='mshotel22@yahoo.com';
+    const subject=encodeURIComponent('Consulta de disponibilidad - MS Hotel');
+    const body=
+      'Hola MS Hotel!%0A%0A'+
+      'Me comunico desde su página web.%0A%0A'+
+      'CONSULTA DE DISPONIBILIDAD%0A'+
+      '-----------------------------%0A'+
+      'Nombre: '+encodeURIComponent(nombre)+'%0A'+
+      'Personas: '+encodeURIComponent(personas)+'%0A'+
+      'Llegada: '+encodeURIComponent(formatDate(llegada))+'%0A'+
+      'Salida: '+encodeURIComponent(formatDate(salida))+'%0A'+
+      'Noches: '+encodeURIComponent(noches)+'%0A'+
+      'Unidad: '+encodeURIComponent(unidad)+
+      (mensaje?'%0AConsulta: '+encodeURIComponent(mensaje):'')+
+      '%0A%0ADo you have availability?%0A%0AThank you!';
+    window.open('mailto:'+emailTo+'?subject='+subject+'&body='+body,'_blank');
+    btn.textContent='✓ Abriendo Email...';
+    btn.style.background='#2a5298';btn.style.color='#fff';
+    setTimeout(()=>{btn.textContent='📧 Email';btn.style.background='';btn.style.color='';},4000);
+  }
 
   // Limpiar formulario
-  btn.textContent='✓ Redirigiendo a WhatsApp...';
-  btn.style.background='#25d366';btn.style.color='#fff';
   ['form-nombre','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('form-unidad').selectedIndex=0;
   document.getElementById('form-personas').selectedIndex=0;
-  setTimeout(()=>{btn.textContent='💬 Consultar por WhatsApp';btn.style.background='';btn.style.color='';},4000);
 }
 
 // ── MISC ──
