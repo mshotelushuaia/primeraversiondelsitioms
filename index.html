@@ -338,23 +338,44 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     </div>
     <div class="contact-form reveal">
       <h3>Consultar disponibilidad</h3>
+      <p style="font-size:0.82rem;color:var(--ice);margin-bottom:1.5rem;opacity:0.8;">Completá el formulario y te redirigimos a WhatsApp con toda la info lista.</p>
       <div class="form-row">
-        <div class="form-group"><label>Nombre</label><input type="text" id="form-nombre" placeholder="Tu nombre"/></div>
-        <div class="form-group"><label>Email</label><input type="email" id="form-email" placeholder="tu@email.com"/></div>
+        <div class="form-group"><label>Nombre completo *</label><input type="text" id="form-nombre" placeholder="Tu nombre"/></div>
+        <div class="form-group"><label>Cantidad de personas *</label>
+          <select id="form-personas">
+            <option value="">Seleccioná...</option>
+            <option>1 persona</option>
+            <option>2 personas</option>
+            <option>3 personas</option>
+            <option>4 personas</option>
+            <option>5 o más personas</option>
+          </select>
+        </div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>Llegada</label><input type="date" id="form-llegada"/></div>
-        <div class="form-group"><label>Salida</label><input type="date" id="form-salida"/></div>
+        <div class="form-group"><label>Fecha de llegada *</label><input type="date" id="form-llegada"/></div>
+        <div class="form-group"><label>Fecha de salida *</label><input type="date" id="form-salida"/></div>
       </div>
-      <div class="form-group"><label>Tipo de unidad</label>
+      <div class="form-group"><label>Tipo de unidad *</label>
         <select id="form-unidad">
           <option value="">Seleccioná una opción</option>
-          <optgroup label="Habitaciones"><option>Habitación Doble</option><option>Habitación Triple</option><option>Habitación Cuádruple</option></optgroup>
-          <optgroup label="Departamentos"><option>Departamento Doble</option><option>Departamento Triple</option><option>Departamento Cuádruple (2 ambientes)</option></optgroup>
+          <optgroup label="Habitaciones">
+            <option>Habitación Doble (2 personas)</option>
+            <option>Habitación Triple (3 personas)</option>
+            <option>Habitación Cuádruple (4 personas)</option>
+          </optgroup>
+          <optgroup label="Departamentos">
+            <option>Departamento Doble — Monoambiente (2 personas)</option>
+            <option>Departamento Triple — Monoambiente (3 personas)</option>
+            <option>Departamento Cuádruple — 2 Ambientes (4 personas)</option>
+          </optgroup>
+          <optgroup label="No sé">
+            <option>No sé, necesito orientación</option>
+          </optgroup>
         </select>
       </div>
-      <div class="form-group"><label>Mensaje (opcional)</label><textarea id="form-mensaje" placeholder="¿Alguna consulta especial?"></textarea></div>
-      <button class="form-submit" onclick="handleSubmit(this)">Enviar Consulta</button>
+      <div class="form-group"><label>Consulta adicional (opcional)</label><textarea id="form-mensaje" placeholder="Ej: viajamos con niños, llegamos tarde..."></textarea></div>
+      <button class="form-submit" onclick="handleSubmit(this)">💬 Consultar por WhatsApp</button>
     </div>
   </div>
 </section>
@@ -797,26 +818,64 @@ async function changePass(){
 }
 function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',3000);}
 
-// ── FORMULARIO ──
+// ── FORMULARIO → WHATSAPP ──
+function formatDate(dateStr){
+  if(!dateStr) return 'No especificada';
+  const [y,m,d]=dateStr.split('-');
+  const meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  return d+' de '+meses[parseInt(m)-1]+' de '+y;
+}
+
 async function handleSubmit(btn){
   const nombre=document.getElementById('form-nombre').value.trim();
-  const email=document.getElementById('form-email').value.trim();
-  if(!nombre||!email){alert('Por favor completá al menos nombre y email.');return;}
-  btn.textContent='Enviando...';btn.disabled=true;
+  const personas=document.getElementById('form-personas').value;
+  const llegada=document.getElementById('form-llegada').value;
+  const salida=document.getElementById('form-salida').value;
+  const unidad=document.getElementById('form-unidad').value;
+  const mensaje=document.getElementById('form-mensaje').value.trim();
+
+  if(!nombre){alert('Por favor ingresá tu nombre.');return;}
+  if(!personas){alert('Por favor indicá la cantidad de personas.');return;}
+  if(!llegada||!salida){alert('Por favor seleccioná las fechas de llegada y salida.');return;}
+  if(!unidad){alert('Por favor seleccioná el tipo de unidad.');return;}
+
+  // Calcular noches
+  const diff=Math.round((new Date(salida)-new Date(llegada))/(1000*60*60*24));
+  const noches=diff>0?diff+' noche'+(diff>1?'s':''):'fechas inválidas';
+
+  // Armar mensaje de WhatsApp
+  const msg=
+    'Hola MS Hotel! 👋 Me comunico desde su página web.%0A%0A'+
+    '📋 *CONSULTA DE DISPONIBILIDAD*%0A%0A'+
+    '👤 *Nombre:* '+encodeURIComponent(nombre)+'%0A'+
+    '👥 *Personas:* '+encodeURIComponent(personas)+'%0A'+
+    '📅 *Llegada:* '+encodeURIComponent(formatDate(llegada))+'%0A'+
+    '📅 *Salida:* '+encodeURIComponent(formatDate(salida))+'%0A'+
+    '🌙 *Noches:* '+encodeURIComponent(noches)+'%0A'+
+    '🛏 *Unidad:* '+encodeURIComponent(unidad)+
+    (mensaje?'%0A💬 *Consulta:* '+encodeURIComponent(mensaje):'')+'%0A%0A'+
+    '¿Tienen disponibilidad?';
+
+  // Guardar en Supabase también
   try{
     await supa.from('consultas').insert({
-      nombre,email,
-      llegada:document.getElementById('form-llegada').value,
-      salida:document.getElementById('form-salida').value,
-      unidad:document.getElementById('form-unidad').value,
-      mensaje:document.getElementById('form-mensaje').value.trim(),
+      nombre,personas,
+      llegada,salida,noches,unidad,mensaje,
       fecha:new Date().toISOString()
     });
-    btn.textContent='✓ ¡Consulta enviada!';btn.style.background='#2a5298';btn.style.color='#fff';
-    ['form-nombre','form-email','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('form-unidad').selectedIndex=0;
-  }catch(e){btn.textContent='Error al enviar';btn.style.background='#8b0000';btn.style.color='#fff';}
-  setTimeout(()=>{btn.textContent='Enviar Consulta';btn.style.background='';btn.style.color='';btn.disabled=false;},4000);
+  }catch(e){console.log('Supabase error:',e);}
+
+  // Abrir WhatsApp
+  const phone='542901307880';
+  window.open('https://wa.me/'+phone+'?text='+msg,'_blank');
+
+  // Limpiar formulario
+  btn.textContent='✓ Redirigiendo a WhatsApp...';
+  btn.style.background='#25d366';btn.style.color='#fff';
+  ['form-nombre','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('form-unidad').selectedIndex=0;
+  document.getElementById('form-personas').selectedIndex=0;
+  setTimeout(()=>{btn.textContent='💬 Consultar por WhatsApp';btn.style.background='';btn.style.color='';},4000);
 }
 
 // ── MISC ──
