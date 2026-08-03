@@ -829,7 +829,7 @@ let siteRooms={
 // Guardamos una copia de los datos ya cargados en el propio navegador. La próxima vez que
 // alguien entre, mostramos esa copia al instante (sin esperar a la nube) mientras por atrás
 // se pide la versión más actual, que reemplaza a la copia si algo cambió.
-const CACHE_KEY='mshotel_site_cache_v1';
+const CACHE_KEY='mshotel_site_cache_v2';
 let lastPageImgsList=[];
 function applyCachedDataIfAny(){
   try{
@@ -1612,19 +1612,34 @@ function observeReveals(){
 // por atrás y actualizamos todo en silencio si algo cambió — así nunca queda desactualizada.
 (async function init(){
   checkAdminAccess();
-  const hadCache=applyCachedDataIfAny();
-  if(hadCache){ applyData(); renderServices(); renderRooms(); }
-  else{ renderServices(); }
+  // Paso 1: si hay una copia guardada en el navegador, mostrarla ya mismo.
+  // Si algo sale mal acá, no debe frenar el resto de la carga.
+  let hadCache=false;
+  try{
+    hadCache=applyCachedDataIfAny();
+    if(hadCache){ applyData(); renderServices(); renderRooms(); }
+  }catch(e){
+    console.error('Error aplicando la caché local:',e);
+    hadCache=false;
+  }
+  if(!hadCache){ try{ renderServices(); }catch(e){console.error(e);} }
   observeReveals();
+  // Paso 2: pedir los datos actuales a la nube. Pase lo que pase (éxito, error o timeout),
+  // al final siempre se vuelve a pintar la página con lo que se haya podido obtener.
   try{
     await loadFromSupabase();
-  }finally{
+  }catch(e){
+    console.error('Error en loadFromSupabase:',e);
+  }
+  try{
     applyData();
     renderServices();
     renderRooms();
-    observeReveals();
-    saveCacheSnapshot();
+  }catch(e){
+    console.error('Error pintando la página:',e);
   }
+  observeReveals();
+  try{ saveCacheSnapshot(); }catch(e){}
 })();
 </script>
 </body>
