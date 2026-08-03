@@ -825,10 +825,62 @@ let siteRooms={
   'room-5':{count:'1 unidad · 2 Ambientes',desc:'Dos ambientes separados para familias.'}
 };
 
+// ── CACHÉ LOCAL (para que la segunda visita se vea instantánea) ──
+// Guardamos una copia de los datos ya cargados en el propio navegador. La próxima vez que
+// alguien entre, mostramos esa copia al instante (sin esperar a la nube) mientras por atrás
+// se pide la versión más actual, que reemplaza a la copia si algo cambió.
+const CACHE_KEY='mshotel_site_cache_v1';
+let lastPageImgsList=[];
+function applyCachedDataIfAny(){
+  try{
+    const raw=localStorage.getItem(CACHE_KEY);
+    if(!raw) return false;
+    const c=JSON.parse(raw);
+    if(c.siteTexts) siteTexts={...siteTexts,...c.siteTexts};
+    if(c.siteContact) siteContact={...siteContact,...c.siteContact};
+    if(c.siteColors) siteColors={...siteColors,...c.siteColors};
+    if(Array.isArray(c.siteServices)&&c.siteServices.length===4) siteServices=c.siteServices;
+    if(c.siteRooms) siteRooms={...siteRooms,...c.siteRooms};
+    if(Array.isArray(c.photos)) photos=c.photos;
+    if(Array.isArray(c.pageImgsList)){ c.pageImgsList.forEach(img=>renderPageImg(img.key,img.data)); lastPageImgsList=c.pageImgsList; }
+    if(c.font) applyFont(c.font);
+    if(c.sectionBgs) loadSectionBgsFromData(c.sectionBgs);
+    return true;
+  }catch(e){return false;}
+}
+function saveCacheSnapshot(){
+  try{
+    localStorage.setItem(CACHE_KEY, JSON.stringify({
+      siteTexts,siteContact,siteColors,siteServices,siteRooms,photos,
+      pageImgsList:lastPageImgsList,
+      font:currentFont,
+      sectionBgs,
+      savedAt:Date.now()
+    }));
+  }catch(e){}
+}
+
 // ── CARGAR DESDE SUPABASE ──
+// Si una consulta a Supabase tarda demasiado (mala señal de red, servidor lento, etc.)
+// no dejamos que trabe el resto de la carga: después de este tiempo seguimos sin sus datos.
+function withTimeout(promise,ms){
+  return Promise.race([
+    promise,
+    new Promise(resolve=>setTimeout(()=>resolve({data:null,timedOut:true}),ms))
+  ]);
+}
 async function loadFromSupabase(){
   try{
-    const {data:settings}=await supa.from('settings').select('*');
+    // Las tres consultas se piden todas juntas (en paralelo) en vez de una atrás de la otra,
+    // así la carga tarda lo que tarda la más lenta de las tres, no la suma de las tres.
+    const [settingsRes,filesRes,imgsRes]=await Promise.all([
+      withTimeout(supa.from('settings').select('*'),8000),
+      withTimeout(supa.storage.from(BUCKET).list('gallery',{limit:500,sortBy:{column:'created_at',order:'asc'}}),8000),
+      withTimeout(supa.from('pageimgs').select('*'),8000)
+    ]);
+    const settings=settingsRes&&settingsRes.data;
+    const files=filesRes&&filesRes.data;
+    const imgs=imgsRes&&imgsRes.data;
     if(settings) settings.forEach(s=>{
       if(s.key==='texts') siteTexts={...siteTexts,...s.value};
       if(s.key==='contact') siteContact={...siteContact,...s.value};
@@ -838,7 +890,6 @@ async function loadFromSupabase(){
       if(s.key==='rooms') siteRooms={...siteRooms,...s.value};
     });
     // Fotos desde Storage
-    const {data:files}=await supa.storage.from(BUCKET).list('gallery',{limit:500,sortBy:{column:'created_at',order:'asc'}});
     if(files){
       photos=files.filter(f=>f.name!=='.emptyFolderPlaceholder').map(f=>({
         id:f.id, name:f.name,
@@ -847,8 +898,7 @@ async function loadFromSupabase(){
       }));
     }
     // Imágenes de página desde settings
-    const {data:imgs}=await supa.from('pageimgs').select('*');
-    if(imgs) imgs.forEach(img=>renderPageImg(img.key,img.data));
+    if(imgs){ imgs.forEach(img=>renderPageImg(img.key,img.data)); lastPageImgsList=imgs; }
     // Fuente
     const fontSetting=settings?settings.find(s=>s.key==='font'):null;
     if(fontSetting) applyFont(fontSetting.value);
@@ -1557,19 +1607,23 @@ function observeReveals(){
 }
 
 // ── INICIALIZACIÓN ──
-// La página se muestra de entrada con los textos y valores por defecto (ya están en el HTML),
-// y los datos de Supabase se van aplicando encima apenas llegan. Así no hay que tapar
-// todo el sitio con una pantalla de carga en cada visita.
+// Primero mostramos lo último que sepamos (de la caché del navegador, si existe) para que
+// la página se vea lista al instante. Después, siempre pedimos los datos frescos a la nube
+// por atrás y actualizamos todo en silencio si algo cambió — así nunca queda desactualizada.
 (async function init(){
   checkAdminAccess();
-  renderServices();
+  const hadCache=applyCachedDataIfAny();
+  if(hadCache){ applyData(); renderServices(); renderRooms(); }
+  else{ renderServices(); }
   observeReveals();
   try{
     await loadFromSupabase();
   }finally{
     applyData();
+    renderServices();
     renderRooms();
     observeReveals();
+    saveCacheSnapshot();
   }
 })();
 </script>
