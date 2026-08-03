@@ -871,16 +871,15 @@ function withTimeout(promise,ms){
 }
 async function loadFromSupabase(){
   try{
-    // Las tres consultas se piden todas juntas (en paralelo) en vez de una atrás de la otra,
-    // así la carga tarda lo que tarda la más lenta de las tres, no la suma de las tres.
-    const [settingsRes,filesRes,imgsRes]=await Promise.all([
+    // Settings y la lista de la galería se piden juntos y determinan qué tan rápido
+    // se pinta el resto de la página (textos, colores, galería). No dependen de las
+    // imágenes de portada, así que no hace falta esperarlas para mostrar todo esto.
+    const [settingsRes,filesRes]=await Promise.all([
       withTimeout(supa.from('settings').select('*'),8000),
-      withTimeout(supa.storage.from(BUCKET).list('gallery',{limit:500,sortBy:{column:'created_at',order:'asc'}}),8000),
-      withTimeout(supa.from('pageimgs').select('*'),8000)
+      withTimeout(supa.storage.from(BUCKET).list('gallery',{limit:500,sortBy:{column:'created_at',order:'asc'}}),8000)
     ]);
     const settings=settingsRes&&settingsRes.data;
     const files=filesRes&&filesRes.data;
-    const imgs=imgsRes&&imgsRes.data;
     if(settings) settings.forEach(s=>{
       if(s.key==='texts') siteTexts={...siteTexts,...s.value};
       if(s.key==='contact') siteContact={...siteContact,...s.value};
@@ -897,8 +896,6 @@ async function loadFromSupabase(){
         cat:f.name.split('__')[0]||'exterior'
       }));
     }
-    // Imágenes de página desde settings
-    if(imgs){ imgs.forEach(img=>renderPageImg(img.key,img.data)); lastPageImgsList=imgs; }
     // Fuente
     const fontSetting=settings?settings.find(s=>s.key==='font'):null;
     if(fontSetting) applyFont(fontSetting.value);
@@ -906,6 +903,18 @@ async function loadFromSupabase(){
     const secBgSetting=settings?settings.find(s=>s.key==='sectionbgs'):null;
     if(secBgSetting) loadSectionBgsFromData(secBgSetting.value);
   }catch(e){console.error('Error cargando datos:',e);}
+  // Imágenes de página (fondo de inicio, foto de "Nosotros", fotos de habitaciones): se piden
+  // aparte, SIN esperarlas (no hay "await" acá a propósito), para no frenar nada de lo anterior.
+  // Fotos nuevas (subidas con el sistema actual) son livianas y llegan rápido; si quedara alguna
+  // guardada con el formato viejo y pesado, puede tardar más, pero cuando llegue se va a mostrar
+  // sola, sin haber bloqueado el resto de la página mientras tanto.
+  supa.from('pageimgs').select('*').then(({data:imgs})=>{
+    if(imgs){
+      imgs.forEach(img=>renderPageImg(img.key,img.data));
+      lastPageImgsList=imgs;
+      saveCacheSnapshot();
+    }
+  }).catch(e=>console.error('Error cargando imágenes de página:',e));
 }
 
 async function saveSetting(key,value){
