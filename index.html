@@ -13,7 +13,7 @@
 <meta property="og:locale" content="es_AR">
 <meta property="og:image" id="og-image" content="">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.png">
+<link rel="icon" href="favicon.png" id="favicon-link">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fefmfxlgetofoajilwdx.supabase.co">
@@ -230,6 +230,8 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .admin-gallery-item:hover .admin-gallery-item-overlay{opacity:1;}
 .admin-gallery-item-overlay button{background:none;border:1px solid rgba(255,255,255,0.4);color:white;padding:0.3rem 0.7rem;font-size:0.7rem;cursor:pointer;font-family:'Jost',sans-serif;width:80%;}
 .admin-gallery-item-overlay .del-btn{border-color:rgba(255,100,100,0.5);color:#ff8080;}
+.admin-gallery-item-overlay select{background:rgba(13,31,60,0.9);border:1px solid rgba(255,255,255,0.4);color:white;padding:0.3rem 0.4rem;font-size:0.68rem;cursor:pointer;font-family:'Jost',sans-serif;width:80%;}
+.admin-gallery-item-overlay select:disabled{opacity:0.5;cursor:wait;}
 .category-badge{position:absolute;top:0.4rem;left:0.4rem;background:rgba(13,31,60,0.85);color:var(--gold-light);font-size:0.58rem;letter-spacing:0.1em;padding:0.2rem 0.5rem;text-transform:uppercase;}
 .upload-progress{background:rgba(255,255,255,0.05);border:1px solid rgba(168,204,232,0.1);padding:1rem;margin-top:1rem;display:none;}
 .progress-bar-wrap{background:rgba(255,255,255,0.1);height:6px;margin-top:0.6rem;border-radius:3px;}
@@ -689,6 +691,10 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <h3>🖼 Imágenes principales</h3>
           <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1rem;">Las fotos se comprimen y optimizan automáticamente antes de guardarse.</p>
           <div class="img-editor-row">
+            <div id="thumb-favicon"><div class="img-preview-placeholder">🌐 Ícono de pestaña</div></div>
+            <div class="img-editor-controls"><span class="img-name">🌐 Ícono de la pestaña (favicon)</span><small style="color:rgba(168,204,232,0.5);">El ícono chiquito que aparece en la pestaña del navegador. Usá una imagen cuadrada, idealmente con fondo transparente (PNG).</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setFavicon(this)"/></label></div></div>
+          </div>
+          <div class="img-editor-row">
             <div id="thumb-hero"><div class="img-preview-placeholder">📷 Fondo inicio</div></div>
             <div class="img-editor-controls"><span class="img-name">🏔 Foto de fondo del Inicio</span><small style="color:rgba(168,204,232,0.5);">Foto grande al abrir la página.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-hero"/><button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar</button></div></div>
           </div>
@@ -847,7 +853,8 @@ async function saveSetting(key,value){
 // ── COMPRESIÓN Y SUBIDA DE IMÁGENES ──
 // Todas las fotos que suben el hotel o los huéspedes pasan por acá antes de guardarse:
 // se redimensionan y se comprimen en el navegador, así la página nunca queda pesada.
-function compressImage(file,maxDim,quality){
+function compressImage(file,maxDim,quality,format){
+  format=format||'image/jpeg';
   return new Promise((resolve,reject)=>{
     if(!file||!file.type||!file.type.startsWith('image/')){reject(new Error('Archivo inválido'));return;}
     const reader=new FileReader();
@@ -867,7 +874,7 @@ function compressImage(file,maxDim,quality){
         ctx.drawImage(img,0,0,w,h);
         canvas.toBlob(blob=>{
           if(blob) resolve(blob); else reject(new Error('No se pudo comprimir la imagen'));
-        },'image/jpeg',quality);
+        },format,quality);
       };
       img.src=e.target.result;
     };
@@ -875,7 +882,7 @@ function compressImage(file,maxDim,quality){
   });
 }
 async function uploadImageToStorage(blob,path,cacheBust){
-  const {error}=await supa.storage.from(BUCKET).upload(path,blob,{cacheControl:'3600',upsert:true,contentType:'image/jpeg'});
+  const {error}=await supa.storage.from(BUCKET).upload(path,blob,{cacheControl:'3600',upsert:true,contentType:blob.type||'image/jpeg'});
   if(error) throw error;
   const url=supa.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
   return cacheBust?url+'?v='+Date.now():url;
@@ -988,6 +995,10 @@ function renderPageImg(key,src){
   }else if(key==='about'){
     document.getElementById('about-img-wrap-inner').innerHTML=`<img src="${src}" alt="Nosotros" loading="lazy" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
     setThumb('thumb-about',src);
+  }else if(key==='favicon'){
+    const link=document.getElementById('favicon-link');
+    if(link) link.href=src;
+    setThumb('thumb-favicon',src);
   }else if(key.startsWith('room-')){
     const idx=key.split('-')[1];
     const wrap=document.getElementById('room-img-'+idx+'-wrap');
@@ -1002,6 +1013,21 @@ function setThumb(id,src){
 function setThumbLoading(id){
   const el=document.getElementById('thumb-'+id);
   if(el) el.innerHTML=`<div class="img-preview-placeholder">⏳ Subiendo...</div>`;
+}
+async function setFavicon(input){
+  const file=input.files[0];if(!file)return;
+  setThumbLoading('favicon');
+  try{
+    const blob=await compressImage(file,512,0.92,'image/png');
+    const url=await uploadImageToStorage(blob,'page/favicon.png',true);
+    await supa.from('pageimgs').upsert({key:'favicon',data:url},{onConflict:'key'});
+    renderPageImg('favicon',url);
+  }catch(err){
+    console.error(err);
+    alert('No se pudo subir el ícono. Probá de nuevo con otra imagen.');
+    renderPageImg('favicon','');
+  }
+  input.value='';
 }
 const PAGE_IMG_DIMS={hero:1920,about:1200};
 async function setPageImg(key,input){
@@ -1189,7 +1215,8 @@ function renderAdminGallery(){
     const cat=p.name.split('__')[0]||'exterior';
     const div=document.createElement('div');
     div.className='admin-gallery-item';
-    div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy"/><span class="category-badge">${CAT_LABELS[cat]||cat}</span><div class="admin-gallery-item-overlay"><button class="del-btn" onclick="deletePhoto('${p.name}')">🗑 Borrar</button></div>`;
+    const catOptions=Object.keys(CAT_LABELS).map(k=>`<option value="${k}" ${k===cat?'selected':''}>${CAT_LABELS[k]}</option>`).join('');
+    div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy"/><span class="category-badge">${CAT_LABELS[cat]||cat}</span><div class="admin-gallery-item-overlay"><select onchange="changePhotoCategory('${p.name}',this.value,this)">${catOptions}</select><button class="del-btn" onclick="deletePhoto('${p.name}')">🗑 Borrar</button></div>`;
     grid.appendChild(div);
   });
 }
@@ -1198,6 +1225,31 @@ async function deletePhoto(name){
   await supa.storage.from(BUCKET).remove([`gallery/${name}`]);
   photos=photos.filter(p=>p.name!==name);
   renderAdminGallery();renderPublicGallery('all');
+}
+// Cambia la categoría de una foto ya subida moviéndola de carpeta en Storage,
+// sin tener que borrarla ni volver a subirla.
+async function changePhotoCategory(oldName,newCat,selectEl){
+  const oldCat=oldName.split('__')[0]||'exterior';
+  if(oldCat===newCat) return;
+  if(selectEl) selectEl.disabled=true;
+  const rest=oldName.includes('__')?oldName.split('__').slice(1).join('__'):oldName;
+  const newName=`${newCat}__${rest}`;
+  try{
+    const {error}=await supa.storage.from(BUCKET).move(`gallery/${oldName}`,`gallery/${newName}`);
+    if(error) throw error;
+    const photo=photos.find(p=>p.name===oldName);
+    if(photo){
+      photo.name=newName;photo.id=newName;photo.cat=newCat;
+      photo.url=supa.storage.from(BUCKET).getPublicUrl(`gallery/${newName}`).data.publicUrl;
+    }
+    renderAdminGallery();
+    renderPublicGallery('all');
+    document.querySelectorAll('.gallery-filter-btn').forEach((b,i)=>{i===0?b.classList.add('active'):b.classList.remove('active');});
+  }catch(err){
+    console.error(err);
+    alert('No se pudo cambiar la categoría. Probá de nuevo.');
+    if(selectEl) selectEl.disabled=false;
+  }
 }
 
 // ── GUARDAR ──
