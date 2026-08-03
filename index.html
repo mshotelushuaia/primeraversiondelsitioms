@@ -4,8 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">MS Hotel | Ushuaia, Patagonia</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="description" content="MS Hotel Ushuaia — Alojamiento familiar en el corazón de Ushuaia, Tierra del Fuego. Habitaciones y departamentos con desayuno incluido, WiFi y estacionamiento gratuito.">
+<link rel="canonical" href="https://mshotelushuaia.com.ar/">
+<meta property="og:type" content="lodging">
+<meta property="og:title" id="og-title" content="MS Hotel | Ushuaia, Patagonia">
+<meta property="og:description" content="Tu hogar en el fin del mundo. Habitaciones y departamentos en Campos 26, Ushuaia, Tierra del Fuego.">
+<meta property="og:url" content="https://mshotelushuaia.com.ar/">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" id="og-image" content="">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fefmfxlgetofoajilwdx.supabase.co">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"></noscript>
+<script type="application/ld+json" id="ld-json">
+{
+  "@context":"https://schema.org",
+  "@type":"Hotel",
+  "name":"MS Hotel",
+  "address":{"@type":"PostalAddress","streetAddress":"Campos 26","addressLocality":"Ushuaia","addressRegion":"Tierra del Fuego","addressCountry":"AR"},
+  "telephone":"+542901307880",
+  "email":"mshotel22@yahoo.com",
+  "url":"https://mshotelushuaia.com.ar/"
+}
+</script>
 <style>
 :root{
   --navy:#0d1f3c;--deep:#162847;--mid:#1e3a5f;
@@ -26,16 +50,19 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-main);background:var(--color-bg);color:var(--text-dark);overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(13,31,60,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(168,204,232,0.15);}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:1.2rem 4rem;background:rgba(13,31,60,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(168,204,232,0.15);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--white);letter-spacing:0.05em;text-decoration:none;}
 .nav-logo span{color:var(--gold);}
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{color:var(--ice);text-decoration:none;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;}
 .nav-links a:hover{color:var(--gold-light);}
 .nav-cta{background:var(--gold);color:var(--navy)!important;padding:0.55rem 1.4rem;font-weight:500!important;border-radius:2px;}
+.nav-right{display:flex;align-items:center;gap:0.8rem;}
 .nav-admin-btn{background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 0.9rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;}
 .nav-admin-btn:hover{border-color:var(--gold);color:var(--gold-light);}
-#inicio{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.nav-burger{display:none;background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);width:38px;height:38px;font-size:1.15rem;cursor:pointer;align-items:center;justify-content:center;}
+#inicio{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;scroll-margin-top:0;}
 .hero-bg{position:absolute;inset:0;animation:heroZoom 20s ease-in-out infinite alternate;}
 .hero-bg-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;z-index:-1;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,31,60,0.78),rgba(42,82,152,0.4));}
@@ -54,7 +81,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .img-placeholder{width:100%;background:#c8c8c8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:#666;font-family:'Jost',sans-serif;}
 .img-placeholder span{font-size:2rem;}
 .img-placeholder p{font-size:0.8rem;}
-section{padding:6rem 4rem;}
+section{padding:6rem 4rem;scroll-margin-top:90px;}
 .section-label{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ocean);margin-bottom:0.8rem;}
 .section-title{font-family:var(--font-title);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.15;margin-bottom:1.5rem;}
 .section-title em{font-style:italic;color:var(--ocean);}
@@ -111,7 +138,7 @@ section{padding:6rem 4rem;}
 .gallery-filter-btn{background:none;border:1px solid var(--ocean);color:var(--ocean);padding:0.4rem 1.2rem;font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;border-radius:20px;}
 .gallery-filter-btn.active,.gallery-filter-btn:hover{background:var(--ocean);color:var(--white);}
 .gallery-grid{columns:4;column-gap:0.7rem;}
-.gallery-item{break-inside:avoid;margin-bottom:0.7rem;overflow:hidden;position:relative;cursor:pointer;display:block;}
+.gallery-item{break-inside:avoid;margin-bottom:0.7rem;overflow:hidden;position:relative;cursor:pointer;display:block;background:#eee;}
 .gallery-item img{width:100%;display:block;transition:transform 0.5s;filter:brightness(0.92);}
 .gallery-item:hover img{transform:scale(1.06);filter:brightness(1);}
 .gallery-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,31,60,0.5),transparent);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
@@ -145,7 +172,11 @@ section{padding:6rem 4rem;}
 .form-group textarea{resize:vertical;min-height:110px;}
 .form-submit{width:100%;padding:1rem;background:var(--gold);border:none;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 0.3s,transform 0.2s;}
 .form-submit:hover{background:var(--gold-light);transform:translateY(-1px);}
-footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(168,204,232,0.08);}
+.form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.distance-list{display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1rem;margin-bottom:2rem;}
+.distance-chip{font-size:0.78rem;padding:0.5rem 1rem;background:rgba(74,144,217,0.15);border:1px solid rgba(74,144,217,0.3);color:var(--ice);border-radius:20px;}
+.map-wrap{border:1px solid rgba(168,204,232,0.15);border-radius:2px;overflow:hidden;background:rgba(255,255,255,0.03);}
+footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(168,204,232,0.08);flex-wrap:wrap;gap:1rem;}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ice);}
 .footer-logo span{color:var(--gold);}
 .footer-copy{font-size:0.75rem;color:rgba(168,204,232,0.4);}
@@ -153,14 +184,10 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .footer-social a:hover{border-color:var(--gold);color:var(--gold-light);}
 .whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:200;font-size:1.6rem;transition:transform 0.3s;}
 .whatsapp-float:hover{transform:scale(1.1);}
-.db-loading{position:fixed;inset:0;background:rgba(13,31,60,0.95);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
-.db-loading p{color:var(--ice);font-family:'Jost',sans-serif;font-size:0.9rem;letter-spacing:0.1em;}
-.spinner{width:40px;height:40px;border:3px solid rgba(168,204,232,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
 #admin-modal{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.97);z-index:500;overflow-y:auto;}
 #admin-modal.open{display:block;}
 .admin-login{display:flex;align-items:center;justify-content:center;min-height:100vh;}
-.admin-login-box{background:rgba(255,255,255,0.04);border:1px solid rgba(168,204,232,0.15);padding:3rem;width:380px;text-align:center;}
+.admin-login-box{background:rgba(255,255,255,0.04);border:1px solid rgba(168,204,232,0.15);padding:3rem;width:380px;max-width:90vw;text-align:center;}
 .admin-login-box h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:0.5rem;}
 .admin-login-box p{font-size:0.82rem;color:var(--ice);margin-bottom:2rem;}
 .admin-input-field{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.95rem;outline:none;margin-bottom:1rem;}
@@ -169,7 +196,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .admin-btn-primary:hover{background:var(--gold-light);}
 .admin-error{color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;}
 .admin-panel{display:none;min-height:100vh;}.admin-panel.open{display:block;}
-.admin-header{background:rgba(13,31,60,0.8);border-bottom:1px solid rgba(168,204,232,0.15);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);}
+.admin-header{background:rgba(13,31,60,0.8);border-bottom:1px solid rgba(168,204,232,0.15);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);}
 .admin-header h1{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);}
 .admin-header h1 span{color:var(--gold);}
 .admin-logout{background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 1rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.3s;}
@@ -188,6 +215,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .admin-field textarea{resize:vertical;min-height:100px;}
 .admin-save-btn{background:var(--gold);border:none;color:var(--navy);padding:0.7rem 2rem;font-family:'Jost',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;}
 .admin-save-btn:hover{background:var(--gold-light);}
+.admin-save-btn:disabled{opacity:0.6;cursor:not-allowed;}
 .admin-save-msg{display:inline-block;margin-left:1rem;font-size:0.82rem;color:#6bcb77;opacity:0;transition:opacity 0.3s;}
 .upload-zone{border:2px dashed rgba(74,144,217,0.4);padding:3rem 2rem;text-align:center;cursor:pointer;transition:all 0.3s;margin-bottom:1.5rem;position:relative;}
 .upload-zone:hover,.upload-zone.drag-over{border-color:var(--gold);background:rgba(201,168,76,0.05);}
@@ -225,8 +253,17 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 .color-swatch-row{display:flex;gap:0.6rem;align-items:center;}
 .color-swatch-row input[type=color]{width:44px;height:36px;border:1px solid rgba(168,204,232,0.3);background:none;cursor:pointer;padding:2px;}
 .color-hex{width:90px;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.4rem 0.6rem;font-family:'Jost',sans-serif;font-size:0.85rem;outline:none;}
+.room-edit-block{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(168,204,232,0.1);}
+.room-edit-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.room-edit-block>p{color:var(--white);font-weight:500;margin-bottom:0.8rem;}
+.svc-edit-row{display:grid;grid-template-columns:80px 1fr;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(168,204,232,0.1);}
+.svc-edit-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.svc-icon-input{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(168,204,232,0.2);color:var(--white);padding:0.8rem 0.5rem;font-family:'Jost',sans-serif;font-size:1.4rem;text-align:center;outline:none;}
 @media(max-width:900px){
-  nav{padding:1rem 1.5rem;}.nav-links{display:none;}
+  nav{padding:1rem 1.5rem;}
+  .nav-burger{display:flex;}
+  .nav-links{display:none;width:100%;order:5;}
+  .nav-links.open{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;padding-top:1.2rem;margin-top:1rem;border-top:1px solid rgba(168,204,232,0.15);}
   section{padding:4rem 1.5rem;}
   #nosotros{grid-template-columns:1fr;padding:4rem 1.5rem;}
   .services-grid{grid-template-columns:repeat(2,1fr);}
@@ -237,6 +274,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   footer{flex-direction:column;gap:1rem;text-align:center;}
   .img-editor-row{grid-template-columns:1fr;}
   .color-grid{grid-template-columns:1fr;}
+  .svc-edit-row{grid-template-columns:1fr;}
 }
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s,transform 0.7s;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -244,26 +282,24 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 </head>
 <body>
 
-<div class="db-loading" id="db-loading">
-  <div class="spinner"></div>
-  <p>Cargando MS Hotel...</p>
-</div>
-
 <nav>
   <a href="#inicio" class="nav-logo" id="nav-logo-text">MS <span>Hotel</span></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#habitaciones">Habitaciones</a></li>
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#contacto" class="nav-cta">Reservar</a></li>
   </ul>
-  <button class="nav-admin-btn" onclick="openAdmin()">⚙ Admin</button>
+  <div class="nav-right">
+    <button class="nav-admin-btn" id="admin-btn" onclick="openAdmin()" style="display:none;">⚙ Admin</button>
+    <button class="nav-burger" id="nav-burger" onclick="toggleMobileMenu()" aria-label="Abrir menú">☰</button>
+  </div>
 </nav>
 
 <section id="inicio">
   <div class="hero-bg">
-    <img class="hero-bg-img" id="hero-img" src="" alt="Fondo" style="display:none"/>
+    <img class="hero-bg-img" id="hero-img" src="" alt="Fondo" style="display:none" fetchpriority="high"/>
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
@@ -277,13 +313,13 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 
 <section id="nosotros"><div class="sec-bg" id="sec-bg-nosotros"></div>
   <div class="about-text reveal">
-    <p class="section-label">Nuestra Historia</p>
-    <h2 class="section-title">Un sueño <em>familiar</em><br>hecho realidad</h2>
+    <p class="section-label" id="nosotros-label-el">Nuestra Historia</p>
+    <h2 class="section-title" id="nosotros-title-el">Un sueño <em>familiar</em><br>hecho realidad</h2>
     <div class="divider"></div>
     <p id="about-p1">MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.</p>
     <p id="about-p2">Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.</p>
     <p id="about-p3">Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.</p>
-    <div class="tribute-tag">✦ Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)</div>
+    <div class="tribute-tag" id="nosotros-tribute-el">✦ Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)</div>
   </div>
   <div class="about-img-wrap reveal">
     <div id="about-img-wrap-inner"><div class="img-placeholder" style="height:520px;"><span>🏨</span><p>Subir foto aquí</p></div></div>
@@ -295,12 +331,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <p class="section-label">Lo que ofrecemos</p>
   <h2 class="section-title">Nuestros <em>Servicios</em></h2>
   <div class="divider"></div>
-  <div class="services-grid">
-    <div class="service-card reveal"><span class="service-icon">🍳</span><h3>Desayuno Incluido</h3><p>Comenzá el día con energía. El desayuno está incluido en todas las estadías.</p></div>
-    <div class="service-card reveal"><span class="service-icon">🅿️</span><h3>Estacionamiento</h3><p>Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional.</p></div>
-    <div class="service-card reveal"><span class="service-icon">📶</span><h3>WiFi de Alta Velocidad</h3><p>Conexión WiFi gratuita en todas las habitaciones y espacios comunes.</p></div>
-    <div class="service-card reveal"><span class="service-icon">👕</span><h3>Lavandería</h3><p>Servicio de lavado de ropa disponible bajo solicitud.</p><p class="service-note">* Servicio con costo adicional</p></div>
-  </div>
+  <div class="services-grid" id="services-grid"></div>
 </section>
 
 <section id="habitaciones">
@@ -313,16 +344,16 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
   <div class="tab-panel active" id="habitaciones-tab">
     <div class="rooms-grid">
-      <div class="room-card reveal"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Doble</p></div></div><div class="room-info"><p class="room-type">7 unidades disponibles</p><h3>Habitación Doble</h3><p>Cómoda habitación para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Triple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Triple</h3><p>Ideal para familias o grupos de tres.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad disponible</p><h3>Habitación Cuádruple</h3><p>Amplia habitación para cuatro personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Doble</p></div></div><div class="room-info"><p class="room-type" id="room-count-0">7 unidades disponibles</p><h3>Habitación Doble</h3><p id="room-desc-0">Cómoda habitación para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Triple</p></div></div><div class="room-info"><p class="room-type" id="room-count-1">1 unidad disponible</p><h3>Habitación Triple</h3><p id="room-desc-1">Ideal para familias o grupos de tres.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Cuádruple</p></div></div><div class="room-info"><p class="room-type" id="room-count-2">1 unidad disponible</p><h3>Habitación Cuádruple</h3><p id="room-desc-2">Amplia habitación para cuatro personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
     </div>
   </div>
   <div class="tab-panel" id="departamentos-tab">
     <div class="rooms-grid">
-      <div class="room-card reveal"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Doble</p></div></div><div class="room-info"><p class="room-type">1 unidad · Monoambiente</p><h3>Departamento Doble</h3><p>Monoambiente equipado para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Triple</p></div></div><div class="room-info"><p class="room-type">2 unidades · Monoambiente</p><h3>Departamento Triple</h3><p>Monoambiente cómodo para tres personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
-      <div class="room-card reveal"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Cuádruple</p></div></div><div class="room-info"><p class="room-type">1 unidad · 2 Ambientes</p><h3>Departamento Cuádruple</h3><p>Dos ambientes separados para familias.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span><span class="feat-badge">2 Ambientes</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Doble</p></div></div><div class="room-info"><p class="room-type" id="room-count-3">1 unidad · Monoambiente</p><h3>Departamento Doble</h3><p id="room-desc-3">Monoambiente equipado para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Triple</p></div></div><div class="room-info"><p class="room-type" id="room-count-4">2 unidades · Monoambiente</p><h3>Departamento Triple</h3><p id="room-desc-4">Monoambiente cómodo para tres personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Cuádruple</p></div></div><div class="room-info"><p class="room-type" id="room-count-5">1 unidad · 2 Ambientes</p><h3>Departamento Cuádruple</h3><p id="room-desc-5">Dos ambientes separados para familias.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span><span class="feat-badge">2 Ambientes</span></div></div></div>
     </div>
   </div>
 </section>
@@ -351,7 +382,9 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
       <div class="contact-detail"><div class="contact-icon">📍</div><div class="contact-detail-text"><h4>Dirección</h4><p id="txt-address">Campos 26, Ushuaia · Tierra del Fuego</p></div></div>
       <div class="contact-detail"><div class="contact-icon">📞</div><div class="contact-detail-text"><h4>Teléfono / WhatsApp</h4><a id="txt-phone" href="https://wa.me/542901307880">+54 2901 307880</a></div></div>
       <div class="contact-detail"><div class="contact-icon">✉️</div><div class="contact-detail-text"><h4>Email</h4><a id="txt-email" href="mailto:mshotel22@yahoo.com">mshotel22@yahoo.com</a></div></div>
-      <div class="contact-detail"><div class="contact-icon">📸</div><div class="contact-detail-text"><h4>Instagram</h4><a id="txt-instagram" href="https://instagram.com/mshotelushuaia" target="_blank">@mshotelushuaia</a></div></div>
+      <div class="contact-detail"><div class="contact-icon">📸</div><div class="contact-detail-text"><h4>Instagram</h4><a id="txt-instagram" href="https://instagram.com/mshotelushuaia" target="_blank" rel="noopener">@mshotelushuaia</a></div></div>
+      <div class="contact-detail"><div class="contact-icon">🕐</div><div class="contact-detail-text"><h4>Check-in / Check-out</h4><p id="txt-checkinout">Check-in desde las 14:00 hs · Check-out hasta las 10:00 hs</p><p id="txt-latecheckout" style="font-size:0.78rem;opacity:0.75;margin-top:0.3rem;"></p></div></div>
+      <div class="contact-detail"><div class="contact-icon">🅿️</div><div class="contact-detail-text"><h4>Estacionamiento</h4><p id="txt-parking">Cerrado, sin costo adicional (sujeto a disponibilidad)</p></div></div>
     </div>
     <div class="contact-form reveal">
       <h3>Consultar disponibilidad</h3>
@@ -393,20 +426,27 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
       </div>
       <div class="form-group"><label>Consulta adicional (opcional)</label><textarea id="form-mensaje" placeholder="Ej: viajamos con niños, llegamos tarde..."></textarea></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem;">
-        <button class="form-submit" onclick="handleSubmit(this,'whatsapp')" style="background:var(--gold);">💬 WhatsApp</button>
-        <button class="form-submit" onclick="handleSubmit(this,'email')" style="background:var(--ocean);">📧 Email</button>
+        <button class="form-submit" id="btn-wa" onclick="handleSubmit(this,'whatsapp')" style="background:var(--gold);">💬 WhatsApp</button>
+        <button class="form-submit" id="btn-email" onclick="handleSubmit(this,'email')" style="background:var(--ocean);">📧 Email</button>
       </div>
       <p style="text-align:center;font-size:0.72rem;color:rgba(168,204,232,0.5);margin-top:0.8rem;">WhatsApp para clientes locales · Email para clientes internacionales</p>
+    </div>
+  </div>
+  <div class="location-block reveal" style="margin-top:4rem;position:relative;z-index:1;">
+    <p class="section-label" style="color:var(--gold-light);">Cómo llegar</p>
+    <div class="distance-list" id="distance-list"></div>
+    <div class="map-wrap">
+      <iframe id="map-frame" src="" width="100%" height="360" style="border:0;display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de MS Hotel en Google Maps"></iframe>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo" id="footer-logo-text">MS <span>Hotel</span></div>
-  <p class="footer-copy">© 2025 MS Hotel · Ushuaia, Tierra del Fuego</p>
-  <div class="footer-social"><a href="https://instagram.com/mshotelushuaia" target="_blank" id="footer-ig">Instagram ↗</a></div>
+  <p class="footer-copy">© 2026 MS Hotel · Ushuaia, Tierra del Fuego</p>
+  <div class="footer-social"><a href="https://instagram.com/mshotelushuaia" target="_blank" rel="noopener" id="footer-ig">Instagram ↗</a></div>
 </footer>
-<a href="https://wa.me/542901307880" class="whatsapp-float" id="wa-float" target="_blank" title="Contactar por WhatsApp">
+<a href="https://wa.me/542901307880" class="whatsapp-float" id="wa-float" target="_blank" rel="noopener" title="Contactar por WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.17 1.535 5.943L.057 23.571a.75.75 0 00.921.921l5.663-1.484A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.711 9.711 0 01-4.953-1.354l-.355-.212-3.656.958.975-3.563-.232-.368A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
@@ -425,7 +465,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     <div class="admin-login-box">
       <h2>Panel <span style="color:var(--gold)">Admin</span></h2>
       <p>Ingresá tu contraseña para editar la página</p>
-      <input class="admin-input-field" type="password" id="admin-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPass()"/>
+      <input class="admin-input-field" type="password" id="admin-pass" placeholder="Contraseña" autocomplete="off" onkeydown="if(event.key==='Enter')checkPass()"/>
       <button class="admin-btn-primary" onclick="checkPass()">Ingresar</button>
       <p class="admin-error" id="admin-error">Contraseña incorrecta.</p>
       <button onclick="closeAdmin()" style="background:none;border:none;color:rgba(168,204,232,0.4);font-size:0.8rem;cursor:pointer;margin-top:1.5rem;font-family:'Jost',sans-serif;">Cancelar</button>
@@ -442,6 +482,8 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     <div class="admin-tabs">
       <button class="admin-tab active" onclick="showAdminTab('tab-galeria',this)">📷 Galería</button>
       <button class="admin-tab" onclick="showAdminTab('tab-textos',this)">✏️ Textos</button>
+      <button class="admin-tab" onclick="showAdminTab('tab-servicios',this)">⭐ Servicios</button>
+      <button class="admin-tab" onclick="showAdminTab('tab-habitaciones',this)">🏠 Habitaciones</button>
       <button class="admin-tab" onclick="showAdminTab('tab-diseno',this)">🎨 Diseño</button>
       <button class="admin-tab" onclick="showAdminTab('tab-contacto',this)">📞 Contacto</button>
       <button class="admin-tab" onclick="showAdminTab('tab-pass',this)">🔐 Contraseña</button>
@@ -464,7 +506,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
             <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(this.files)"/>
             <span class="upload-zone-icon">📁</span>
             <p>Hacé clic acá o arrastrá las fotos</p>
-            <small>Podés subir varias a la vez · JPG, PNG, WEBP · Sin límite</small>
+            <small>Podés subir varias a la vez · JPG, PNG, WEBP · Se comprimen automáticamente</small>
           </div>
           <div class="upload-progress" id="upload-progress">
             <p style="color:var(--ice);font-size:0.85rem;" id="upload-status">Procesando...</p>
@@ -495,11 +537,50 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
         </div>
         <div class="admin-card">
           <h3>📖 Nuestra Historia</h3>
+          <div class="admin-field" style="display:flex;align-items:center;gap:0.6rem;">
+            <input type="checkbox" id="edit-nosotros-visible" style="width:18px;height:18px;accent-color:var(--gold);"/>
+            <label style="margin:0;text-transform:none;letter-spacing:0;font-size:0.85rem;color:var(--ice);">Mostrar esta sección en la página</label>
+          </div>
+          <div class="admin-field"><label>Etiqueta pequeña</label><input type="text" id="edit-nosotros-label" placeholder="Nuestra Historia"/></div>
+          <div class="admin-field"><label>Título</label><textarea id="edit-nosotros-title" placeholder="Un sueño *familiar* hecho realidad" style="min-height:70px;"></textarea><small style="color:rgba(168,204,232,0.5);">Poné una palabra entre *asteriscos* para que salga en cursiva. Un salto de línea (Enter) corta el título en dos.</small></div>
           <div class="admin-field"><label>Párrafo 1</label><textarea id="edit-p1"></textarea></div>
           <div class="admin-field"><label>Párrafo 2</label><textarea id="edit-p2"></textarea></div>
           <div class="admin-field"><label>Párrafo 3</label><textarea id="edit-p3"></textarea></div>
+          <div class="admin-field" style="display:flex;align-items:center;gap:0.6rem;">
+            <input type="checkbox" id="edit-tribute-visible" style="width:18px;height:18px;accent-color:var(--gold);"/>
+            <label style="margin:0;text-transform:none;letter-spacing:0;font-size:0.85rem;color:var(--ice);">Mostrar la dedicatoria (recuadro con ✦)</label>
+          </div>
+          <div class="admin-field"><label>Texto de la dedicatoria</label><input type="text" id="edit-tribute" placeholder="Dedicado a..."/></div>
           <button class="admin-save-btn" onclick="saveAbout()">Guardar</button>
           <span class="admin-save-msg" id="save-msg-about">✓ Guardado en la nube ☁️</span>
+        </div>
+      </div>
+
+      <div class="admin-section" id="tab-servicios">
+        <div class="admin-card">
+          <h3>⭐ Servicios ofrecidos</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Editá el ícono (emoji), título, descripción y una nota opcional de cada servicio.</p>
+          <div class="svc-edit-row"><input type="text" class="svc-icon-input" id="svc-icon-0" maxlength="4"/><div><div class="admin-field"><label>Título</label><input type="text" id="svc-title-0"/></div><div class="admin-field"><label>Descripción</label><textarea id="svc-desc-0"></textarea></div><div class="admin-field"><label>Nota (opcional)</label><input type="text" id="svc-nota-0" placeholder="Ej: * Con costo adicional"/></div></div></div>
+          <div class="svc-edit-row"><input type="text" class="svc-icon-input" id="svc-icon-1" maxlength="4"/><div><div class="admin-field"><label>Título</label><input type="text" id="svc-title-1"/></div><div class="admin-field"><label>Descripción</label><textarea id="svc-desc-1"></textarea></div><div class="admin-field"><label>Nota (opcional)</label><input type="text" id="svc-nota-1" placeholder="Ej: * Con costo adicional"/></div></div></div>
+          <div class="svc-edit-row"><input type="text" class="svc-icon-input" id="svc-icon-2" maxlength="4"/><div><div class="admin-field"><label>Título</label><input type="text" id="svc-title-2"/></div><div class="admin-field"><label>Descripción</label><textarea id="svc-desc-2"></textarea></div><div class="admin-field"><label>Nota (opcional)</label><input type="text" id="svc-nota-2" placeholder="Ej: * Con costo adicional"/></div></div></div>
+          <div class="svc-edit-row"><input type="text" class="svc-icon-input" id="svc-icon-3" maxlength="4"/><div><div class="admin-field"><label>Título</label><input type="text" id="svc-title-3"/></div><div class="admin-field"><label>Descripción</label><textarea id="svc-desc-3"></textarea></div><div class="admin-field"><label>Nota (opcional)</label><input type="text" id="svc-nota-3" placeholder="Ej: * Con costo adicional"/></div></div></div>
+          <button class="admin-save-btn" onclick="saveServices()">Guardar servicios</button>
+          <span class="admin-save-msg" id="save-msg-services">✓ Guardado en la nube ☁️</span>
+        </div>
+      </div>
+
+      <div class="admin-section" id="tab-habitaciones">
+        <div class="admin-card">
+          <h3>🏠 Habitaciones &amp; Departamentos</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Editá la disponibilidad y descripción de cada unidad. Las fotos se cambian desde la pestaña Diseño.</p>
+          <div class="room-edit-block"><p>🛏 Habitación Doble</p><div class="admin-field"><label>Disponibilidad</label><input type="text" id="room-edit-count-0"/></div><div class="admin-field"><label>Descripción</label><textarea id="room-edit-desc-0"></textarea></div></div>
+          <div class="room-edit-block"><p>🛏 Habitación Triple</p><div class="admin-field"><label>Disponibilidad</label><input type="text" id="room-edit-count-1"/></div><div class="admin-field"><label>Descripción</label><textarea id="room-edit-desc-1"></textarea></div></div>
+          <div class="room-edit-block"><p>🛏 Habitación Cuádruple</p><div class="admin-field"><label>Disponibilidad</label><input type="text" id="room-edit-count-2"/></div><div class="admin-field"><label>Descripción</label><textarea id="room-edit-desc-2"></textarea></div></div>
+          <div class="room-edit-block"><p>🏠 Departamento Doble</p><div class="admin-field"><label>Disponibilidad</label><input type="text" id="room-edit-count-3"/></div><div class="admin-field"><label>Descripción</label><textarea id="room-edit-desc-3"></textarea></div></div>
+          <div class="room-edit-block"><p>🏠 Departamento Triple</p><div class="admin-field"><label>Disponibilidad</label><input type="text" id="room-edit-count-4"/></div><div class="admin-field"><label>Descripción</label><textarea id="room-edit-desc-4"></textarea></div></div>
+          <div class="room-edit-block"><p>🏠 Departamento Cuádruple</p><div class="admin-field"><label>Disponibilidad</label><input type="text" id="room-edit-count-5"/></div><div class="admin-field"><label>Descripción</label><textarea id="room-edit-desc-5"></textarea></div></div>
+          <button class="admin-save-btn" onclick="saveRooms()">Guardar habitaciones</button>
+          <span class="admin-save-msg" id="save-msg-rooms">✓ Guardado en la nube ☁️</span>
         </div>
       </div>
 
@@ -606,6 +687,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
         </div>
         <div class="admin-card">
           <h3>🖼 Imágenes principales</h3>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1rem;">Las fotos se comprimen y optimizan automáticamente antes de guardarse.</p>
           <div class="img-editor-row">
             <div id="thumb-hero"><div class="img-preview-placeholder">📷 Fondo inicio</div></div>
             <div class="img-editor-controls"><span class="img-name">🏔 Foto de fondo del Inicio</span><small style="color:rgba(168,204,232,0.5);">Foto grande al abrir la página.</small><div class="img-btn-row"><label class="img-file-btn">📁 Subir<input type="file" accept="image/*" onchange="setPageImg('hero',this)"/></label><input class="img-url-input" type="url" placeholder="O pegá una URL..." id="url-hero"/><button class="img-url-btn" onclick="setPageImgUrl('hero')">Aplicar</button></div></div>
@@ -651,14 +733,25 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
           <button class="admin-save-btn" onclick="saveContact()">Guardar</button>
           <span class="admin-save-msg" id="save-msg-contact">✓ Guardado en la nube ☁️</span>
         </div>
+        <div class="admin-card">
+          <h3>ℹ️ Información útil (check-in, estacionamiento, ubicación)</h3>
+          <div class="admin-field"><label>Horario de Check-in</label><input type="text" id="edit-checkin" placeholder="14:00 hs"/></div>
+          <div class="admin-field"><label>Horario de Check-out</label><input type="text" id="edit-checkout" placeholder="10:00 hs"/></div>
+          <div class="admin-field"><label>Política de Late Check-out</label><input type="text" id="edit-latecheckout" placeholder="Hasta las 18:00 hs, abonando la noche adicional (sujeto a disponibilidad)"/></div>
+          <div class="admin-field"><label>Estacionamiento</label><input type="text" id="edit-parking" placeholder="Cerrado, sin costo adicional (sujeto a disponibilidad)"/></div>
+          <div class="admin-field"><label>Distancias / puntos cercanos</label><textarea id="edit-distances" placeholder="Un punto de interés por línea, ej: A 3 cuadras de la Av. San Martín" style="min-height:120px;"></textarea><small style="color:rgba(168,204,232,0.5);">Un dato por línea, aparecen como chips debajo del formulario.</small></div>
+          <div class="admin-field"><label>Ubicación en Google Maps</label><input type="text" id="edit-mapsquery" placeholder="MS Hotel Ushuaia, Campos 26, Ushuaia, Tierra del Fuego, Argentina"/><small style="color:rgba(168,204,232,0.5);">Nombre y dirección tal como querés que Google lo busque. Si no encuentra el hotel, mostrará el punto de la dirección.</small></div>
+          <button class="admin-save-btn" onclick="saveUsefulInfo()">Guardar</button>
+          <span class="admin-save-msg" id="save-msg-useful">✓ Guardado en la nube ☁️</span>
+        </div>
       </div>
 
       <div class="admin-section" id="tab-pass">
         <div class="admin-card">
           <h3>🔐 Cambiar contraseña</h3>
-          <div class="admin-field"><label>Contraseña actual</label><input type="password" id="old-pass"/></div>
-          <div class="admin-field"><label>Nueva contraseña</label><input type="password" id="new-pass"/></div>
-          <div class="admin-field"><label>Repetir nueva contraseña</label><input type="password" id="new-pass2"/></div>
+          <div class="admin-field"><label>Contraseña actual</label><input type="password" id="old-pass" autocomplete="off"/></div>
+          <div class="admin-field"><label>Nueva contraseña</label><input type="password" id="new-pass" autocomplete="off"/></div>
+          <div class="admin-field"><label>Repetir nueva contraseña</label><input type="password" id="new-pass2" autocomplete="off"/></div>
           <button class="admin-save-btn" onclick="changePass()">Cambiar</button>
           <span class="admin-save-msg" id="save-msg-pass">✓ Actualizada en la nube ☁️</span>
           <p id="pass-error" style="color:#ff6b6b;font-size:0.82rem;margin-top:0.5rem;display:none;"></p>
@@ -669,6 +762,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPA_URL='https://fefmfxlgetofoajilwdx.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlZm1meGxnZXRvZm9hamlsd2R4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5MjgzMjAsImV4cCI6MjA5ODUwNDMyMH0.qmVTK7qd6AQdMHNPl-ASHI9KbSSGLf48JZpADcpyYEE';
@@ -681,11 +775,37 @@ let siteColors={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
 let siteTexts={
   hotelname:'MS Hotel',slogan:'Tu hogar en el fin del mundo',
   eyebrow:'Campos 26 · Ushuaia, Patagonia',
+  nosotros_visible:true,
+  nosotros_label:'Nuestra Historia',
+  nosotros_title:'Un sueño *familiar*\nhecho realidad',
   p1:'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.',
   p2:'Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.',
-  p3:'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.'
+  p3:'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.',
+  tribute_visible:true,
+  tribute:'Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)'
 };
-let siteContact={phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego'};
+let siteContact={
+  phone:'542901307880',email:'mshotel22@yahoo.com',instagram:'mshotelushuaia',address:'Campos 26, Ushuaia · Tierra del Fuego',
+  checkin:'14:00 hs',checkout:'10:00 hs',
+  lateCheckout:'Hasta las 18:00 hs, abonando la noche adicional (sujeto a disponibilidad)',
+  parkingNote:'Cerrado, sin costo adicional (sujeto a disponibilidad)',
+  distances:['A 3 cuadras de la Av. San Martín','A 1 cuadra del Museo Marítimo','A 6 cuadras del Museo del Fin del Mundo','A 9 cuadras del Muelle Turístico','A 27 km del Cerro Castor'],
+  mapsQuery:'MS Hotel Ushuaia, Campos 26, Ushuaia, Tierra del Fuego, Argentina'
+};
+let siteServices=[
+  {icon:'🍳',title:'Desayuno Incluido',desc:'Comenzá el día con energía. El desayuno está incluido en todas las estadías.',nota:''},
+  {icon:'🅿️',title:'Estacionamiento',desc:'Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional.',nota:''},
+  {icon:'📶',title:'WiFi de Alta Velocidad',desc:'Conexión WiFi gratuita en todas las habitaciones y espacios comunes.',nota:''},
+  {icon:'👕',title:'Lavandería',desc:'Servicio de lavado de ropa disponible bajo solicitud.',nota:'* Servicio con costo adicional'}
+];
+let siteRooms={
+  'room-0':{count:'7 unidades disponibles',desc:'Cómoda habitación para dos personas.'},
+  'room-1':{count:'1 unidad disponible',desc:'Ideal para familias o grupos de tres.'},
+  'room-2':{count:'1 unidad disponible',desc:'Amplia habitación para cuatro personas.'},
+  'room-3':{count:'1 unidad · Monoambiente',desc:'Monoambiente equipado para dos personas.'},
+  'room-4':{count:'2 unidades · Monoambiente',desc:'Monoambiente cómodo para tres personas.'},
+  'room-5':{count:'1 unidad · 2 Ambientes',desc:'Dos ambientes separados para familias.'}
+};
 
 // ── CARGAR DESDE SUPABASE ──
 async function loadFromSupabase(){
@@ -696,6 +816,8 @@ async function loadFromSupabase(){
       if(s.key==='contact') siteContact={...siteContact,...s.value};
       if(s.key==='colors') siteColors={...siteColors,...s.value};
       if(s.key==='pass') ADMIN_PASS=s.value;
+      if(s.key==='services'&&Array.isArray(s.value)&&s.value.length===4) siteServices=s.value;
+      if(s.key==='rooms') siteRooms={...siteRooms,...s.value};
     });
     // Fotos desde Storage
     const {data:files}=await supa.storage.from(BUCKET).list('gallery',{limit:500,sortBy:{column:'created_at',order:'asc'}});
@@ -715,11 +837,54 @@ async function loadFromSupabase(){
     // Fondos de secciones
     const secBgSetting=settings?settings.find(s=>s.key==='sectionbgs'):null;
     if(secBgSetting) loadSectionBgsFromData(secBgSetting.value);
-  }catch(e){console.error('Error:',e);}
+  }catch(e){console.error('Error cargando datos:',e);}
 }
 
 async function saveSetting(key,value){
   await supa.from('settings').upsert({key,value},{onConflict:'key'});
+}
+
+// ── COMPRESIÓN Y SUBIDA DE IMÁGENES ──
+// Todas las fotos que suben el hotel o los huéspedes pasan por acá antes de guardarse:
+// se redimensionan y se comprimen en el navegador, así la página nunca queda pesada.
+function compressImage(file,maxDim,quality){
+  return new Promise((resolve,reject)=>{
+    if(!file||!file.type||!file.type.startsWith('image/')){reject(new Error('Archivo inválido'));return;}
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error('No se pudo leer el archivo'));
+    reader.onload=e=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error('No se pudo procesar la imagen'));
+      img.onload=()=>{
+        let w=img.width,h=img.height;
+        if(w>maxDim||h>maxDim){
+          if(w>=h){h=Math.round(h*maxDim/w);w=maxDim;}
+          else{w=Math.round(w*maxDim/h);h=maxDim;}
+        }
+        const canvas=document.createElement('canvas');
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');
+        ctx.drawImage(img,0,0,w,h);
+        canvas.toBlob(blob=>{
+          if(blob) resolve(blob); else reject(new Error('No se pudo comprimir la imagen'));
+        },'image/jpeg',quality);
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+async function uploadImageToStorage(blob,path,cacheBust){
+  const {error}=await supa.storage.from(BUCKET).upload(path,blob,{cacheControl:'3600',upsert:true,contentType:'image/jpeg'});
+  if(error) throw error;
+  const url=supa.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  return cacheBust?url+'?v='+Date.now():url;
+}
+
+// Convierte texto plano con *cursiva* y saltos de línea en el HTML del título de una sección.
+function renderTitleMarkup(raw){
+  const esc=(raw||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return esc.replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>');
 }
 
 // ── APLICAR DATOS ──
@@ -731,11 +896,18 @@ function applyData(){
   document.getElementById('footer-logo-text').innerHTML=`${first} <span>${rest}</span>`;
   document.getElementById('hero-title-el').innerHTML=`${first} <em>${rest}</em>`;
   document.title=name+' | Ushuaia, Patagonia';
+  document.getElementById('og-title').setAttribute('content',name+' | Ushuaia, Patagonia');
   document.getElementById('hero-slogan').textContent=siteTexts.slogan;
   document.getElementById('hero-eyebrow-text').textContent=siteTexts.eyebrow;
+  document.getElementById('nosotros').style.display=siteTexts.nosotros_visible===false?'none':'';
+  document.getElementById('nosotros-label-el').textContent=siteTexts.nosotros_label||'Nuestra Historia';
+  document.getElementById('nosotros-title-el').innerHTML=renderTitleMarkup(siteTexts.nosotros_title||'Un sueño *familiar*\nhecho realidad');
   document.getElementById('about-p1').innerHTML=siteTexts.p1;
   document.getElementById('about-p2').innerHTML=siteTexts.p2;
   document.getElementById('about-p3').innerHTML=siteTexts.p3;
+  const tributeEl=document.getElementById('nosotros-tribute-el');
+  tributeEl.textContent='✦ '+(siteTexts.tribute||'');
+  tributeEl.style.display=siteTexts.tribute_visible===false?'none':'inline-flex';
   const p=siteContact.phone,e=siteContact.email,ig=siteContact.instagram;
   document.getElementById('txt-address').textContent=siteContact.address;
   document.getElementById('txt-phone').href='https://wa.me/'+p;
@@ -746,8 +918,64 @@ function applyData(){
   document.getElementById('txt-instagram').textContent='@'+ig;
   document.getElementById('wa-float').href='https://wa.me/'+p;
   document.getElementById('footer-ig').href='https://instagram.com/'+ig;
+  document.getElementById('txt-checkinout').textContent='Check-in desde las '+(siteContact.checkin||'14:00 hs')+' · Check-out hasta las '+(siteContact.checkout||'10:00 hs');
+  document.getElementById('txt-latecheckout').textContent=siteContact.lateCheckout?('Late check-out: '+siteContact.lateCheckout):'';
+  document.getElementById('txt-parking').textContent=siteContact.parkingNote||'';
+  const distList=document.getElementById('distance-list');
+  const distances=Array.isArray(siteContact.distances)?siteContact.distances:[];
+  distList.innerHTML=distances.filter(d=>d&&d.trim()).map(d=>`<span class="distance-chip">📍 ${d}</span>`).join('');
+  const mapsQuery=siteContact.mapsQuery||(siteTexts.hotelname+', '+siteContact.address);
+  document.getElementById('map-frame').src='https://www.google.com/maps?q='+encodeURIComponent(mapsQuery)+'&output=embed';
+  try{
+    const ld=JSON.parse(document.getElementById('ld-json').textContent);
+    ld.name=name;ld.telephone='+'+p;ld.email=e;
+    ld.address.streetAddress=siteContact.address.split(',')[0]||ld.address.streetAddress;
+    document.getElementById('ld-json').textContent=JSON.stringify(ld);
+  }catch(err){}
   applyColors(siteColors);
   renderPublicGallery('all');
+}
+
+// ── SERVICIOS ──
+function renderServices(){
+  const grid=document.getElementById('services-grid');
+  grid.innerHTML=siteServices.map(s=>`<div class="service-card reveal"><span class="service-icon">${s.icon}</span><h3>${s.title}</h3><p>${s.desc}</p>${s.nota?`<p class="service-note">${s.nota}</p>`:''}</div>`).join('');
+}
+async function saveServices(){
+  siteServices=siteServices.map((s,i)=>({
+    icon:document.getElementById('svc-icon-'+i).value||s.icon,
+    title:document.getElementById('svc-title-'+i).value||s.title,
+    desc:document.getElementById('svc-desc-'+i).value||s.desc,
+    nota:document.getElementById('svc-nota-'+i).value||''
+  }));
+  await saveSetting('services',siteServices);
+  renderServices();
+  observeReveals();
+  showSaveMsg('save-msg-services');
+}
+
+// ── HABITACIONES (textos) ──
+function renderRooms(){
+  Object.keys(siteRooms).forEach(key=>{
+    const idx=key.split('-')[1];
+    const r=siteRooms[key];
+    const countEl=document.getElementById('room-count-'+idx);
+    const descEl=document.getElementById('room-desc-'+idx);
+    if(countEl) countEl.textContent=r.count;
+    if(descEl) descEl.textContent=r.desc;
+  });
+}
+async function saveRooms(){
+  ['0','1','2','3','4','5'].forEach(i=>{
+    const key='room-'+i;
+    siteRooms[key]={
+      count:document.getElementById('room-edit-count-'+i).value||siteRooms[key].count,
+      desc:document.getElementById('room-edit-desc-'+i).value||siteRooms[key].desc
+    };
+  });
+  await saveSetting('rooms',siteRooms);
+  renderRooms();
+  showSaveMsg('save-msg-rooms');
 }
 
 // ── IMÁGENES DE PÁGINA ──
@@ -755,14 +983,15 @@ function renderPageImg(key,src){
   if(key==='hero'){
     const img=document.getElementById('hero-img');
     img.src=src;img.style.display='block';
+    document.getElementById('og-image').setAttribute('content',src);
     setThumb('thumb-hero',src);
   }else if(key==='about'){
-    document.getElementById('about-img-wrap-inner').innerHTML=`<img src="${src}" alt="Nosotros" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
+    document.getElementById('about-img-wrap-inner').innerHTML=`<img src="${src}" alt="Nosotros" loading="lazy" style="width:100%;height:520px;object-fit:cover;display:block;"/>`;
     setThumb('thumb-about',src);
   }else if(key.startsWith('room-')){
     const idx=key.split('-')[1];
     const wrap=document.getElementById('room-img-'+idx+'-wrap');
-    if(wrap) wrap.innerHTML=`<img src="${src}" class="room-img" alt="Habitación"/>`;
+    if(wrap) wrap.innerHTML=`<img src="${src}" class="room-img" alt="Habitación" loading="lazy"/>`;
     setThumb('thumb-'+key,src);
   }
 }
@@ -770,14 +999,26 @@ function setThumb(id,src){
   const el=document.getElementById(id);
   if(el) el.innerHTML=`<img class="img-preview-thumb" src="${src}" alt="preview"/>`;
 }
-function setPageImg(key,input){
+function setThumbLoading(id){
+  const el=document.getElementById('thumb-'+id);
+  if(el) el.innerHTML=`<div class="img-preview-placeholder">⏳ Subiendo...</div>`;
+}
+const PAGE_IMG_DIMS={hero:1920,about:1200};
+async function setPageImg(key,input){
   const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=async e=>{
-    await supa.from('pageimgs').upsert({key,data:e.target.result},{onConflict:'key'});
-    renderPageImg(key,e.target.result);
-  };
-  reader.readAsDataURL(file);
+  const maxDim=key.startsWith('room-')?900:(PAGE_IMG_DIMS[key]||1200);
+  setThumbLoading(key);
+  try{
+    const blob=await compressImage(file,maxDim,0.8);
+    const url=await uploadImageToStorage(blob,`page/${key}.jpg`,true);
+    await supa.from('pageimgs').upsert({key,data:url},{onConflict:'key'});
+    renderPageImg(key,url);
+  }catch(err){
+    console.error(err);
+    alert('No se pudo subir la imagen. Probá de nuevo con otra foto o revisá tu conexión.');
+    renderPageImg(key,'');
+  }
+  input.value='';
 }
 async function setPageImgUrl(key){
   const url=document.getElementById('url-'+key).value.trim();
@@ -820,7 +1061,7 @@ function renderPublicGallery(filter){
   lbPhotos.forEach((p,i)=>{
     const div=document.createElement('div');
     div.className='gallery-item';
-    div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy"/><div class="gallery-overlay">🔍</div>`;
+    div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy" decoding="async"/><div class="gallery-overlay">🔍</div>`;
     div.onclick=()=>openLightbox(i);
     grid.appendChild(div);
   });
@@ -831,6 +1072,20 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('o
 function lbNav(dir){lbIndex=(lbIndex+dir+lbPhotos.length)%lbPhotos.length;document.getElementById('lb-img').src=lbPhotos[lbIndex].url;}
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
 document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();});
+
+// ── MENÚ MÓVIL ──
+function toggleMobileMenu(){document.getElementById('nav-links').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-links').classList.remove('open');}));
+
+// ── ACCESO ADMIN OCULTO (?admin=mshotel) ──
+function checkAdminAccess(){
+  try{
+    const params=new URLSearchParams(location.search);
+    if(params.get('admin')==='mshotel'){
+      document.getElementById('admin-btn').style.display='inline-block';
+    }
+  }catch(e){}
+}
 
 // ── ADMIN LOGIN ──
 function openAdmin(){document.getElementById('admin-modal').classList.add('open');document.getElementById('admin-pass').value='';document.getElementById('admin-error').style.display='none';}
@@ -849,18 +1104,42 @@ function loadAdminData(){
   document.getElementById('edit-hotelname').value=siteTexts.hotelname||'MS Hotel';
   document.getElementById('edit-slogan').value=siteTexts.slogan;
   document.getElementById('edit-eyebrow').value=siteTexts.eyebrow;
+  document.getElementById('edit-nosotros-visible').checked=siteTexts.nosotros_visible!==false;
+  document.getElementById('edit-nosotros-label').value=siteTexts.nosotros_label||'';
+  document.getElementById('edit-nosotros-title').value=siteTexts.nosotros_title||'';
   document.getElementById('edit-p1').value=siteTexts.p1.replace(/<[^>]+>/g,'');
   document.getElementById('edit-p2').value=siteTexts.p2.replace(/<[^>]+>/g,'');
   document.getElementById('edit-p3').value=siteTexts.p3.replace(/<[^>]+>/g,'');
+  document.getElementById('edit-tribute-visible').checked=siteTexts.tribute_visible!==false;
+  document.getElementById('edit-tribute').value=siteTexts.tribute||'';
   document.getElementById('edit-phone').value=siteContact.phone;
   document.getElementById('edit-email').value=siteContact.email;
   document.getElementById('edit-instagram').value=siteContact.instagram;
   document.getElementById('edit-address').value=siteContact.address;
+  document.getElementById('edit-checkin').value=siteContact.checkin||'';
+  document.getElementById('edit-checkout').value=siteContact.checkout||'';
+  document.getElementById('edit-latecheckout').value=siteContact.lateCheckout||'';
+  document.getElementById('edit-parking').value=siteContact.parkingNote||'';
+  document.getElementById('edit-distances').value=(siteContact.distances||[]).join('\n');
+  document.getElementById('edit-mapsquery').value=siteContact.mapsQuery||'';
   syncAdminColorInputs(siteColors);
+  siteServices.forEach((s,i)=>{
+    document.getElementById('svc-icon-'+i).value=s.icon;
+    document.getElementById('svc-title-'+i).value=s.title;
+    document.getElementById('svc-desc-'+i).value=s.desc;
+    document.getElementById('svc-nota-'+i).value=s.nota||'';
+  });
+  Object.keys(siteRooms).forEach(key=>{
+    const idx=key.split('-')[1];
+    const ce=document.getElementById('room-edit-count-'+idx);
+    const de=document.getElementById('room-edit-desc-'+idx);
+    if(ce) ce.value=siteRooms[key].count;
+    if(de) de.value=siteRooms[key].desc;
+  });
   renderAdminGallery();
 }
 
-// ── GALERÍA ADMIN — USA STORAGE ──
+// ── GALERÍA ADMIN — USA STORAGE, CON COMPRESIÓN ──
 const uploadZone=document.getElementById('upload-zone');
 uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('drag-over');});
 uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('drag-over'));
@@ -875,19 +1154,21 @@ async function handleFiles(files){
   prog.style.display='block';bar.style.width='0%';
   const valid=Array.from(files).filter(f=>f.type.startsWith('image/'));
   const total=valid.length;if(total===0){prog.style.display='none';return;}
-  status.textContent=`Subiendo 0 de ${total} fotos...`;
+  status.textContent=`Comprimiendo y subiendo 0 de ${total} fotos...`;
   let done=0;
   for(const file of valid){
-    const ext=file.name.split('.').pop();
-    const filename=`${cat}__${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
-    const {error}=await supa.storage.from(BUCKET).upload(`gallery/${filename}`,file,{cacheControl:'3600',upsert:false});
-    if(!error){
-      const url=supa.storage.from(BUCKET).getPublicUrl(`gallery/${filename}`).data.publicUrl;
-      photos.push({id:filename,name:filename,url,cat});
-    }
+    try{
+      const blob=await compressImage(file,1400,0.78);
+      const filename=`${cat}__${Date.now()}_${Math.random().toString(36).slice(2)}.jpg`;
+      const {error}=await supa.storage.from(BUCKET).upload(`gallery/${filename}`,blob,{cacheControl:'3600',upsert:false,contentType:'image/jpeg'});
+      if(!error){
+        const url=supa.storage.from(BUCKET).getPublicUrl(`gallery/${filename}`).data.publicUrl;
+        photos.push({id:filename,name:filename,url,cat});
+      }
+    }catch(err){console.error('Error subiendo foto:',err);}
     done++;
     bar.style.width=(done/total*100)+'%';
-    status.textContent=`Subiendo ${done} de ${total} fotos a la nube...`;
+    status.textContent=`Comprimiendo y subiendo ${done} de ${total} fotos a la nube...`;
   }
   setTimeout(()=>{
     prog.style.display='none';bar.style.width='0%';
@@ -922,8 +1203,31 @@ async function deletePhoto(name){
 // ── GUARDAR ──
 async function saveHotelName(){siteTexts.hotelname=document.getElementById('edit-hotelname').value||siteTexts.hotelname;await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-name');}
 async function saveTexts(){siteTexts.slogan=document.getElementById('edit-slogan').value||siteTexts.slogan;siteTexts.eyebrow=document.getElementById('edit-eyebrow').value||siteTexts.eyebrow;await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-hero');}
-async function saveAbout(){siteTexts.p1=document.getElementById('edit-p1').value||siteTexts.p1;siteTexts.p2=document.getElementById('edit-p2').value||siteTexts.p2;siteTexts.p3=document.getElementById('edit-p3').value||siteTexts.p3;await saveSetting('texts',siteTexts);applyData();showSaveMsg('save-msg-about');}
+async function saveAbout(){
+  siteTexts.nosotros_visible=document.getElementById('edit-nosotros-visible').checked;
+  siteTexts.nosotros_label=document.getElementById('edit-nosotros-label').value||siteTexts.nosotros_label;
+  siteTexts.nosotros_title=document.getElementById('edit-nosotros-title').value||siteTexts.nosotros_title;
+  siteTexts.p1=document.getElementById('edit-p1').value||siteTexts.p1;
+  siteTexts.p2=document.getElementById('edit-p2').value||siteTexts.p2;
+  siteTexts.p3=document.getElementById('edit-p3').value||siteTexts.p3;
+  siteTexts.tribute_visible=document.getElementById('edit-tribute-visible').checked;
+  siteTexts.tribute=document.getElementById('edit-tribute').value||siteTexts.tribute;
+  await saveSetting('texts',siteTexts);
+  applyData();
+  showSaveMsg('save-msg-about');
+}
 async function saveContact(){siteContact.phone=document.getElementById('edit-phone').value||siteContact.phone;siteContact.email=document.getElementById('edit-email').value||siteContact.email;siteContact.instagram=document.getElementById('edit-instagram').value||siteContact.instagram;siteContact.address=document.getElementById('edit-address').value||siteContact.address;await saveSetting('contact',siteContact);applyData();showSaveMsg('save-msg-contact');}
+async function saveUsefulInfo(){
+  siteContact.checkin=document.getElementById('edit-checkin').value||siteContact.checkin;
+  siteContact.checkout=document.getElementById('edit-checkout').value||siteContact.checkout;
+  siteContact.lateCheckout=document.getElementById('edit-latecheckout').value;
+  siteContact.parkingNote=document.getElementById('edit-parking').value;
+  siteContact.distances=document.getElementById('edit-distances').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  siteContact.mapsQuery=document.getElementById('edit-mapsquery').value||siteContact.mapsQuery;
+  await saveSetting('contact',siteContact);
+  applyData();
+  showSaveMsg('save-msg-useful');
+}
 async function changePass(){
   const old=document.getElementById('old-pass').value;
   const n1=document.getElementById('new-pass').value;
@@ -937,6 +1241,14 @@ async function changePass(){
   showSaveMsg('save-msg-pass');
 }
 function showSaveMsg(id){const el=document.getElementById(id);el.style.opacity='1';setTimeout(()=>el.style.opacity='0',3000);}
+
+// ── HABITACIONES: TABS PÚBLICOS ──
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
 
 // ── FORMULARIO ──
 function formatDate(dateStr){
@@ -963,13 +1275,15 @@ async function handleSubmit(btn,via){
   if(diff<=0){alert('La fecha de salida debe ser posterior a la llegada.');return;}
   const noches=diff+' noche'+(diff>1?'s':'');
 
+  const otroBtn=document.getElementById(via==='whatsapp'?'btn-email':'btn-wa');
+  btn.disabled=true;if(otroBtn)otroBtn.disabled=true;
+
   // Guardar en Supabase
   try{
     await supa.from('consultas').insert({nombre,personas,llegada,salida,noches,unidad,mensaje,fecha:new Date().toISOString()});
   }catch(e){console.log('Supabase:',e);}
 
   if(via==='whatsapp'){
-    // Mensaje WhatsApp limpio y profesional
     const lineas=[
       'Hola, me comunico desde la pagina web de MS Hotel.',
       '',
@@ -985,12 +1299,11 @@ async function handleSubmit(btn,via){
       'Quedo a la espera. Gracias.'
     ].filter(l=>l!==undefined);
     const msg=lineas.map(l=>encodeURIComponent(l)).join('%0A');
-    window.open('https://wa.me/542901307880?text='+msg,'_blank');
+    window.open('https://wa.me/'+siteContact.phone+'?text='+msg,'_blank');
     btn.textContent='Abriendo WhatsApp...';
     btn.style.background='#25d366';btn.style.color='#fff';
-    setTimeout(()=>{btn.textContent='WhatsApp';btn.style.background='';btn.style.color='';},4000);
+    setTimeout(()=>{btn.textContent='WhatsApp';btn.style.background='';btn.style.color='';btn.disabled=false;if(otroBtn)otroBtn.disabled=false;},4000);
   } else {
-    // Mensaje Email limpio y profesional (en español e inglés)
     const subject=encodeURIComponent('Availability Inquiry / Consulta de disponibilidad - MS Hotel');
     const cuerpo=[
       'Dear MS Hotel team,',
@@ -1012,13 +1325,12 @@ async function handleSubmit(btn,via){
       nombre
     ].filter(l=>l!==undefined);
     const body=cuerpo.map(l=>encodeURIComponent(l)).join('%0A');
-    window.location.href='mailto:mshotel22@yahoo.com?subject='+subject+'&body='+body;
+    window.location.href='mailto:'+siteContact.email+'?subject='+subject+'&body='+body;
     btn.textContent='Abriendo Email...';
     btn.style.background='#2a5298';btn.style.color='#fff';
-    setTimeout(()=>{btn.textContent='Email';btn.style.background='';btn.style.color='';},4000);
+    setTimeout(()=>{btn.textContent='Email';btn.style.background='';btn.style.color='';btn.disabled=false;if(otroBtn)otroBtn.disabled=false;},4000);
   }
 
-  // Limpiar
   ['form-nombre','form-llegada','form-salida','form-mensaje'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('form-unidad').selectedIndex=0;
   document.getElementById('form-personas').selectedIndex=0;
@@ -1083,16 +1395,19 @@ function updateSectionOpacity(sec,val){
   }
 }
 
-function setSectionBg(sec,input){
+async function setSectionBg(sec,input){
   const file=input.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=async e=>{
-    const url=e.target.result;
+  try{
+    const blob=await compressImage(file,1600,0.75);
+    const url=await uploadImageToStorage(blob,`page/secbg-${sec}.jpg`,true);
     const opacity=parseFloat(document.getElementById('opacity-'+sec).value)||0.15;
     applySectionBg(sec,url,opacity);
-    sectionBgs[sec]={url,opacity};
-  };
-  reader.readAsDataURL(file);
+    await saveSectionBgs();
+  }catch(err){
+    console.error(err);
+    alert('No se pudo subir la imagen de fondo. Probá de nuevo.');
+  }
+  input.value='';
 }
 
 function setSectionBgUrl(sec){
@@ -1129,16 +1444,37 @@ function loadSectionBgsFromData(data){
   });
 }
 
-// ── MISC ──
-function showTab(id,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// ── ANIMACIÓN DE ENTRADA (scroll reveal) ──
+let revealObserver=null;
+function observeReveals(){
+  if(!revealObserver){
+    revealObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  }
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>revealObserver.observe(el));
+}
 
-// ── INICIO ──
-(async()=>{
-  try{await loadFromSupabase();}catch(e){console.error(e);}
-  applyData();
-  document.getElementById('db-loading').style.display='none';
+// ── INICIALIZACIÓN ──
+// La página se muestra de entrada con los textos y valores por defecto (ya están en el HTML),
+// y los datos de Supabase se van aplicando encima apenas llegan. Así no hay que tapar
+// todo el sitio con una pantalla de carga en cada visita.
+(async function init(){
+  checkAdminAccess();
+  renderServices();
+  observeReveals();
+  try{
+    await loadFromSupabase();
+  }finally{
+    applyData();
+    renderRooms();
+    observeReveals();
+  }
 })();
 </script>
 </body>
