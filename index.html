@@ -140,6 +140,8 @@ section{padding:6rem 4rem;scroll-margin-top:90px;}
 .gallery-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
 .gallery-filter-btn{background:none;border:1px solid var(--ocean);color:var(--ocean);padding:0.4rem 1.2rem;font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;border-radius:20px;}
 .gallery-filter-btn.active,.gallery-filter-btn:hover{background:var(--ocean);color:var(--white);}
+.gallery-more-btn{display:block;margin:2rem auto 0;background:none;border:1px solid var(--gold);color:var(--navy);padding:0.7rem 2rem;font-family:'Jost',sans-serif;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;border-radius:2px;}
+.gallery-more-btn:hover{background:var(--gold);color:var(--white);}
 .gallery-grid{columns:4;column-gap:0.7rem;}
 .gallery-item{break-inside:avoid;margin-bottom:0.7rem;overflow:hidden;position:relative;cursor:pointer;display:block;background:#eee;}
 .gallery-item img{width:100%;display:block;transition:transform 0.5s;filter:brightness(0.92);}
@@ -376,6 +378,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   </div>
   <div class="gallery-grid" id="public-gallery"></div>
   <p id="gallery-empty" style="text-align:center;color:var(--text-mid);font-style:italic;padding:3rem;display:none;">Las fotos del hotel se cargarán próximamente.</p>
+  <button class="gallery-more-btn" id="gallery-more-btn" onclick="loadMoreGallery()" style="display:none;">Cargar más fotos</button>
 </section>
 
 <section id="contacto">
@@ -387,7 +390,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
       <div class="contact-detail"><div class="contact-icon">📍</div><div class="contact-detail-text"><h4>Dirección</h4><p id="txt-address">Campos 26, Ushuaia · Tierra del Fuego</p></div></div>
       <div class="contact-detail"><div class="contact-icon">📞</div><div class="contact-detail-text"><h4>Teléfono / WhatsApp</h4><a id="txt-phone" href="https://wa.me/542901307880">+54 2901 307880</a></div></div>
       <div class="contact-detail"><div class="contact-icon">✉️</div><div class="contact-detail-text"><h4>Email</h4><a id="txt-email" href="mailto:mshotel22@yahoo.com">mshotel22@yahoo.com</a></div></div>
-      <div class="contact-detail"><div class="contact-icon">📸</div><div class="contact-detail-text"><h4>Instagram</h4><a id="txt-instagram" href="https://instagram.com/mshotelushuaia" target="_blank" rel="noopener">@mshotelushuaia</a></div></div>
+      <div class="contact-detail"><div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ice);"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></div><div class="contact-detail-text"><h4>Instagram</h4><a id="txt-instagram" href="https://instagram.com/mshotelushuaia" target="_blank" rel="noopener">@mshotelushuaia</a></div></div>
       <div class="contact-detail"><div class="contact-icon">🕐</div><div class="contact-detail-text"><h4>Check-in / Check-out</h4><p id="txt-checkinout">Check-in desde las 14:00 hs · Check-out hasta las 10:00 hs</p><p id="txt-latecheckout" style="font-size:0.78rem;opacity:0.75;margin-top:0.3rem;"></p></div></div>
       <div class="contact-detail"><div class="contact-icon">🅿️</div><div class="contact-detail-text"><h4>Estacionamiento</h4><p id="txt-parking">Cerrado, sin costo adicional (sujeto a disponibilidad)</p></div></div>
     </div>
@@ -1187,23 +1190,36 @@ function matchesFilter(cat,filter){
   return cat===filter;
 }
 let lbPhotos=[],lbIndex=0;
+// Para que la galería no se vea larga y desprolija con muchas fotos, mostramos solo las
+// primeras GALLERY_PAGE_SIZE y sumamos de a tantas más cada vez que se toca "Cargar más".
+const GALLERY_PAGE_SIZE=8;
+let galleryVisibleCount=GALLERY_PAGE_SIZE;
+let currentGalleryFilter='all';
 function renderPublicGallery(filter){
   updateRoomGalleryButtons();
+  if(filter!==undefined) currentGalleryFilter=filter;
   const grid=document.getElementById('public-gallery');
   const empty=document.getElementById('gallery-empty');
-  lbPhotos=photos.filter(p=>matchesFilter(p.cat,filter));
+  const moreBtn=document.getElementById('gallery-more-btn');
+  lbPhotos=photos.filter(p=>matchesFilter(p.cat,currentGalleryFilter));
   grid.innerHTML='';
-  if(lbPhotos.length===0){empty.style.display='block';return;}
+  if(lbPhotos.length===0){empty.style.display='block';if(moreBtn)moreBtn.style.display='none';return;}
   empty.style.display='none';
-  lbPhotos.forEach((p,i)=>{
+  const visible=lbPhotos.slice(0,galleryVisibleCount);
+  visible.forEach((p,i)=>{
     const div=document.createElement('div');
     div.className='gallery-item';
     div.innerHTML=`<img src="${p.url}" alt="${p.name}" loading="lazy" decoding="async"/><div class="gallery-overlay">🔍</div>`;
     div.onclick=()=>openLightbox(i);
     grid.appendChild(div);
   });
+  if(moreBtn) moreBtn.style.display=lbPhotos.length>galleryVisibleCount?'block':'none';
 }
-function filterGallery(cat,btn){document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPublicGallery(cat);}
+function loadMoreGallery(){
+  galleryVisibleCount+=GALLERY_PAGE_SIZE;
+  renderPublicGallery();
+}
+function filterGallery(cat,btn){document.querySelectorAll('.gallery-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');galleryVisibleCount=GALLERY_PAGE_SIZE;renderPublicGallery(cat);}
 function openLightbox(i){lbIndex=i;document.getElementById('lb-img').src=lbPhotos[i].url;document.getElementById('lightbox').classList.add('open');}
 // Abre el lightbox mostrando solo las fotos de una unidad puntual (ej: room-1 = Habitación Triple),
 // sin mezclarlas con las de las demás habitaciones/departamentos.
