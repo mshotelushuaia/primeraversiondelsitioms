@@ -416,6 +416,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <h2 class="section-title">Preguntas <em>Frecuentes</em></h2>
   <div class="divider" style="margin:0 auto 3rem;"></div>
   <div class="faq-list" id="faq-list"></div>
+  <button class="gallery-more-btn" id="faq-more-btn" onclick="loadMoreFaq()" style="display:none;">Cargar más preguntas</button>
 </section>
 
 <section id="contacto">
@@ -654,15 +655,13 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
         </div>
         <div class="admin-card">
           <h3>❓ Preguntas Frecuentes</h3>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 1</label><input type="text" id="faq-edit-q-0"/></div><div class="admin-field"><label>Respuesta 1</label><textarea id="faq-edit-a-0"></textarea></div></div>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 2</label><input type="text" id="faq-edit-q-1"/></div><div class="admin-field"><label>Respuesta 2</label><textarea id="faq-edit-a-1"></textarea></div></div>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 3</label><input type="text" id="faq-edit-q-2"/></div><div class="admin-field"><label>Respuesta 3</label><textarea id="faq-edit-a-2"></textarea></div></div>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 4</label><input type="text" id="faq-edit-q-3"/></div><div class="admin-field"><label>Respuesta 4</label><textarea id="faq-edit-a-3"></textarea></div></div>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 5</label><input type="text" id="faq-edit-q-4"/></div><div class="admin-field"><label>Respuesta 5</label><textarea id="faq-edit-a-4"></textarea></div></div>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 6</label><input type="text" id="faq-edit-q-5"/></div><div class="admin-field"><label>Respuesta 6</label><textarea id="faq-edit-a-5"></textarea></div></div>
-          <div class="room-edit-block"><div class="admin-field"><label>Pregunta 7</label><input type="text" id="faq-edit-q-6"/></div><div class="admin-field"><label>Respuesta 7</label><textarea id="faq-edit-a-6"></textarea></div></div>
-          <button class="admin-save-btn" onclick="saveFaq()">Guardar preguntas frecuentes</button>
-          <span class="admin-save-msg" id="save-msg-faq">✓ Guardado en la nube ☁️</span>
+          <p style="color:var(--ice);font-size:0.85rem;margin-bottom:1.5rem;">Agregá o borrá las preguntas que quieras. En la página se muestran de a 7; si hay más, aparece un botón "Cargar más preguntas" (igual que en la Galería).</p>
+          <div id="faq-admin-list"></div>
+          <button onclick="addFaqItem()" style="background:none;border:1px solid var(--gold);color:var(--gold-light);padding:0.6rem 1.4rem;font-family:'Jost',sans-serif;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;margin:0.5rem 0 1.5rem;">➕ Agregar pregunta</button>
+          <div>
+            <button class="admin-save-btn" onclick="saveFaq()">Guardar preguntas frecuentes</button>
+            <span class="admin-save-msg" id="save-msg-faq">✓ Guardado en la nube ☁️</span>
+          </div>
         </div>
       </div>
 
@@ -926,7 +925,7 @@ function applyCachedDataIfAny(){
     if(Array.isArray(c.siteServices)&&c.siteServices.length===4) siteServices=c.siteServices;
     if(c.siteRooms) siteRooms={...siteRooms,...c.siteRooms};
     if(Array.isArray(c.siteTestimonials)&&c.siteTestimonials.length===3) siteTestimonials=c.siteTestimonials;
-    if(Array.isArray(c.siteFaq)&&c.siteFaq.length===7) siteFaq=c.siteFaq;
+    if(Array.isArray(c.siteFaq)&&c.siteFaq.length>0) siteFaq=c.siteFaq;
     if(Array.isArray(c.photos)) photos=c.photos;
     if(Array.isArray(c.pageImgsList)){ c.pageImgsList.forEach(img=>renderPageImg(img.key,img.data)); lastPageImgsList=c.pageImgsList; }
     if(c.font) applyFont(c.font);
@@ -974,7 +973,7 @@ async function loadFromSupabase(){
       if(s.key==='services'&&Array.isArray(s.value)&&s.value.length===4) siteServices=s.value;
       if(s.key==='rooms') siteRooms={...siteRooms,...s.value};
       if(s.key==='testimonials'&&Array.isArray(s.value)&&s.value.length===3) siteTestimonials=s.value;
-      if(s.key==='faq'&&Array.isArray(s.value)&&s.value.length===7) siteFaq=s.value;
+      if(s.key==='faq'&&Array.isArray(s.value)&&s.value.length>0) siteFaq=s.value;
     });
     // Fotos desde Storage
     if(files){
@@ -1197,11 +1196,20 @@ async function saveTestimonials(){
   showSaveMsg('save-msg-testimonials');
 }
 
-// ── FAQ (acordeón) ──
+// ── FAQ (acordeón, con "cargar más" igual que la galería) ──
+const FAQ_PAGE_SIZE=7;
+let faqVisibleCount=FAQ_PAGE_SIZE;
 function renderFaq(){
   const list=document.getElementById('faq-list');
+  const moreBtn=document.getElementById('faq-more-btn');
   if(!list) return;
-  list.innerHTML=siteFaq.map((f,i)=>`<div class="faq-item" id="faq-item-${i}"><button class="faq-question" onclick="toggleFaq(${i})">${f.q}<span class="faq-arrow">▾</span></button><div class="faq-answer" id="faq-answer-${i}"><p>${f.a}</p></div></div>`).join('');
+  const visible=siteFaq.slice(0,faqVisibleCount);
+  list.innerHTML=visible.map((f,i)=>`<div class="faq-item" id="faq-item-${i}"><button class="faq-question" onclick="toggleFaq(${i})">${f.q}<span class="faq-arrow">▾</span></button><div class="faq-answer" id="faq-answer-${i}"><p>${f.a}</p></div></div>`).join('');
+  if(moreBtn) moreBtn.style.display=siteFaq.length>faqVisibleCount?'block':'none';
+}
+function loadMoreFaq(){
+  faqVisibleCount+=FAQ_PAGE_SIZE;
+  renderFaq();
 }
 function toggleFaq(i){
   const item=document.getElementById('faq-item-'+i);
@@ -1211,12 +1219,33 @@ function toggleFaq(i){
   document.querySelectorAll('.faq-item.open').forEach(el=>{el.classList.remove('open');el.querySelector('.faq-answer').style.maxHeight=null;});
   if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
 }
+// ── FAQ: edición dinámica en el admin (agregar / borrar preguntas libremente) ──
+function renderFaqAdmin(){
+  const wrap=document.getElementById('faq-admin-list');
+  if(!wrap) return;
+  wrap.innerHTML=siteFaq.map((f,i)=>`<div class="room-edit-block">
+    <div class="admin-field"><label>Pregunta ${i+1}</label><input type="text" class="faq-admin-q" value="${f.q}"/></div>
+    <div class="admin-field"><label>Respuesta ${i+1}</label><textarea class="faq-admin-a">${f.a}</textarea></div>
+    <button onclick="removeFaqItem(${i})" style="background:none;border:1px solid rgba(255,100,100,0.4);color:#ff8080;padding:0.4rem 0.9rem;font-size:0.75rem;cursor:pointer;font-family:'Jost',sans-serif;">🗑 Borrar esta pregunta</button>
+  </div>`).join('');
+}
+function addFaqItem(){
+  siteFaq.push({q:'Nueva pregunta',a:'Escribí acá la respuesta.'});
+  renderFaqAdmin();
+}
+function removeFaqItem(i){
+  if(!confirm('¿Borrar esta pregunta?')) return;
+  siteFaq.splice(i,1);
+  renderFaqAdmin();
+}
 async function saveFaq(){
-  siteFaq=siteFaq.map((f,i)=>({
-    q:document.getElementById('faq-edit-q-'+i).value||f.q,
-    a:document.getElementById('faq-edit-a-'+i).value||f.a
-  }));
+  const qs=document.querySelectorAll('#faq-admin-list .faq-admin-q');
+  const as=document.querySelectorAll('#faq-admin-list .faq-admin-a');
+  const rebuilt=Array.from(qs).map((el,i)=>({q:el.value.trim(),a:(as[i]?as[i].value:'').trim()})).filter(f=>f.q);
+  siteFaq=rebuilt.length?rebuilt:siteFaq;
   await saveSetting('faq',siteFaq);
+  renderFaqAdmin();
+  faqVisibleCount=FAQ_PAGE_SIZE;
   renderFaq();
   showSaveMsg('save-msg-faq');
 }
@@ -1457,10 +1486,7 @@ function loadAdminData(){
     document.getElementById('rev-source-'+i).value=t.source;
     document.getElementById('rev-text-'+i).value=t.text;
   });
-  siteFaq.forEach((f,i)=>{
-    document.getElementById('faq-edit-q-'+i).value=f.q;
-    document.getElementById('faq-edit-a-'+i).value=f.a;
-  });
+  renderFaqAdmin();
   renderAdminGallery();
 }
 
