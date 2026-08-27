@@ -59,6 +59,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-links a:hover{color:var(--gold-light);}
 .nav-cta{background:var(--gold);color:var(--navy)!important;padding:0.55rem 1.4rem;font-weight:500!important;border-radius:2px;}
 .nav-right{display:flex;align-items:center;gap:0.8rem;}
+.lang-switch{display:flex;gap:0.35rem;margin-right:0.4rem;}
+.lang-switch button{background:none;border:1px solid rgba(168,204,232,0.25);border-radius:50%;width:30px;height:30px;font-size:0.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;opacity:0.55;transition:all 0.25s;line-height:1;}
+.lang-switch button:hover{opacity:0.85;}
+.lang-switch button.active{opacity:1;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);}
 .nav-admin-btn{background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);padding:0.4rem 0.9rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;}
 .nav-admin-btn:hover{border-color:var(--gold);color:var(--gold-light);}
 .nav-burger{display:none;background:none;border:1px solid rgba(168,204,232,0.3);color:var(--ice);width:38px;height:38px;font-size:1.15rem;cursor:pointer;align-items:center;justify-content:center;}
@@ -315,13 +319,18 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 <nav>
   <a href="#inicio" class="nav-logo" id="nav-logo-text">MS <span>Hotel</span></a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#habitaciones">Habitaciones</a></li>
-    <li><a href="#galeria">Galería</a></li>
-    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+    <li><a href="#nosotros" data-i18n="nav_nosotros">Nosotros</a></li>
+    <li><a href="#servicios" data-i18n="nav_servicios">Servicios</a></li>
+    <li><a href="#habitaciones" data-i18n="nav_habitaciones">Habitaciones</a></li>
+    <li><a href="#galeria" data-i18n="nav_galeria">Galería</a></li>
+    <li><a href="#contacto" class="nav-cta" data-i18n="nav_reservar">Reservar</a></li>
   </ul>
   <div class="nav-right">
+    <div class="lang-switch" id="lang-switch">
+      <button onclick="setLanguage('es')" data-lang-btn="es" title="Español" aria-label="Español">🇦🇷</button>
+      <button onclick="setLanguage('en')" data-lang-btn="en" title="English" aria-label="English">🇺🇸</button>
+      <button onclick="setLanguage('pt')" data-lang-btn="pt" title="Português" aria-label="Português">🇧🇷</button>
+    </div>
     <button class="nav-admin-btn" id="admin-btn" onclick="openAdmin()" style="display:none;">⚙ Admin</button>
     <button class="nav-burger" id="nav-burger" onclick="toggleMobileMenu()" aria-label="Abrir menú">☰</button>
   </div>
@@ -336,7 +345,7 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     <p class="hero-eyebrow" id="hero-eyebrow-text">Campos 26 · Ushuaia, Patagonia</p>
     <h1 class="hero-title" id="hero-title-el">MS <em>Hotel</em></h1>
     <p class="hero-sub" id="hero-slogan">Tu hogar en el fin del mundo</p>
-    <a href="#contacto" class="hero-btn">Consultar disponibilidad</a>
+    <a href="#contacto" class="hero-btn" data-i18n="hero_btn">Consultar disponibilidad</a>
   </div>
   <div class="hero-accent"></div>
 </section>
@@ -358,128 +367,128 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 </section>
 
 <section id="servicios"><div class="sec-bg" id="sec-bg-servicios"></div>
-  <p class="section-label">Lo que ofrecemos</p>
-  <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+  <p class="section-label" data-i18n="servicios_label">Lo que ofrecemos</p>
+  <h2 class="section-title" data-i18n-html="servicios_title">Nuestros <em>Servicios</em></h2>
   <div class="divider"></div>
   <div class="services-grid" id="services-grid"></div>
 </section>
 
 <section id="habitaciones">
-  <p class="section-label">Nuestras Unidades</p>
-  <h2 class="section-title">Habitaciones &amp; <em>Departamentos</em></h2>
+  <p class="section-label" data-i18n="habitaciones_label">Nuestras Unidades</p>
+  <h2 class="section-title" data-i18n-html="habitaciones_title">Habitaciones &amp; <em>Departamentos</em></h2>
   <div class="divider" style="background:linear-gradient(90deg,var(--gold),transparent);"></div>
   <div class="rooms-tabs">
-    <button class="tab-btn active" onclick="showTab('habitaciones-tab',this)">Habitaciones</button>
-    <button class="tab-btn" onclick="showTab('departamentos-tab',this)">Departamentos</button>
+    <button class="tab-btn active" onclick="showTab('habitaciones-tab',this)" data-i18n="tab_habitaciones">Habitaciones</button>
+    <button class="tab-btn" onclick="showTab('departamentos-tab',this)" data-i18n="tab_departamentos">Departamentos</button>
   </div>
   <div class="tab-panel active" id="habitaciones-tab">
     <div class="rooms-grid">
-      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Doble</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-0" onclick="openRoomGallery('room-0')" style="display:none;">🖼 <span id="room-gallery-count-0">0</span> fotos</button></div><div class="room-info"><p class="room-type" id="room-count-0">7 unidades disponibles</p><h3>Habitación Doble</h3><p id="room-desc-0">Cómoda habitación para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
-      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Triple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-1" onclick="openRoomGallery('room-1')" style="display:none;">🖼 <span id="room-gallery-count-1">0</span> fotos</button></div><div class="room-info"><p class="room-type" id="room-count-1">1 unidad disponible</p><h3>Habitación Triple</h3><p id="room-desc-1">Ideal para familias o grupos de tres.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
-      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p>Habitación Cuádruple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-2" onclick="openRoomGallery('room-2')" style="display:none;">🖼 <span id="room-gallery-count-2">0</span> fotos</button></div><div class="room-info"><p class="room-type" id="room-count-2">1 unidad disponible</p><h3>Habitación Cuádruple</h3><p id="room-desc-2">Amplia habitación para cuatro personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-0-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p data-i18n="room0_title">Habitación Doble</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-0" onclick="openRoomGallery('room-0')" style="display:none;">🖼 <span id="room-gallery-count-0">0</span> <span data-i18n="photos_word">fotos</span></button></div><div class="room-info"><p class="room-type" id="room-count-0">7 unidades disponibles</p><h3 data-i18n="room0_title">Habitación Doble</h3><p id="room-desc-0">Cómoda habitación para dos personas.</p><div class="room-features"><span class="feat-badge" data-i18n="badge_breakfast">Desayuno</span><span class="feat-badge" data-i18n="badge_wifi">WiFi</span><span class="feat-badge" data-i18n="badge_heating">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-1-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p data-i18n="room1_title">Habitación Triple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-1" onclick="openRoomGallery('room-1')" style="display:none;">🖼 <span id="room-gallery-count-1">0</span> <span data-i18n="photos_word">fotos</span></button></div><div class="room-info"><p class="room-type" id="room-count-1">1 unidad disponible</p><h3 data-i18n="room1_title">Habitación Triple</h3><p id="room-desc-1">Ideal para familias o grupos de tres.</p><div class="room-features"><span class="feat-badge" data-i18n="badge_breakfast">Desayuno</span><span class="feat-badge" data-i18n="badge_wifi">WiFi</span><span class="feat-badge" data-i18n="badge_heating">Calefacción</span></div></div></div>
+      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-2-wrap"><div class="img-placeholder" style="height:200px;"><span>🛏</span><p data-i18n="room2_title">Habitación Cuádruple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-2" onclick="openRoomGallery('room-2')" style="display:none;">🖼 <span id="room-gallery-count-2">0</span> <span data-i18n="photos_word">fotos</span></button></div><div class="room-info"><p class="room-type" id="room-count-2">1 unidad disponible</p><h3 data-i18n="room2_title">Habitación Cuádruple</h3><p id="room-desc-2">Amplia habitación para cuatro personas.</p><div class="room-features"><span class="feat-badge" data-i18n="badge_breakfast">Desayuno</span><span class="feat-badge" data-i18n="badge_wifi">WiFi</span><span class="feat-badge" data-i18n="badge_heating">Calefacción</span></div></div></div>
     </div>
   </div>
   <div class="tab-panel" id="departamentos-tab">
     <div class="rooms-grid">
-      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Doble</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-3" onclick="openRoomGallery('room-3')" style="display:none;">🖼 <span id="room-gallery-count-3">0</span> fotos</button></div><div class="room-info"><p class="room-type" id="room-count-3">1 unidad · Monoambiente</p><h3>Departamento Doble</h3><p id="room-desc-3">Monoambiente equipado para dos personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
-      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Triple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-4" onclick="openRoomGallery('room-4')" style="display:none;">🖼 <span id="room-gallery-count-4">0</span> fotos</button></div><div class="room-info"><p class="room-type" id="room-count-4">2 unidades · Monoambiente</p><h3>Departamento Triple</h3><p id="room-desc-4">Monoambiente cómodo para tres personas.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span></div></div></div>
-      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p>Departamento Cuádruple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-5" onclick="openRoomGallery('room-5')" style="display:none;">🖼 <span id="room-gallery-count-5">0</span> fotos</button></div><div class="room-info"><p class="room-type" id="room-count-5">1 unidad · 2 Ambientes</p><h3>Departamento Cuádruple</h3><p id="room-desc-5">Dos ambientes separados para familias.</p><div class="room-features"><span class="feat-badge">Desayuno</span><span class="feat-badge">WiFi</span><span class="feat-badge">Cocina</span><span class="feat-badge">2 Ambientes</span></div></div></div>
+      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-3-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p data-i18n="room3_title">Departamento Doble</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-3" onclick="openRoomGallery('room-3')" style="display:none;">🖼 <span id="room-gallery-count-3">0</span> <span data-i18n="photos_word">fotos</span></button></div><div class="room-info"><p class="room-type" id="room-count-3">1 unidad · Monoambiente</p><h3 data-i18n="room3_title">Departamento Doble</h3><p id="room-desc-3">Monoambiente equipado para dos personas.</p><div class="room-features"><span class="feat-badge" data-i18n="badge_breakfast">Desayuno</span><span class="feat-badge" data-i18n="badge_wifi">WiFi</span><span class="feat-badge" data-i18n="badge_kitchen">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-4-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p data-i18n="room4_title">Departamento Triple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-4" onclick="openRoomGallery('room-4')" style="display:none;">🖼 <span id="room-gallery-count-4">0</span> <span data-i18n="photos_word">fotos</span></button></div><div class="room-info"><p class="room-type" id="room-count-4">2 unidades · Monoambiente</p><h3 data-i18n="room4_title">Departamento Triple</h3><p id="room-desc-4">Monoambiente cómodo para tres personas.</p><div class="room-features"><span class="feat-badge" data-i18n="badge_breakfast">Desayuno</span><span class="feat-badge" data-i18n="badge_wifi">WiFi</span><span class="feat-badge" data-i18n="badge_kitchen">Cocina</span></div></div></div>
+      <div class="room-card reveal"><div class="room-img-holder"><div id="room-img-5-wrap"><div class="img-placeholder" style="height:200px;"><span>🏠</span><p data-i18n="room5_title">Departamento Cuádruple</p></div></div><button class="room-gallery-btn" id="room-gallery-btn-5" onclick="openRoomGallery('room-5')" style="display:none;">🖼 <span id="room-gallery-count-5">0</span> <span data-i18n="photos_word">fotos</span></button></div><div class="room-info"><p class="room-type" id="room-count-5">1 unidad · 2 Ambientes</p><h3 data-i18n="room5_title">Departamento Cuádruple</h3><p id="room-desc-5">Dos ambientes separados para familias.</p><div class="room-features"><span class="feat-badge" data-i18n="badge_breakfast">Desayuno</span><span class="feat-badge" data-i18n="badge_wifi">WiFi</span><span class="feat-badge" data-i18n="badge_kitchen">Cocina</span><span class="feat-badge" data-i18n="badge_2rooms">2 Ambientes</span></div></div></div>
     </div>
   </div>
 </section>
 
 <section id="galeria"><div class="sec-bg" id="sec-bg-galeria"></div>
-  <p class="section-label">Imágenes</p>
-  <h2 class="section-title">Galería <em>Fotográfica</em></h2>
+  <p class="section-label" data-i18n="galeria_label">Imágenes</p>
+  <h2 class="section-title" data-i18n-html="galeria_title">Galería <em>Fotográfica</em></h2>
   <div class="divider"></div>
   <div class="gallery-controls">
-    <button class="gallery-filter-btn active" onclick="filterGallery('all',this)">Todas</button>
-    <button class="gallery-filter-btn" onclick="filterGallery('exterior',this)">Exterior</button>
-    <button class="gallery-filter-btn" onclick="filterGallery('habitaciones',this)">Habitaciones</button>
-    <button class="gallery-filter-btn" onclick="filterGallery('departamentos',this)">Departamentos</button>
-    <button class="gallery-filter-btn" onclick="filterGallery('espacios',this)">Espacios comunes</button>
+    <button class="gallery-filter-btn active" onclick="filterGallery('all',this)" data-i18n="gallery_filter_all">Todas</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('exterior',this)" data-i18n="gallery_filter_exterior">Exterior</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('habitaciones',this)" data-i18n="gallery_filter_habitaciones">Habitaciones</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('departamentos',this)" data-i18n="gallery_filter_departamentos">Departamentos</button>
+    <button class="gallery-filter-btn" onclick="filterGallery('espacios',this)" data-i18n="gallery_filter_espacios">Espacios comunes</button>
   </div>
   <div class="gallery-grid" id="public-gallery"></div>
-  <p id="gallery-empty" style="text-align:center;color:var(--text-mid);font-style:italic;padding:3rem;display:none;">Las fotos del hotel se cargarán próximamente.</p>
-  <button class="gallery-more-btn" id="gallery-more-btn" onclick="loadMoreGallery()" style="display:none;">Cargar más fotos</button>
+  <p id="gallery-empty" style="text-align:center;color:var(--text-mid);font-style:italic;padding:3rem;display:none;" data-i18n="gallery_empty">Las fotos del hotel se cargarán próximamente.</p>
+  <button class="gallery-more-btn" id="gallery-more-btn" onclick="loadMoreGallery()" style="display:none;" data-i18n="gallery_more">Cargar más fotos</button>
 </section>
 
 <section id="resenas">
-  <p class="section-label">Nos conocen bien</p>
-  <h2 class="section-title">Lo que dicen <em>nuestros huéspedes</em></h2>
+  <p class="section-label" data-i18n="resenas_label">Nos conocen bien</p>
+  <h2 class="section-title" data-i18n-html="resenas_title">Lo que dicen <em>nuestros huéspedes</em></h2>
   <div class="divider" style="margin:0 auto 3rem;"></div>
   <div class="testimonials-grid" id="testimonials-grid"></div>
 </section>
 
 <section id="faq">
-  <p class="section-label">Antes de reservar</p>
-  <h2 class="section-title">Preguntas <em>Frecuentes</em></h2>
+  <p class="section-label" data-i18n="faq_label">Antes de reservar</p>
+  <h2 class="section-title" data-i18n-html="faq_title">Preguntas <em>Frecuentes</em></h2>
   <div class="divider" style="margin:0 auto 3rem;"></div>
   <div class="faq-list" id="faq-list"></div>
-  <button class="gallery-more-btn" id="faq-more-btn" onclick="loadMoreFaq()" style="display:none;">Cargar más preguntas</button>
+  <button class="gallery-more-btn" id="faq-more-btn" onclick="loadMoreFaq()" style="display:none;" data-i18n="faq_more">Cargar más preguntas</button>
 </section>
 
 <section id="contacto">
   <div class="contact-grid">
     <div class="contact-info">
-      <p class="section-label">Estamos para ayudarte</p>
-      <h2 class="section-title">Contacto &amp;<br><em>Reservas</em></h2>
+      <p class="section-label" data-i18n="contacto_label">Estamos para ayudarte</p>
+      <h2 class="section-title" data-i18n-html="contacto_title">Contacto &amp;<br><em>Reservas</em></h2>
       <div class="divider" style="background:linear-gradient(90deg,var(--gold),transparent);"></div>
-      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div class="contact-detail-text"><h4>Dirección</h4><p id="txt-address">Campos 26, Ushuaia · Tierra del Fuego</p></div></div>
-      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><div class="contact-detail-text"><h4>Teléfono / WhatsApp</h4><a id="txt-phone" href="https://wa.me/542901307880">+54 2901 307880</a></div></div>
-      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div class="contact-detail-text"><h4>Email</h4><a id="txt-email" href="mailto:mshotel22@yahoo.com">mshotel22@yahoo.com</a></div></div>
+      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div class="contact-detail-text"><h4 data-i18n="contact_h4_address">Dirección</h4><p id="txt-address">Campos 26, Ushuaia · Tierra del Fuego</p></div></div>
+      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><div class="contact-detail-text"><h4 data-i18n="contact_h4_phone">Teléfono / WhatsApp</h4><a id="txt-phone" href="https://wa.me/542901307880">+54 2901 307880</a></div></div>
+      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div class="contact-detail-text"><h4 data-i18n="contact_h4_email">Email</h4><a id="txt-email" href="mailto:mshotel22@yahoo.com">mshotel22@yahoo.com</a></div></div>
       <div class="contact-detail"><div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ice);"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></div><div class="contact-detail-text"><h4>Instagram</h4><a id="txt-instagram" href="https://instagram.com/mshotelushuaia" target="_blank" rel="noopener">@mshotelushuaia</a></div></div>
-      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><div class="contact-detail-text"><h4>Check-in / Check-out</h4><p id="txt-checkinout">Check-in desde las 14:00 hs · Check-out hasta las 10:00 hs</p><p id="txt-latecheckout" style="font-size:0.78rem;opacity:0.75;margin-top:0.3rem;"></p></div></div>
-      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M9 16V8h3.5a2.5 2.5 0 0 1 0 5H9"></path></svg></div><div class="contact-detail-text"><h4>Estacionamiento</h4><p id="txt-parking">Cerrado, sin costo adicional (sujeto a disponibilidad)</p></div></div>
+      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><div class="contact-detail-text"><h4 data-i18n="contact_h4_checkinout">Check-in / Check-out</h4><p id="txt-checkinout">Check-in desde las 14:00 hs · Check-out hasta las 10:00 hs</p><p id="txt-latecheckout" style="font-size:0.78rem;opacity:0.75;margin-top:0.3rem;"></p></div></div>
+      <div class="contact-detail"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M9 16V8h3.5a2.5 2.5 0 0 1 0 5H9"></path></svg></div><div class="contact-detail-text"><h4 data-i18n="contact_h4_parking">Estacionamiento</h4><p id="txt-parking">Cerrado, sin costo adicional (sujeto a disponibilidad)</p></div></div>
     </div>
     <div class="contact-form reveal">
-      <h3>Consultar disponibilidad</h3>
-      <p style="font-size:0.82rem;color:var(--ice);margin-bottom:1.5rem;opacity:0.8;">Completá el formulario y te redirigimos a WhatsApp con toda la info lista.</p>
+      <h3 data-i18n="form_title">Consultar disponibilidad</h3>
+      <p style="font-size:0.82rem;color:var(--ice);margin-bottom:1.5rem;opacity:0.8;" data-i18n="form_intro">Completá el formulario y te redirigimos a WhatsApp con toda la info lista.</p>
       <div class="form-row">
-        <div class="form-group"><label>Nombre completo *</label><input type="text" id="form-nombre" placeholder="Tu nombre"/></div>
-        <div class="form-group"><label>Cantidad de personas *</label>
+        <div class="form-group"><label data-i18n="form_label_nombre">Nombre completo *</label><input type="text" id="form-nombre" placeholder="Tu nombre" data-i18n-placeholder="form_placeholder_nombre"/></div>
+        <div class="form-group"><label data-i18n="form_label_personas">Cantidad de personas *</label>
           <select id="form-personas">
-            <option value="">Seleccioná...</option>
-            <option>1 persona</option>
-            <option>2 personas</option>
-            <option>3 personas</option>
-            <option>4 personas</option>
-            <option>5 o más personas</option>
+            <option value="" data-i18n="form_select_placeholder">Seleccioná...</option>
+            <option data-i18n="form_opt_1p">1 persona</option>
+            <option data-i18n="form_opt_2p">2 personas</option>
+            <option data-i18n="form_opt_3p">3 personas</option>
+            <option data-i18n="form_opt_4p">4 personas</option>
+            <option data-i18n="form_opt_5p">5 o más personas</option>
           </select>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>Fecha de llegada *</label><input type="date" id="form-llegada"/></div>
-        <div class="form-group"><label>Fecha de salida *</label><input type="date" id="form-salida"/></div>
+        <div class="form-group"><label data-i18n="form_label_llegada">Fecha de llegada *</label><input type="date" id="form-llegada"/></div>
+        <div class="form-group"><label data-i18n="form_label_salida">Fecha de salida *</label><input type="date" id="form-salida"/></div>
       </div>
-      <div class="form-group"><label>Tipo de unidad *</label>
+      <div class="form-group"><label data-i18n="form_label_unidad">Tipo de unidad *</label>
         <select id="form-unidad">
-          <option value="">Seleccioná una opción</option>
-          <optgroup label="Habitaciones">
-            <option>Habitación Doble (2 personas)</option>
-            <option>Habitación Triple (3 personas)</option>
-            <option>Habitación Cuádruple (4 personas)</option>
+          <option value="" data-i18n="form_unidad_placeholder">Seleccioná una opción</option>
+          <optgroup label="Habitaciones" data-i18n-attr-label="optgroup_habitaciones">
+            <option data-i18n="opt_hab_doble">Habitación Doble (2 personas)</option>
+            <option data-i18n="opt_hab_triple">Habitación Triple (3 personas)</option>
+            <option data-i18n="opt_hab_cuadruple">Habitación Cuádruple (4 personas)</option>
           </optgroup>
-          <optgroup label="Departamentos">
-            <option>Departamento Doble — Monoambiente (2 personas)</option>
-            <option>Departamento Triple — Monoambiente (3 personas)</option>
-            <option>Departamento Cuádruple — 2 Ambientes (4 personas)</option>
+          <optgroup label="Departamentos" data-i18n-attr-label="optgroup_departamentos">
+            <option data-i18n="opt_dep_doble">Departamento Doble — Monoambiente (2 personas)</option>
+            <option data-i18n="opt_dep_triple">Departamento Triple — Monoambiente (3 personas)</option>
+            <option data-i18n="opt_dep_cuadruple">Departamento Cuádruple — 2 Ambientes (4 personas)</option>
           </optgroup>
-          <optgroup label="No sé">
-            <option>No sé, necesito orientación</option>
+          <optgroup label="No sé" data-i18n-attr-label="optgroup_nose">
+            <option data-i18n="opt_nose">No sé, necesito orientación</option>
           </optgroup>
         </select>
       </div>
-      <div class="form-group"><label>Consulta adicional (opcional)</label><textarea id="form-mensaje" placeholder="Ej: viajamos con niños, llegamos tarde..."></textarea></div>
+      <div class="form-group"><label data-i18n="form_label_mensaje">Consulta adicional (opcional)</label><textarea id="form-mensaje" placeholder="Ej: viajamos con niños, llegamos tarde..." data-i18n-placeholder="form_placeholder_mensaje"></textarea></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.5rem;">
         <button class="form-submit" id="btn-wa" onclick="handleSubmit(this,'whatsapp')" style="background:var(--gold);"><svg class="btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.17 1.535 5.943L.057 23.571a.75.75 0 00.921.921l5.663-1.484A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.711 9.711 0 01-4.953-1.354l-.355-.212-3.656.958.975-3.563-.232-.368A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> WhatsApp</button>
         <button class="form-submit" id="btn-email" onclick="handleSubmit(this,'email')" style="background:var(--ocean);"><svg class="btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Email</button>
       </div>
-      <p style="text-align:center;font-size:0.72rem;color:rgba(168,204,232,0.5);margin-top:0.8rem;">WhatsApp para clientes locales · Email para clientes internacionales</p>
+      <p style="text-align:center;font-size:0.72rem;color:rgba(168,204,232,0.5);margin-top:0.8rem;" data-i18n="form_note">WhatsApp para clientes locales · Email para clientes internacionales</p>
     </div>
   </div>
   <div class="location-block reveal" style="margin-top:4rem;position:relative;z-index:1;">
-    <p class="section-label" style="color:var(--gold-light);">Cómo llegar</p>
+    <p class="section-label" style="color:var(--gold-light);" data-i18n="como_llegar_label">Cómo llegar</p>
     <div class="distance-list" id="distance-list"></div>
     <div class="map-wrap">
       <iframe id="map-frame" src="" width="100%" height="360" style="border:0;display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de MS Hotel en Google Maps"></iframe>
@@ -490,8 +499,8 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 <footer>
   <div class="footer-logo" id="footer-logo-text">MS <span>Hotel</span></div>
   <div style="text-align:center;">
-    <p class="footer-copy">© <span id="footer-year">2026</span> MS Hotel · Ushuaia, Tierra del Fuego · Todos los derechos reservados</p>
-    <p class="footer-credit">Desarrollado por SGS</p>
+    <p class="footer-copy">© <span id="footer-year">2026</span> MS Hotel · Ushuaia, Tierra del Fuego · <span data-i18n="footer_rights">Todos los derechos reservados</span></p>
+    <p class="footer-credit" data-i18n="footer_credit">Desarrollado por SGS</p>
   </div>
   <div class="footer-social"><a href="https://instagram.com/mshotelushuaia" target="_blank" rel="noopener" id="footer-ig">Instagram ↗</a></div>
 </footer>
@@ -905,8 +914,290 @@ let siteFaq=[
   {q:'¿Es apto para personas con movilidad reducida?',a:'En general no, ya que no contamos con ascensor. De todas formas escribinos antes de reservar: en ocasiones tenemos unidades disponibles en planta baja.'},
   {q:'¿Tienen opciones aptas para celíacos?',a:'No contamos con opciones certificadas libres de gluten en el desayuno. Si sos celíaco, te recomendamos traer tus propias opciones o consultarnos con anticipación.'},
   {q:'¿La calefacción se puede regular?',a:'Sí, todas las unidades cuentan con calefacción a gas o por radiador que podés regular vos mismo. Si necesitás ayuda, el personal te asiste con gusto.'},
-  {q:'¿Puedo pagar con tarjeta de crédito?',a:'Sí, aceptamos Visa, MasterCard y American Express en un pago, con un recargo del 15%. También podés abonar por transferencia o depósito bancario.'}
+  {q:'¿Puedo pagar con tarjeta de crédito?',a:'Sí, aceptamos Visa, MasterCard y American Express en un pago, con un recargo del 15%. También podés abonar por transferencia o depósito bancario.'},
+  {q:'¿Necesito pagar por adelantado para reservar?',a:'Sí, las reservas se confirman con el prepago total dentro del plazo indicado al momento de reservar.'},
+  {q:'¿Cuál es la política de cancelación?',a:'Cancelaciones con 15 días o menos antes del check-in (30 días para grupos de 4 o más habitaciones) abonan el total de las noches reservadas. En caso de no show se cobra el 100%.'},
+  {q:'¿El desayuno está incluido en el precio?',a:'Sí, el desayuno está incluido en la tarifa de todas las unidades.'},
+  {q:'¿Hay política para niños?',a:'Los menores de 0 a 3 años (a la fecha del check-in) se alojan gratis en camas existentes. No contamos con cunas.'},
+  {q:'¿Qué pasa si llego muy tarde o en un vuelo nocturno?',a:'Sin problema, solo avisanos con anticipación tu horario de llegada para coordinar el check-in.'},
+  {q:'¿MS Hotel es un hotel grande, con pileta o restaurante?',a:'No. Somos un hotel familiar, categoría una estrella: no contamos con pileta, restaurante ni servicios de un hotel de mayor categoría. Ofrecemos habitaciones y departamentos cómodos, desayuno incluido y atención personalizada en pleno centro de Ushuaia.'},
+  {q:'¿Aceptan mascotas?',a:'No, no aceptamos mascotas.'},
+  {q:'¿Cómo llego al hotel desde el aeropuerto o la terminal de ómnibus?',a:'En taxi o remise, a solo 10-15 minutos.'}
 ];
+
+// ── IDIOMAS (ES / EN / PT) ──
+// El español es siempre el idioma "fuente": todo el contenido que carga el hotel desde el
+// panel de administración se guarda y edita en español. Los otros dos idiomas son capas de
+// traducción que se aplican encima, sin tocar la base de datos. Si el hotel agrega o cambia
+// un texto (una pregunta nueva, una reseña nueva, etc.) y no existe traducción para eso
+// todavía, simplemente se sigue mostrando en español hasta que se agregue la traducción acá.
+let currentLang=(function(){ try{ return localStorage.getItem('mshotel_lang')||'es'; }catch(e){ return 'es'; } })();
+
+// Diccionario de textos fijos de la interfaz (botones, títulos de sección, formulario, etc.)
+const I18N={
+  es:{
+    nav_nosotros:'Nosotros',nav_servicios:'Servicios',nav_habitaciones:'Habitaciones',nav_galeria:'Galería',nav_reservar:'Reservar',
+    hero_btn:'Consultar disponibilidad',
+    servicios_label:'Lo que ofrecemos',servicios_title:'Nuestros <em>Servicios</em>',
+    habitaciones_label:'Nuestras Unidades',habitaciones_title:'Habitaciones & <em>Departamentos</em>',
+    tab_habitaciones:'Habitaciones',tab_departamentos:'Departamentos',
+    room0_title:'Habitación Doble',room1_title:'Habitación Triple',room2_title:'Habitación Cuádruple',
+    room3_title:'Departamento Doble',room4_title:'Departamento Triple',room5_title:'Departamento Cuádruple',
+    photos_word:'fotos',
+    badge_breakfast:'Desayuno',badge_wifi:'WiFi',badge_heating:'Calefacción',badge_kitchen:'Cocina',badge_2rooms:'2 Ambientes',
+    galeria_label:'Imágenes',galeria_title:'Galería <em>Fotográfica</em>',
+    gallery_filter_all:'Todas',gallery_filter_exterior:'Exterior',gallery_filter_habitaciones:'Habitaciones',
+    gallery_filter_departamentos:'Departamentos',gallery_filter_espacios:'Espacios comunes',
+    gallery_empty:'Las fotos del hotel se cargarán próximamente.',gallery_more:'Cargar más fotos',
+    resenas_label:'Nos conocen bien',resenas_title:'Lo que dicen <em>nuestros huéspedes</em>',
+    faq_label:'Antes de reservar',faq_title:'Preguntas <em>Frecuentes</em>',faq_more:'Cargar más preguntas',
+    contacto_label:'Estamos para ayudarte',contacto_title:'Contacto &<br><em>Reservas</em>',
+    contact_h4_address:'Dirección',contact_h4_phone:'Teléfono / WhatsApp',contact_h4_email:'Email',
+    contact_h4_checkinout:'Check-in / Check-out',contact_h4_parking:'Estacionamiento',
+    checkin_from:'Check-in desde las',checkout_until:'Check-out hasta las',late_checkout_label:'Late check-out',
+    form_title:'Consultar disponibilidad',form_intro:'Completá el formulario y te redirigimos a WhatsApp con toda la info lista.',
+    form_label_nombre:'Nombre completo *',form_placeholder_nombre:'Tu nombre',
+    form_label_personas:'Cantidad de personas *',form_select_placeholder:'Seleccioná...',
+    form_opt_1p:'1 persona',form_opt_2p:'2 personas',form_opt_3p:'3 personas',form_opt_4p:'4 personas',form_opt_5p:'5 o más personas',
+    form_label_llegada:'Fecha de llegada *',form_label_salida:'Fecha de salida *',
+    form_label_unidad:'Tipo de unidad *',form_unidad_placeholder:'Seleccioná una opción',
+    optgroup_habitaciones:'Habitaciones',
+    opt_hab_doble:'Habitación Doble (2 personas)',opt_hab_triple:'Habitación Triple (3 personas)',opt_hab_cuadruple:'Habitación Cuádruple (4 personas)',
+    optgroup_departamentos:'Departamentos',
+    opt_dep_doble:'Departamento Doble — Monoambiente (2 personas)',opt_dep_triple:'Departamento Triple — Monoambiente (3 personas)',opt_dep_cuadruple:'Departamento Cuádruple — 2 Ambientes (4 personas)',
+    optgroup_nose:'No sé',opt_nose:'No sé, necesito orientación',
+    form_label_mensaje:'Consulta adicional (opcional)',form_placeholder_mensaje:'Ej: viajamos con niños, llegamos tarde...',
+    form_note:'WhatsApp para clientes locales · Email para clientes internacionales',
+    como_llegar_label:'Cómo llegar',
+    footer_rights:'Todos los derechos reservados',footer_credit:'Desarrollado por SGS'
+  },
+  en:{
+    nav_nosotros:'About Us',nav_servicios:'Services',nav_habitaciones:'Rooms',nav_galeria:'Gallery',nav_reservar:'Book Now',
+    hero_btn:'Check Availability',
+    servicios_label:'What we offer',servicios_title:'Our <em>Services</em>',
+    habitaciones_label:'Our Units',habitaciones_title:'Rooms & <em>Apartments</em>',
+    tab_habitaciones:'Rooms',tab_departamentos:'Apartments',
+    room0_title:'Double Room',room1_title:'Triple Room',room2_title:'Quadruple Room',
+    room3_title:'Double Apartment',room4_title:'Triple Apartment',room5_title:'Quadruple Apartment',
+    photos_word:'photos',
+    badge_breakfast:'Breakfast',badge_wifi:'WiFi',badge_heating:'Heating',badge_kitchen:'Kitchen',badge_2rooms:'2 Rooms',
+    galeria_label:'Images',galeria_title:'Photo <em>Gallery</em>',
+    gallery_filter_all:'All',gallery_filter_exterior:'Exterior',gallery_filter_habitaciones:'Rooms',
+    gallery_filter_departamentos:'Apartments',gallery_filter_espacios:'Common Areas',
+    gallery_empty:'Hotel photos will be uploaded soon.',gallery_more:'Load more photos',
+    resenas_label:"They know us well",resenas_title:'What our <em>guests say</em>',
+    faq_label:'Before you book',faq_title:'Frequently Asked <em>Questions</em>',faq_more:'Load more questions',
+    contacto_label:"We're here to help",contacto_title:'Contact &<br><em>Bookings</em>',
+    contact_h4_address:'Address',contact_h4_phone:'Phone / WhatsApp',contact_h4_email:'Email',
+    contact_h4_checkinout:'Check-in / Check-out',contact_h4_parking:'Parking',
+    checkin_from:'Check-in from',checkout_until:'Check-out until',late_checkout_label:'Late check-out',
+    form_title:'Check Availability',form_intro:"Fill out the form and we'll redirect you to WhatsApp with everything ready.",
+    form_label_nombre:'Full name *',form_placeholder_nombre:'Your name',
+    form_label_personas:'Number of guests *',form_select_placeholder:'Select...',
+    form_opt_1p:'1 guest',form_opt_2p:'2 guests',form_opt_3p:'3 guests',form_opt_4p:'4 guests',form_opt_5p:'5 or more guests',
+    form_label_llegada:'Check-in date *',form_label_salida:'Check-out date *',
+    form_label_unidad:'Unit type *',form_unidad_placeholder:'Select an option',
+    optgroup_habitaciones:'Rooms',
+    opt_hab_doble:'Double Room (2 guests)',opt_hab_triple:'Triple Room (3 guests)',opt_hab_cuadruple:'Quadruple Room (4 guests)',
+    optgroup_departamentos:'Apartments',
+    opt_dep_doble:'Double Apartment — Studio (2 guests)',opt_dep_triple:'Triple Apartment — Studio (3 guests)',opt_dep_cuadruple:'Quadruple Apartment — 2 Rooms (4 guests)',
+    optgroup_nose:'Not sure',opt_nose:'Not sure, I need guidance',
+    form_label_mensaje:'Additional message (optional)',form_placeholder_mensaje:'E.g.: traveling with kids, arriving late...',
+    form_note:'WhatsApp for local guests · Email for international guests',
+    como_llegar_label:'How to get here',
+    footer_rights:'All rights reserved',footer_credit:'Developed by SGS'
+  },
+  pt:{
+    nav_nosotros:'Sobre Nós',nav_servicios:'Serviços',nav_habitaciones:'Quartos',nav_galeria:'Galeria',nav_reservar:'Reservar',
+    hero_btn:'Consultar disponibilidade',
+    servicios_label:'O que oferecemos',servicios_title:'Nossos <em>Serviços</em>',
+    habitaciones_label:'Nossas Unidades',habitaciones_title:'Quartos & <em>Apartamentos</em>',
+    tab_habitaciones:'Quartos',tab_departamentos:'Apartamentos',
+    room0_title:'Quarto Duplo',room1_title:'Quarto Triplo',room2_title:'Quarto Quádruplo',
+    room3_title:'Apartamento Duplo',room4_title:'Apartamento Triplo',room5_title:'Apartamento Quádruplo',
+    photos_word:'fotos',
+    badge_breakfast:'Café da manhã',badge_wifi:'WiFi',badge_heating:'Aquecimento',badge_kitchen:'Cozinha',badge_2rooms:'2 Ambientes',
+    galeria_label:'Imagens',galeria_title:'Galeria <em>Fotográfica</em>',
+    gallery_filter_all:'Todas',gallery_filter_exterior:'Exterior',gallery_filter_habitaciones:'Quartos',
+    gallery_filter_departamentos:'Apartamentos',gallery_filter_espacios:'Áreas comuns',
+    gallery_empty:'As fotos do hotel serão carregadas em breve.',gallery_more:'Carregar mais fotos',
+    resenas_label:'Eles nos conhecem bem',resenas_title:'O que dizem <em>nossos hóspedes</em>',
+    faq_label:'Antes de reservar',faq_title:'Perguntas <em>Frequentes</em>',faq_more:'Carregar mais perguntas',
+    contacto_label:'Estamos aqui para ajudar',contacto_title:'Contato &<br><em>Reservas</em>',
+    contact_h4_address:'Endereço',contact_h4_phone:'Telefone / WhatsApp',contact_h4_email:'Email',
+    contact_h4_checkinout:'Check-in / Check-out',contact_h4_parking:'Estacionamento',
+    checkin_from:'Check-in a partir das',checkout_until:'Check-out até as',late_checkout_label:'Late check-out',
+    form_title:'Consultar disponibilidade',form_intro:'Preencha o formulário e te redirecionamos ao WhatsApp com tudo pronto.',
+    form_label_nombre:'Nome completo *',form_placeholder_nombre:'Seu nome',
+    form_label_personas:'Número de pessoas *',form_select_placeholder:'Selecione...',
+    form_opt_1p:'1 pessoa',form_opt_2p:'2 pessoas',form_opt_3p:'3 pessoas',form_opt_4p:'4 pessoas',form_opt_5p:'5 ou mais pessoas',
+    form_label_llegada:'Data de chegada *',form_label_salida:'Data de saída *',
+    form_label_unidad:'Tipo de unidade *',form_unidad_placeholder:'Selecione uma opção',
+    optgroup_habitaciones:'Quartos',
+    opt_hab_doble:'Quarto Duplo (2 pessoas)',opt_hab_triple:'Quarto Triplo (3 pessoas)',opt_hab_cuadruple:'Quarto Quádruplo (4 pessoas)',
+    optgroup_departamentos:'Apartamentos',
+    opt_dep_doble:'Apartamento Duplo — Studio (2 pessoas)',opt_dep_triple:'Apartamento Triplo — Studio (3 pessoas)',opt_dep_cuadruple:'Apartamento Quádruplo — 2 Ambientes (4 pessoas)',
+    optgroup_nose:'Não sei',opt_nose:'Não sei, preciso de orientação',
+    form_label_mensaje:'Observação adicional (opcional)',form_placeholder_mensaje:'Ex: viajamos com crianças, chegamos tarde...',
+    form_note:'WhatsApp para hóspedes locais · Email para hóspedes internacionais',
+    como_llegar_label:'Como chegar',
+    footer_rights:'Todos os direitos reservados',footer_credit:'Desenvolvido por SGS'
+  }
+};
+
+// Diccionario de contenido dinámico (editable desde el admin): reseñas, preguntas frecuentes,
+// servicios, habitaciones, "sobre nosotros" y datos de contacto. Se busca por el texto EXACTO
+// en español; si el hotel edita o agrega un texto nuevo que no está acá, se muestra en español
+// (nunca se rompe ni queda vacío).
+const CONTENT_DICT={
+  'Tu hogar en el fin del mundo':{en:'Your home at the end of the world',pt:'Seu lar no fim do mundo'},
+  'Nuestra Historia':{en:'Our Story',pt:'Nossa História'},
+  'Un sueño *familiar*\nhecho realidad':{en:'A *family* dream\ncome true',pt:'Um sonho *familiar*\nque virou realidade'},
+  'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.':
+    {en:'MS Hotel was born with the idea of being a home for an Ushuaia family. The story goes back to the late 20th century, in 1999, when <strong>Miguel Enrique Saavedra</strong> — a gentleman and former sailor of the Argentine Navy — decided to buy the land where our hotel now stands.',
+     pt:'O MS Hotel nasceu com a ideia de ser uma casa para uma família de Ushuaia. A história remonta ao final do século XX, em 1999, quando <strong>Miguel Enrique Saavedra</strong> — senhor e ex-marinheiro da Marinha Argentina — decidiu comprar o terreno onde hoje fica nosso hotel.'},
+  "Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.":
+    {en:"Over the years, and with great sacrifice, this project became a large part of Mr. Miguel's final years. What began as the idea of a family home gradually turned into the vision of a small but very welcoming hotel in the heart of Ushuaia.",
+     pt:'Com o passar dos anos e com muito sacrifício, esta obra representou grande parte dos últimos anos do senhor Miguel. Um projeto que começou com a ideia de ser uma casa de família, e que aos poucos se transformou na visão de um hotel pequeno, porém muito acolhedor, no coração de Ushuaia.'},
+  'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.':
+    {en:"Sadly, Mr. Miguel passed away in 2018. Just two years later, in 2020, with great sacrifice and love, his family was able to open what is today our life's project.",
+     pt:'Tristemente, o senhor Miguel partiu para o descanso eterno em 2018. Apenas dois anos depois, em 2020, com muito sacrifício e amor, sua família conseguiu inaugurar o que hoje é nosso projeto de vida.'},
+  'Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)':{en:'Dedicated to our greatest hero, Miguel Enrique Saavedra (1999–2018)',pt:'Dedicado ao nosso maior herói, Miguel Enrique Saavedra (1999–2018)'},
+  'Cerrado, sin costo adicional (sujeto a disponibilidad)':{en:'Enclosed, no additional cost (subject to availability)',pt:'Fechado, sem custo adicional (sujeito à disponibilidade)'},
+  'Hasta las 18:00 hs, abonando la noche adicional (sujeto a disponibilidad)':{en:'Until 6:00 PM, paying for the extra night (subject to availability)',pt:'Até as 18:00h, pagando a diária adicional (sujeito à disponibilidade)'},
+  'A 3 cuadras de la Av. San Martín':{en:'A 3-block walk from Av. San Martín',pt:'A 3 quadras da Av. San Martín'},
+  'A 1 cuadra del Museo Marítimo':{en:'1 block from the Maritime Museum',pt:'A 1 quadra do Museu Marítimo'},
+  'A 6 cuadras del Museo del Fin del Mundo':{en:'6 blocks from the End of the World Museum',pt:'A 6 quadras do Museu do Fim do Mundo'},
+  'A 9 cuadras del Muelle Turístico':{en:'9 blocks from the Tourist Pier',pt:'A 9 quadras do Cais Turístico'},
+  'A 27 km del Cerro Castor':{en:'27 km from Cerro Castor',pt:'A 27 km do Cerro Castor'},
+  'Desayuno Incluido':{en:'Breakfast Included',pt:'Café da Manhã Incluído'},
+  'Comenzá el día con energía. El desayuno está incluido en todas las estadías.':{en:'Start the day with energy. Breakfast is included in all stays.',pt:'Comece o dia com energia. O café da manhã está incluído em todas as estadias.'},
+  'Estacionamiento':{en:'Parking',pt:'Estacionamento'},
+  'Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional.':{en:'We offer parking for our guests at no additional cost.',pt:'Contamos com estacionamento disponível para nossos hóspedes sem custo adicional.'},
+  'WiFi de Alta Velocidad':{en:'High-Speed WiFi',pt:'WiFi de Alta Velocidade'},
+  'Conexión WiFi gratuita en todas las habitaciones y espacios comunes.':{en:'Free WiFi connection in all rooms and common areas.',pt:'Conexão WiFi gratuita em todos os quartos e áreas comuns.'},
+  'Lavandería':{en:'Laundry',pt:'Lavanderia'},
+  'Servicio de lavado de ropa disponible bajo solicitud.':{en:'Laundry service available upon request.',pt:'Serviço de lavanderia disponível mediante solicitação.'},
+  '* Servicio con costo adicional':{en:'* Additional cost applies',pt:'* Serviço com custo adicional'},
+  'Cómoda habitación para dos personas.':{en:'Comfortable room for two people.',pt:'Quarto confortável para duas pessoas.'},
+  'Ideal para familias o grupos de tres.':{en:'Ideal for families or groups of three.',pt:'Ideal para famílias ou grupos de três.'},
+  'Amplia habitación para cuatro personas.':{en:'Spacious room for four people.',pt:'Quarto amplo para quatro pessoas.'},
+  'Monoambiente equipado para dos personas.':{en:'Fully equipped studio for two people.',pt:'Studio equipado para duas pessoas.'},
+  'Monoambiente cómodo para tres personas.':{en:'Comfortable studio for three people.',pt:'Studio confortável para três pessoas.'},
+  'Dos ambientes separados para familias.':{en:'Two separate rooms, ideal for families.',pt:'Dois ambientes separados, ideal para famílias.'},
+  '7 unidades disponibles':{en:'7 units available',pt:'7 unidades disponíveis'},
+  '1 unidad disponible':{en:'1 unit available',pt:'1 unidade disponível'},
+  '1 unidad · Monoambiente':{en:'1 unit · Studio',pt:'1 unidade · Studio'},
+  '2 unidades · Monoambiente':{en:'2 units · Studio',pt:'2 unidades · Studio'},
+  '1 unidad · 2 Ambientes':{en:'1 unit · 2 Rooms',pt:'1 unidade · 2 Ambientes'},
+  'Excelente comunicación desde antes de llegar, hotel muy familiar y súper limpio. La ubicación es inmejorable.':
+    {en:'Excellent communication even before arriving, a very family-friendly and super clean hotel. The location is unbeatable.',
+     pt:'Excelente comunicação desde antes de chegar, hotel muito familiar e super limpo. A localização é imbatível.'},
+  'El trato del personal es excelente. La calefacción es muy buena y la vista desde el hotel es hermosa.':
+    {en:'The staff treatment is excellent. The heating is very good and the view from the hotel is beautiful.',
+     pt:'O atendimento da equipe é excelente. O aquecimento é muito bom e a vista do hotel é linda.'},
+  'Nos sentimos como en casa. Los dueños y el personal se brindan al máximo para que no te falte nada.':
+    {en:"We felt right at home. The owners and staff go above and beyond so you don't miss a thing.",
+     pt:'Nos sentimos em casa. Os donos e a equipe se dedicam ao máximo para que não falte nada.'},
+  '¿El hotel cuenta con ascensor?':{en:'Does the hotel have an elevator?',pt:'O hotel tem elevador?'},
+  'No. El edificio principal se distribuye en planta baja, primer y segundo piso, sin ascensor.':
+    {en:'No. The main building is spread across the ground, first, and second floors, without an elevator.',
+     pt:'Não. O prédio principal se distribui em térreo, primeiro e segundo andar, sem elevador.'},
+  '¿Qué incluye el desayuno?':{en:'What does breakfast include?',pt:'O que inclui o café da manhã?'},
+  'Desayuno tipo buffet y autoservicio, acorde a la categoría de nuestro hotel (una estrella).':
+    {en:"A self-service buffet-style breakfast, in line with our hotel's category (one star).",
+     pt:'Café da manhã tipo buffet e self-service, de acordo com a categoria do nosso hotel (uma estrela).'},
+  '¿Se pueden reservar excursiones desde el hotel?':{en:'Can I book excursions through the hotel?',pt:'É possível reservar passeios pelo hotel?'},
+  'Sí, te ayudamos a coordinar excursiones y traslados. Algunas cuentan con descuento especial para nuestros huéspedes.':
+    {en:'Yes, we help you arrange excursions and transfers. Some come with a special discount for our guests.',
+     pt:'Sim, ajudamos a organizar passeios e traslados. Alguns contam com desconto especial para nossos hóspedes.'},
+  '¿Es apto para personas con movilidad reducida?':{en:'Is it suitable for people with reduced mobility?',pt:'É adequado para pessoas com mobilidade reduzida?'},
+  'En general no, ya que no contamos con ascensor. De todas formas escribinos antes de reservar: en ocasiones tenemos unidades disponibles en planta baja.':
+    {en:"Generally not, since we don't have an elevator. Still, message us before booking — we sometimes have ground-floor units available.",
+     pt:'Em geral não, já que não temos elevador. De qualquer forma, escreva para nós antes de reservar: às vezes temos unidades disponíveis no térreo.'},
+  '¿Tienen opciones aptas para celíacos?':{en:'Do you have options for celiac guests?',pt:'Vocês têm opções para celíacos?'},
+  'No contamos con opciones certificadas libres de gluten en el desayuno. Si sos celíaco, te recomendamos traer tus propias opciones o consultarnos con anticipación.':
+    {en:"We don't have certified gluten-free options at breakfast. If you're celiac, we recommend bringing your own options or letting us know in advance.",
+     pt:'Não contamos com opções certificadas sem glúten no café da manhã. Se você é celíaco, recomendamos trazer suas próprias opções ou nos avisar com antecedência.'},
+  '¿La calefacción se puede regular?':{en:'Can the heating be adjusted?',pt:'O aquecimento pode ser regulado?'},
+  'Sí, todas las unidades cuentan con calefacción a gas o por radiador que podés regular vos mismo. Si necesitás ayuda, el personal te asiste con gusto.':
+    {en:'Yes, all units have gas or radiator heating that you can adjust yourself. If you need help, our staff will gladly assist you.',
+     pt:'Sim, todas as unidades contam com aquecimento a gás ou radiador que você mesmo pode regular. Se precisar de ajuda, a equipe te auxilia com prazer.'},
+  '¿Puedo pagar con tarjeta de crédito?':{en:'Can I pay by credit card?',pt:'Posso pagar com cartão de crédito?'},
+  'Sí, aceptamos Visa, MasterCard y American Express en un pago, con un recargo del 15%. También podés abonar por transferencia o depósito bancario.':
+    {en:'Yes, we accept Visa, MasterCard, and American Express in a single payment, with a 15% surcharge. You can also pay by bank transfer or deposit.',
+     pt:'Sim, aceitamos Visa, MasterCard e American Express em pagamento único, com acréscimo de 15%. Também é possível pagar por transferência ou depósito bancário.'},
+  '¿Necesito pagar por adelantado para reservar?':{en:'Do I need to pay in advance to book?',pt:'Preciso pagar antecipado para reservar?'},
+  'Sí, las reservas se confirman con el prepago total dentro del plazo indicado al momento de reservar.':
+    {en:'Yes, bookings are confirmed with full prepayment within the deadline indicated at the time of booking.',
+     pt:'Sim, as reservas são confirmadas com o pré-pagamento total dentro do prazo indicado no momento da reserva.'},
+  '¿Cuál es la política de cancelación?':{en:'What is the cancellation policy?',pt:'Qual é a política de cancelamento?'},
+  'Cancelaciones con 15 días o menos antes del check-in (30 días para grupos de 4 o más habitaciones) abonan el total de las noches reservadas. En caso de no show se cobra el 100%.':
+    {en:'Cancellations made 15 days or less before check-in (30 days for groups of 4 or more rooms) are charged the full amount of the booked nights. No-shows are charged 100%.',
+     pt:'Cancelamentos com 15 dias ou menos antes do check-in (30 dias para grupos de 4 ou mais quartos) pagam o total das noites reservadas. Em caso de no-show, é cobrado 100%.'},
+  '¿El desayuno está incluido en el precio?':{en:'Is breakfast included in the price?',pt:'O café da manhã está incluído no preço?'},
+  'Sí, el desayuno está incluido en la tarifa de todas las unidades.':{en:'Yes, breakfast is included in the rate for all units.',pt:'Sim, o café da manhã está incluído na tarifa de todas as unidades.'},
+  '¿Hay política para niños?':{en:'Is there a policy for children?',pt:'Existe política para crianças?'},
+  'Los menores de 0 a 3 años (a la fecha del check-in) se alojan gratis en camas existentes. No contamos con cunas.':
+    {en:'Children ages 0 to 3 (as of the check-in date) stay free using existing beds. We do not have cribs available.',
+     pt:'Crianças de 0 a 3 anos (na data do check-in) se hospedam grátis em camas existentes. Não contamos com berços.'},
+  '¿Qué pasa si llego muy tarde o en un vuelo nocturno?':{en:'What if I arrive very late or on a night flight?',pt:'E se eu chegar muito tarde ou em um voo noturno?'},
+  'Sin problema, solo avisanos con anticipación tu horario de llegada para coordinar el check-in.':
+    {en:'No problem, just let us know your arrival time in advance so we can coordinate check-in.',
+     pt:'Sem problema, apenas nos avise com antecedência o horário de chegada para combinarmos o check-in.'},
+  '¿MS Hotel es un hotel grande, con pileta o restaurante?':{en:'Is MS Hotel a large hotel, with a pool or restaurant?',pt:'O MS Hotel é um hotel grande, com piscina ou restaurante?'},
+  'No. Somos un hotel familiar, categoría una estrella: no contamos con pileta, restaurante ni servicios de un hotel de mayor categoría. Ofrecemos habitaciones y departamentos cómodos, desayuno incluido y atención personalizada en pleno centro de Ushuaia.':
+    {en:"No. We are a family-run, one-star hotel: we don't have a pool, restaurant, or the services of a higher-category hotel. We offer comfortable rooms and apartments, breakfast included, and personalized attention right in the heart of Ushuaia.",
+     pt:'Não. Somos um hotel familiar, categoria uma estrela: não temos piscina, restaurante nem serviços de um hotel de categoria superior. Oferecemos quartos e apartamentos confortáveis, café da manhã incluído e atendimento personalizado bem no centro de Ushuaia.'},
+  '¿Aceptan mascotas?':{en:'Do you accept pets?',pt:'Vocês aceitam animais de estimação?'},
+  'No, no aceptamos mascotas.':{en:'No, we do not accept pets.',pt:'Não, não aceitamos animais de estimação.'},
+  '¿Cómo llego al hotel desde el aeropuerto o la terminal de ómnibus?':{en:'How do I get to the hotel from the airport or the bus terminal?',pt:'Como chego ao hotel a partir do aeroporto ou da rodoviária?'},
+  'En taxi o remise, a solo 10-15 minutos.':{en:'By taxi or car service, just 10-15 minutes away.',pt:'De táxi ou remise, a apenas 10-15 minutos.'}
+};
+
+// Devuelve el texto fijo de interfaz ya traducido para el idioma actual (con reserva en español).
+function tUI(key){
+  if(I18N[currentLang]&&I18N[currentLang][key]!==undefined) return I18N[currentLang][key];
+  return (I18N.es&&I18N.es[key]!==undefined)?I18N.es[key]:key;
+}
+// Traduce un texto dinámico (cargado del admin) si existe traducción; si no, muestra el original.
+function translateContent(text){
+  if(!text||currentLang==='es') return text;
+  const entry=CONTENT_DICT[text];
+  return (entry&&entry[currentLang])?entry[currentLang]:text;
+}
+// Aplica el idioma elegido: actualiza todos los textos fijos marcados con data-i18n en el HTML,
+// resalta la bandera activa, y vuelve a pintar el contenido dinámico (servicios, habitaciones,
+// reseñas, preguntas frecuentes y la sección "Nosotros") ya traducido.
+function applyLanguage(lang){
+  if(!I18N[lang]) lang='es';
+  currentLang=lang;
+  try{ localStorage.setItem('mshotel_lang',lang); }catch(e){}
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    el.textContent=tUI(key);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-html');
+    el.innerHTML=tUI(key);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-placeholder');
+    el.setAttribute('placeholder',tUI(key));
+  });
+  document.querySelectorAll('[data-i18n-attr-label]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-attr-label');
+    el.setAttribute('label',tUI(key));
+  });
+  document.querySelectorAll('#lang-switch button[data-lang-btn]').forEach(btn=>{
+    btn.classList.toggle('active',btn.getAttribute('data-lang-btn')===lang);
+  });
+  try{ applyData(); renderServices(); renderRooms(); }catch(e){ console.error('Error aplicando idioma:',e); }
+}
+function setLanguage(lang){
+  applyLanguage(lang);
+}
 
 // ── CACHÉ LOCAL (para que la segunda visita se vea instantánea) ──
 // Guardamos una copia de los datos ya cargados en el propio navegador. La próxima vez que
@@ -1095,16 +1386,16 @@ function applyData(){
   document.getElementById('hero-title-el').innerHTML=`${first} <em>${rest}</em>`;
   document.title=name+' | Ushuaia, Patagonia';
   document.getElementById('og-title').setAttribute('content',name+' | Ushuaia, Patagonia');
-  document.getElementById('hero-slogan').textContent=siteTexts.slogan;
-  document.getElementById('hero-eyebrow-text').textContent=siteTexts.eyebrow;
+  document.getElementById('hero-slogan').textContent=translateContent(siteTexts.slogan);
+  document.getElementById('hero-eyebrow-text').textContent=translateContent(siteTexts.eyebrow);
   document.getElementById('nosotros').style.display=siteTexts.nosotros_visible===false?'none':'';
-  document.getElementById('nosotros-label-el').textContent=siteTexts.nosotros_label||'Nuestra Historia';
-  document.getElementById('nosotros-title-el').innerHTML=renderTitleMarkup(siteTexts.nosotros_title||'Un sueño *familiar*\nhecho realidad');
-  document.getElementById('about-p1').innerHTML=siteTexts.p1;
-  document.getElementById('about-p2').innerHTML=siteTexts.p2;
-  document.getElementById('about-p3').innerHTML=siteTexts.p3;
+  document.getElementById('nosotros-label-el').textContent=translateContent(siteTexts.nosotros_label||'Nuestra Historia');
+  document.getElementById('nosotros-title-el').innerHTML=renderTitleMarkup(translateContent(siteTexts.nosotros_title||'Un sueño *familiar*\nhecho realidad'));
+  document.getElementById('about-p1').innerHTML=translateContent(siteTexts.p1);
+  document.getElementById('about-p2').innerHTML=translateContent(siteTexts.p2);
+  document.getElementById('about-p3').innerHTML=translateContent(siteTexts.p3);
   const tributeEl=document.getElementById('nosotros-tribute-el');
-  tributeEl.textContent='✦ '+(siteTexts.tribute||'');
+  tributeEl.textContent='✦ '+translateContent(siteTexts.tribute||'');
   tributeEl.style.display=siteTexts.tribute_visible===false?'none':'inline-flex';
   const p=siteContact.phone,e=siteContact.email,ig=siteContact.instagram;
   document.getElementById('txt-address').textContent=siteContact.address;
@@ -1116,12 +1407,12 @@ function applyData(){
   document.getElementById('txt-instagram').textContent='@'+ig;
   document.getElementById('wa-float').href='https://wa.me/'+p;
   document.getElementById('footer-ig').href='https://instagram.com/'+ig;
-  document.getElementById('txt-checkinout').textContent='Check-in desde las '+(siteContact.checkin||'14:00 hs')+' · Check-out hasta las '+(siteContact.checkout||'10:00 hs');
-  document.getElementById('txt-latecheckout').textContent=siteContact.lateCheckout?('Late check-out: '+siteContact.lateCheckout):'';
-  document.getElementById('txt-parking').textContent=siteContact.parkingNote||'';
+  document.getElementById('txt-checkinout').textContent=tUI('checkin_from')+' '+(siteContact.checkin||'14:00 hs')+' · '+tUI('checkout_until')+' '+(siteContact.checkout||'10:00 hs');
+  document.getElementById('txt-latecheckout').textContent=siteContact.lateCheckout?(tUI('late_checkout_label')+': '+translateContent(siteContact.lateCheckout)):'';
+  document.getElementById('txt-parking').textContent=translateContent(siteContact.parkingNote||'');
   const distList=document.getElementById('distance-list');
   const distances=Array.isArray(siteContact.distances)?siteContact.distances:[];
-  distList.innerHTML=distances.filter(d=>d&&d.trim()).map(d=>`<span class="distance-chip">📍 ${d}</span>`).join('');
+  distList.innerHTML=distances.filter(d=>d&&d.trim()).map(d=>`<span class="distance-chip">📍 ${translateContent(d)}</span>`).join('');
   const mapsQuery=siteContact.mapsQuery||(siteTexts.hotelname+', '+siteContact.address);
   document.getElementById('map-frame').src='https://www.google.com/maps?q='+encodeURIComponent(mapsQuery)+'&output=embed';
   try{
@@ -1139,7 +1430,10 @@ function applyData(){
 // ── SERVICIOS ──
 function renderServices(){
   const grid=document.getElementById('services-grid');
-  grid.innerHTML=siteServices.map(s=>`<div class="service-card reveal"><span class="service-icon">${s.icon}</span><h3>${s.title}</h3><p>${s.desc}</p>${s.nota?`<p class="service-note">${s.nota}</p>`:''}</div>`).join('');
+  grid.innerHTML=siteServices.map(s=>{
+    const title=translateContent(s.title),desc=translateContent(s.desc),nota=s.nota?translateContent(s.nota):'';
+    return `<div class="service-card reveal"><span class="service-icon">${s.icon}</span><h3>${title}</h3><p>${desc}</p>${nota?`<p class="service-note">${nota}</p>`:''}</div>`;
+  }).join('');
 }
 async function saveServices(){
   siteServices=siteServices.map((s,i)=>({
@@ -1161,8 +1455,8 @@ function renderRooms(){
     const r=siteRooms[key];
     const countEl=document.getElementById('room-count-'+idx);
     const descEl=document.getElementById('room-desc-'+idx);
-    if(countEl) countEl.textContent=r.count;
-    if(descEl) descEl.textContent=r.desc;
+    if(countEl) countEl.textContent=translateContent(r.count);
+    if(descEl) descEl.textContent=translateContent(r.desc);
   });
 }
 async function saveRooms(){
@@ -1182,7 +1476,10 @@ async function saveRooms(){
 function renderTestimonials(){
   const grid=document.getElementById('testimonials-grid');
   if(!grid) return;
-  grid.innerHTML=siteTestimonials.map(t=>`<div class="testimonial-card reveal"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"${t.text}"</p><p class="testimonial-author">${t.name}</p><p class="testimonial-source">${t.source}</p></div>`).join('');
+  grid.innerHTML=siteTestimonials.map(t=>{
+    const text=translateContent(t.text);
+    return `<div class="testimonial-card reveal"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"${text}"</p><p class="testimonial-author">${t.name}</p><p class="testimonial-source">${t.source}</p></div>`;
+  }).join('');
 }
 async function saveTestimonials(){
   siteTestimonials=siteTestimonials.map((t,i)=>({
@@ -1204,7 +1501,10 @@ function renderFaq(){
   const moreBtn=document.getElementById('faq-more-btn');
   if(!list) return;
   const visible=siteFaq.slice(0,faqVisibleCount);
-  list.innerHTML=visible.map((f,i)=>`<div class="faq-item" id="faq-item-${i}"><button class="faq-question" onclick="toggleFaq(${i})">${f.q}<span class="faq-arrow">▾</span></button><div class="faq-answer" id="faq-answer-${i}"><p>${f.a}</p></div></div>`).join('');
+  list.innerHTML=visible.map((f,i)=>{
+    const q=translateContent(f.q),a=translateContent(f.a);
+    return `<div class="faq-item" id="faq-item-${i}"><button class="faq-question" onclick="toggleFaq(${i})">${q}<span class="faq-arrow">▾</span></button><div class="faq-answer" id="faq-answer-${i}"><p>${a}</p></div></div>`;
+  }).join('');
   if(moreBtn) moreBtn.style.display=siteFaq.length>faqVisibleCount?'block':'none';
 }
 function loadMoreFaq(){
@@ -1867,6 +2167,7 @@ function observeReveals(){
     hadCache=false;
   }
   if(!hadCache){ try{ renderServices(); }catch(e){console.error(e);} }
+  try{ applyLanguage(currentLang); }catch(e){ console.error('Error aplicando idioma inicial:',e); }
   observeReveals();
   // Paso 2: pedir los datos actuales a la nube. Pase lo que pase (éxito, error o timeout),
   // al final siempre se vuelve a pintar la página con lo que se haya podido obtener.
@@ -1879,6 +2180,7 @@ function observeReveals(){
     applyData();
     renderServices();
     renderRooms();
+    applyLanguage(currentLang);
   }catch(e){
     console.error('Error pintando la página:',e);
   }
