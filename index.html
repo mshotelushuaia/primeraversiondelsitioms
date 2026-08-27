@@ -17,8 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fefmfxlgetofoajilwdx.supabase.co">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Raleway:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" data-font-family="Jost">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap"></noscript>
 <script type="application/ld+json" id="ld-json">
 {
   "@context":"https://schema.org",
@@ -38,8 +38,8 @@
   --gold-light:#e8c97a;--white:#ffffff;
   --text-dark:#1a1a2e;--text-mid:#3d4a6b;
   --color-primary:#0d1f3c;--color-secondary:#c9a84c;--color-bg:#f7f3ee;
-  --font-main:'Inter',sans-serif;
-  --font-title:'Inter',sans-serif;
+  --font-main:'Jost',sans-serif;
+  --font-title:'Jost',sans-serif;
   --sec-nosotros-bg:none;
   --sec-servicios-bg:none;
   --sec-galeria-bg:none;
@@ -868,15 +868,15 @@ let photos=[];
 let ADMIN_PASS='mshotel2024';
 let siteColors={primary:'#0d1f3c',secondary:'#c9a84c',bg:'#f7f3ee'};
 let siteTexts={
-  hotelname:'MS Hotel',slogan:'Tu hogar en el fin del mundo',
-  eyebrow:'Campos 26 · Ushuaia, Patagonia',
+  hotelname:'MS Hotel - Campos 26',slogan:'Hotel familiar en el fin del mundo',
+  eyebrow:'Gobernador Campos 26 - Ushuaia, Tierra del Fuego',
   nosotros_visible:true,
-  nosotros_label:'Nuestra Historia',
-  nosotros_title:'Un sueño *familiar*\nhecho realidad',
-  p1:'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.',
-  p2:'Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.',
-  p3:'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.',
-  tribute_visible:true,
+  nosotros_label:'Sobre nuestro hotel',
+  nosotros_title:'MS Hotel - Campos 26 ',
+  p1:'MS Hotel - Campos 26, es un hotel familiar, categoría una estrella, ubicado en la zona centro de Ushuaia, a pasos de la Av. San Martín y de los puntos turísticos más visitados de la ciudad.\n\n',
+  p2:'Somos un hotel chico y buscamos cuidar cada detalle: habitaciones y departamentos cómodos, desayuno incluido y una atención cercana.\n\n',
+  p3:'Nuestro objetivo es buscar que nuestros huespedes se sientan comodos, seguros y satisfechos en habernos elegido.',
+  tribute_visible:false,
   tribute:'Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)'
 };
 let siteContact={
@@ -888,8 +888,8 @@ let siteContact={
   mapsQuery:'MS Hotel Ushuaia, Campos 26, Ushuaia, Tierra del Fuego, Argentina'
 };
 let siteServices=[
-  {icon:'🍳',title:'Desayuno Incluido',desc:'Comenzá el día con energía. El desayuno está incluido en todas las estadías.',nota:''},
-  {icon:'🅿️',title:'Estacionamiento',desc:'Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional.',nota:''},
+  {icon:'☕',title:'Desayuno Incluido',desc:'Comenzá el día con energía. El desayuno está incluido en todas las estadías.',nota:''},
+  {icon:'🅿️',title:'Estacionamiento',desc:'Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional. (sujeto a disponibilidad).',nota:''},
   {icon:'📶',title:'WiFi de Alta Velocidad',desc:'Conexión WiFi gratuita en todas las habitaciones y espacios comunes.',nota:''},
   {icon:'👕',title:'Lavandería',desc:'Servicio de lavado de ropa disponible bajo solicitud.',nota:'* Servicio con costo adicional'}
 ];
@@ -904,18 +904,18 @@ let siteRooms={
 // Reseñas curadas a mano (no conectadas en vivo a Google, a propósito: así no se agrega
 // ningún pedido de red extra ni dependencia externa que pueda demorar la carga de la página).
 let siteTestimonials=[
-  {name:'Daniel',source:'Google',text:'Excelente comunicación desde antes de llegar, hotel muy familiar y súper limpio. La ubicación es inmejorable.'},
-  {name:'Juan',source:'Booking',text:'El trato del personal es excelente. La calefacción es muy buena y la vista desde el hotel es hermosa.'},
-  {name:'Huésped verificado',source:'Google',text:'Nos sentimos como en casa. Los dueños y el personal se brindan al máximo para que no te falte nada.'}
+  {name:'Daniel',source:'Reseña de Google',text:'Excelente comunicación desde antes de llegar, hotel muy familiar y súper limpio. La ubicación es inmejorable.'},
+  {name:'Mike Kelley',source:'Reseña de Google',text:'Loved this place. People were truly caring and fantastic. Free luggage storage on day of departure and cheap ride to the airport. Great location. Family run business. Very nice breakfast. Gracias Santiago!!!'},
+  {name:'Pablo Yorio',source:'Reseña de Google',text:'Excelente hotel , muy buena ubicación , la habitaciones amplias , comodas , con muy buena calefacción , la limpieza de las mismas impecable. Expectacular desayuno, en un lugar bien calefaccionado y con vistas muy bonitas . La atención de todo el equipol es muy buena. Pasamos una semana de la cual no pudimos encontrar quejas. Muchas gracias por todo.'}
 ];
 let siteFaq=[
   {q:'¿El hotel cuenta con ascensor?',a:'No. El edificio principal se distribuye en planta baja, primer y segundo piso, sin ascensor.'},
   {q:'¿Qué incluye el desayuno?',a:'Desayuno tipo buffet y autoservicio, acorde a la categoría de nuestro hotel (una estrella).'},
   {q:'¿Se pueden reservar excursiones desde el hotel?',a:'Sí, te ayudamos a coordinar excursiones y traslados. Algunas cuentan con descuento especial para nuestros huéspedes.'},
   {q:'¿Es apto para personas con movilidad reducida?',a:'En general no, ya que no contamos con ascensor. De todas formas escribinos antes de reservar: en ocasiones tenemos unidades disponibles en planta baja.'},
-  {q:'¿Tienen opciones aptas para celíacos?',a:'No contamos con opciones certificadas libres de gluten en el desayuno. Si sos celíaco, te recomendamos traer tus propias opciones o consultarnos con anticipación.'},
+  {q:'¿Tienen opciones aptas para celíacos?',a:'No contamos con opciones certificadas libres de gluten en el desayuno. Si sos celíaco, te recomendamos contactarnos con anticipación a fin de buscar la mejor solución.'},
   {q:'¿La calefacción se puede regular?',a:'Sí, todas las unidades cuentan con calefacción a gas o por radiador que podés regular vos mismo. Si necesitás ayuda, el personal te asiste con gusto.'},
-  {q:'¿Puedo pagar con tarjeta de crédito?',a:'Sí, aceptamos Visa, MasterCard y American Express en un pago, con un recargo del 15%. También podés abonar por transferencia o depósito bancario.'},
+  {q:'¿Puedo pagar con tarjeta de crédito?',a:'Sí, aceptamos Visa, MasterCard y American Express en un pago. También podés abonar por transferencia o depósito bancario.'},
   {q:'¿Necesito pagar por adelantado para reservar?',a:'Sí, las reservas se confirman con el prepago total dentro del plazo indicado al momento de reservar.'},
   {q:'¿Cuál es la política de cancelación?',a:'Cancelaciones con 15 días o menos antes del check-in (30 días para grupos de 4 o más habitaciones) abonan el total de las noches reservadas. En caso de no show se cobra el 100%.'},
   {q:'¿El desayuno está incluido en el precio?',a:'Sí, el desayuno está incluido en la tarifa de todas las unidades.'},
@@ -1051,18 +1051,17 @@ const I18N={
 // en español; si el hotel edita o agrega un texto nuevo que no está acá, se muestra en español
 // (nunca se rompe ni queda vacío).
 const CONTENT_DICT={
-  'Tu hogar en el fin del mundo':{en:'Your home at the end of the world',pt:'Seu lar no fim do mundo'},
-  'Nuestra Historia':{en:'Our Story',pt:'Nossa História'},
-  'Un sueño *familiar*\nhecho realidad':{en:'A *family* dream\ncome true',pt:'Um sonho *familiar*\nque virou realidade'},
-  'MS Hotel nació con la idea de ser una casa para una familia ushuaiense. La historia se remonta a fines del siglo XX, en 1999, cuando <strong>Miguel Enrique Saavedra</strong> — señor y ex marino de la Armada Argentina — decidió comprar el terreno de lo que hoy es nuestro hotel.':
-    {en:'MS Hotel was born with the idea of being a home for an Ushuaia family. The story goes back to the late 20th century, in 1999, when <strong>Miguel Enrique Saavedra</strong> — a gentleman and former sailor of the Argentine Navy — decided to buy the land where our hotel now stands.',
-     pt:'O MS Hotel nasceu com a ideia de ser uma casa para uma família de Ushuaia. A história remonta ao final do século XX, em 1999, quando <strong>Miguel Enrique Saavedra</strong> — senhor e ex-marinheiro da Marinha Argentina — decidiu comprar o terreno onde hoje fica nosso hotel.'},
-  "Con el pasar de los años y con mucho sacrificio, esta obra representó gran parte de los últimos años del señor Miguel. Un proyecto que comenzó con la idea de ser una casa familiar, y que poco a poco viró hacia la visión de ser un pequeño pero muy acogedor hotel en el corazón de Ushuaia.":
-    {en:"Over the years, and with great sacrifice, this project became a large part of Mr. Miguel's final years. What began as the idea of a family home gradually turned into the vision of a small but very welcoming hotel in the heart of Ushuaia.",
-     pt:'Com o passar dos anos e com muito sacrifício, esta obra representou grande parte dos últimos anos do senhor Miguel. Um projeto que começou com a ideia de ser uma casa de família, e que aos poucos se transformou na visão de um hotel pequeno, porém muito acolhedor, no coração de Ushuaia.'},
-  'Tristemente, el señor Miguel partió hacia el eterno descanso en 2018. Solo dos años después, en 2020, con mucho sacrificio y amor, su familia pudo inaugurar lo que hoy es nuestro proyecto de vida.':
-    {en:"Sadly, Mr. Miguel passed away in 2018. Just two years later, in 2020, with great sacrifice and love, his family was able to open what is today our life's project.",
-     pt:'Tristemente, o senhor Miguel partiu para o descanso eterno em 2018. Apenas dois anos depois, em 2020, com muito sacrifício e amor, sua família conseguiu inaugurar o que hoje é nosso projeto de vida.'},
+  'Hotel familiar en el fin del mundo':{en:'A family hotel at the end of the world',pt:'Um hotel familiar no fim do mundo'},
+  'Sobre nuestro hotel':{en:'About Our Hotel',pt:'Sobre Nosso Hotel'},
+  'MS Hotel - Campos 26, es un hotel familiar, categoría una estrella, ubicado en la zona centro de Ushuaia, a pasos de la Av. San Martín y de los puntos turísticos más visitados de la ciudad.\n\n':
+    {en:"MS Hotel - Campos 26 is a family-run, one-star hotel located in downtown Ushuaia, just steps from Av. San Martín and the city's most visited tourist spots.\n\n",
+     pt:'MS Hotel - Campos 26 é um hotel familiar, categoria uma estrela, localizado no centro de Ushuaia, a poucos passos da Av. San Martín e dos pontos turísticos mais visitados da cidade.\n\n'},
+  'Somos un hotel chico y buscamos cuidar cada detalle: habitaciones y departamentos cómodos, desayuno incluido y una atención cercana.\n\n':
+    {en:'We are a small hotel and we look after every detail: comfortable rooms and apartments, breakfast included, and close, personal attention.\n\n',
+     pt:'Somos um hotel pequeno e cuidamos de cada detalhe: quartos e apartamentos confortáveis, café da manhã incluído e um atendimento próximo.\n\n'},
+  'Nuestro objetivo es buscar que nuestros huespedes se sientan comodos, seguros y satisfechos en habernos elegido.':
+    {en:'Our goal is for our guests to feel comfortable, safe, and happy with their choice to stay with us.',
+     pt:'Nosso objetivo é que nossos hóspedes se sintam confortáveis, seguros e satisfeitos por terem nos escolhido.'},
   'Dedicado a nuestro máximo héroe, Miguel Enrique Saavedra (1999–2018)':{en:'Dedicated to our greatest hero, Miguel Enrique Saavedra (1999–2018)',pt:'Dedicado ao nosso maior herói, Miguel Enrique Saavedra (1999–2018)'},
   'Cerrado, sin costo adicional (sujeto a disponibilidad)':{en:'Enclosed, no additional cost (subject to availability)',pt:'Fechado, sem custo adicional (sujeito à disponibilidade)'},
   'Hasta las 18:00 hs, abonando la noche adicional (sujeto a disponibilidad)':{en:'Until 6:00 PM, paying for the extra night (subject to availability)',pt:'Até as 18:00h, pagando a diária adicional (sujeito à disponibilidade)'},
@@ -1074,7 +1073,7 @@ const CONTENT_DICT={
   'Desayuno Incluido':{en:'Breakfast Included',pt:'Café da Manhã Incluído'},
   'Comenzá el día con energía. El desayuno está incluido en todas las estadías.':{en:'Start the day with energy. Breakfast is included in all stays.',pt:'Comece o dia com energia. O café da manhã está incluído em todas as estadias.'},
   'Estacionamiento':{en:'Parking',pt:'Estacionamento'},
-  'Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional.':{en:'We offer parking for our guests at no additional cost.',pt:'Contamos com estacionamento disponível para nossos hóspedes sem custo adicional.'},
+  'Contamos con estacionamiento disponible para nuestros huéspedes sin costo adicional. (sujeto a disponibilidad).':{en:'We offer parking for our guests at no additional cost. (subject to availability).',pt:'Contamos com estacionamento disponível para nossos hóspedes sem custo adicional. (sujeito à disponibilidade).'},
   'WiFi de Alta Velocidad':{en:'High-Speed WiFi',pt:'WiFi de Alta Velocidade'},
   'Conexión WiFi gratuita en todas las habitaciones y espacios comunes.':{en:'Free WiFi connection in all rooms and common areas.',pt:'Conexão WiFi gratuita em todos os quartos e áreas comuns.'},
   'Lavandería':{en:'Laundry',pt:'Lavanderia'},
@@ -1094,12 +1093,12 @@ const CONTENT_DICT={
   'Excelente comunicación desde antes de llegar, hotel muy familiar y súper limpio. La ubicación es inmejorable.':
     {en:'Excellent communication even before arriving, a very family-friendly and super clean hotel. The location is unbeatable.',
      pt:'Excelente comunicação desde antes de chegar, hotel muito familiar e super limpo. A localização é imbatível.'},
-  'El trato del personal es excelente. La calefacción es muy buena y la vista desde el hotel es hermosa.':
-    {en:'The staff treatment is excellent. The heating is very good and the view from the hotel is beautiful.',
-     pt:'O atendimento da equipe é excelente. O aquecimento é muito bom e a vista do hotel é linda.'},
-  'Nos sentimos como en casa. Los dueños y el personal se brindan al máximo para que no te falte nada.':
-    {en:"We felt right at home. The owners and staff go above and beyond so you don't miss a thing.",
-     pt:'Nos sentimos em casa. Os donos e a equipe se dedicam ao máximo para que não falte nada.'},
+  'Loved this place. People were truly caring and fantastic. Free luggage storage on day of departure and cheap ride to the airport. Great location. Family run business. Very nice breakfast. Gracias Santiago!!!':
+    {en:'Loved this place. People were truly caring and fantastic. Free luggage storage on day of departure and cheap ride to the airport. Great location. Family run business. Very nice breakfast. Gracias Santiago!!!',
+     pt:'Adorei este lugar. As pessoas foram genuinamente atenciosas e fantásticas. Guarda de bagagem gratuita no dia da partida e translado barato até o aeroporto. Ótima localização. Negócio familiar. Café da manhã muito bom. Gracias Santiago!!!'},
+  'Excelente hotel , muy buena ubicación , la habitaciones amplias , comodas , con muy buena calefacción , la limpieza de las mismas impecable. Expectacular desayuno, en un lugar bien calefaccionado y con vistas muy bonitas . La atención de todo el equipol es muy buena. Pasamos una semana de la cual no pudimos encontrar quejas. Muchas gracias por todo.':
+    {en:"Excellent hotel, very good location, spacious and comfortable rooms, with very good heating, and impeccably clean. Spectacular breakfast, in a well-heated spot with lovely views. The whole team's service is very good. We spent a week and couldn't find anything to complain about. Thank you so much for everything.",
+     pt:'Excelente hotel, ótima localização, quartos amplos e confortáveis, com aquecimento muito bom e limpeza impecável. Café da manhã espetacular, em um ambiente bem aquecido e com vistas muito bonitas. O atendimento de toda a equipe é muito bom. Passamos uma semana e não conseguimos encontrar do que reclamar. Muito obrigado por tudo.'},
   '¿El hotel cuenta con ascensor?':{en:'Does the hotel have an elevator?',pt:'O hotel tem elevador?'},
   'No. El edificio principal se distribuye en planta baja, primer y segundo piso, sin ascensor.':
     {en:'No. The main building is spread across the ground, first, and second floors, without an elevator.',
@@ -1117,17 +1116,17 @@ const CONTENT_DICT={
     {en:"Generally not, since we don't have an elevator. Still, message us before booking — we sometimes have ground-floor units available.",
      pt:'Em geral não, já que não temos elevador. De qualquer forma, escreva para nós antes de reservar: às vezes temos unidades disponíveis no térreo.'},
   '¿Tienen opciones aptas para celíacos?':{en:'Do you have options for celiac guests?',pt:'Vocês têm opções para celíacos?'},
-  'No contamos con opciones certificadas libres de gluten en el desayuno. Si sos celíaco, te recomendamos traer tus propias opciones o consultarnos con anticipación.':
-    {en:"We don't have certified gluten-free options at breakfast. If you're celiac, we recommend bringing your own options or letting us know in advance.",
-     pt:'Não contamos com opções certificadas sem glúten no café da manhã. Se você é celíaco, recomendamos trazer suas próprias opções ou nos avisar com antecedência.'},
+  'No contamos con opciones certificadas libres de gluten en el desayuno. Si sos celíaco, te recomendamos contactarnos con anticipación a fin de buscar la mejor solución.':
+    {en:"We don't have certified gluten-free options at breakfast. If you're celiac, we recommend contacting us in advance so we can find the best solution together.",
+     pt:'Não contamos com opções certificadas sem glúten no café da manhã. Se você é celíaco, recomendamos entrar em contato com antecedência para buscarmos a melhor solução.'},
   '¿La calefacción se puede regular?':{en:'Can the heating be adjusted?',pt:'O aquecimento pode ser regulado?'},
   'Sí, todas las unidades cuentan con calefacción a gas o por radiador que podés regular vos mismo. Si necesitás ayuda, el personal te asiste con gusto.':
     {en:'Yes, all units have gas or radiator heating that you can adjust yourself. If you need help, our staff will gladly assist you.',
      pt:'Sim, todas as unidades contam com aquecimento a gás ou radiador que você mesmo pode regular. Se precisar de ajuda, a equipe te auxilia com prazer.'},
   '¿Puedo pagar con tarjeta de crédito?':{en:'Can I pay by credit card?',pt:'Posso pagar com cartão de crédito?'},
-  'Sí, aceptamos Visa, MasterCard y American Express en un pago, con un recargo del 15%. También podés abonar por transferencia o depósito bancario.':
-    {en:'Yes, we accept Visa, MasterCard, and American Express in a single payment, with a 15% surcharge. You can also pay by bank transfer or deposit.',
-     pt:'Sim, aceitamos Visa, MasterCard e American Express em pagamento único, com acréscimo de 15%. Também é possível pagar por transferência ou depósito bancário.'},
+  'Sí, aceptamos Visa, MasterCard y American Express en un pago. También podés abonar por transferencia o depósito bancario.':
+    {en:'Yes, we accept Visa, MasterCard, and American Express in a single payment. You can also pay by bank transfer or deposit.',
+     pt:'Sim, aceitamos Visa, MasterCard e American Express em pagamento único. Também é possível pagar por transferência ou depósito bancário.'},
   '¿Necesito pagar por adelantado para reservar?':{en:'Do I need to pay in advance to book?',pt:'Preciso pagar antecipado para reservar?'},
   'Sí, las reservas se confirman con el prepago total dentro del plazo indicado al momento de reservar.':
     {en:'Yes, bookings are confirmed with full prepayment within the deadline indicated at the time of booking.',
@@ -1738,7 +1737,7 @@ function checkAdminAccess(){
 }
 
 // ── ADMIN LOGIN ──
-function openAdmin(){document.getElementById('admin-modal').classList.add('open');document.getElementById('admin-pass').value='';document.getElementById('admin-error').style.display='none';}
+function openAdmin(){ensureAdminFontsLoaded();document.getElementById('admin-modal').classList.add('open');document.getElementById('admin-pass').value='';document.getElementById('admin-error').style.display='none';}
 function closeAdmin(){document.getElementById('admin-modal').classList.remove('open');document.getElementById('admin-login-screen').style.display='flex';document.getElementById('admin-panel').classList.remove('open');}
 function checkPass(){
   if(document.getElementById('admin-pass').value===ADMIN_PASS){
@@ -2031,9 +2030,38 @@ async function handleSubmit(btn,via){
 }
 
 // ── FUENTE ──
-let currentFont = 'Inter';
+// Solo la tipografía activa (la elegida en el panel) hace falta para el sitio público, así que
+// es la única que se pide de entrada (ver el <link> en el <head>). Las otras 6 opciones del
+// selector de fuentes son solo para la vista previa del panel de admin: se piden recién cuando
+// alguien abre el panel, para no hacerle bajar ese peso extra a cada visitante del hotel.
+const FONT_QUERY={
+  'Inter':'wght@300;400;500;600',
+  'Outfit':'wght@300;400;500;600',
+  'DM Sans':'ital,wght@0,300;0,400;0,500;1,300',
+  'Raleway':'wght@300;400;500;600',
+  'Nunito':'wght@300;400;500;600',
+  'Jost':'wght@300;400;500',
+  'Cormorant Garamond':'ital,wght@0,300;0,400;0,600;1,300;1,400'
+};
+const loadedFontLinks=new Set(['Jost']); // Jost ya se pide en el <head>
+function ensureFontLoaded(family){
+  if(!family||loadedFontLinks.has(family)) return;
+  loadedFontLinks.add(family);
+  const q=FONT_QUERY[family]||'wght@300;400;500;600';
+  const familyParam=encodeURIComponent(family).replace(/%20/g,'+');
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href='https://fonts.googleapis.com/css2?family='+familyParam+':'+q+'&display=swap';
+  link.setAttribute('data-font-family',family);
+  document.head.appendChild(link);
+}
+function ensureAdminFontsLoaded(){
+  Object.keys(FONT_QUERY).forEach(ensureFontLoaded);
+}
+let currentFont = 'Jost';
 function selectFont(font){
   currentFont=font;
+  ensureFontLoaded(font);
   document.documentElement.style.setProperty('--font-main',"'"+font+"',sans-serif");
   document.documentElement.style.setProperty('--font-title',"'"+font+"',sans-serif");
   document.querySelectorAll('.font-option').forEach(el=>{
@@ -2055,6 +2083,7 @@ function syncFontUI(font){
 function applyFont(font){
   if(!font) return;
   currentFont=font;
+  ensureFontLoaded(font);
   document.documentElement.style.setProperty('--font-main',"'"+font+"',sans-serif");
   document.documentElement.style.setProperty('--font-title',"'"+font+"',sans-serif");
 }
