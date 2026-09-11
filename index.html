@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+// Si ya visitó el sitio antes, tenemos guardada la URL de la foto de portada (hero) en el
+// navegador. La pedimos de entrada, lo antes posible, para que esté lista apenas termine de
+// cargar el resto de la página. Para un visitante nuevo esto no hace nada (todavía no hay nada
+// guardado), así que no puede perjudicar a nadie.
+(function(){
+  try{
+    var raw=localStorage.getItem('mshotel_site_cache_v2');
+    if(!raw) return;
+    var c=JSON.parse(raw);
+    var hero=(c.pageImgsList||[]).find(function(i){return i&&i.key==='hero';});
+    if(hero&&hero.data){
+      var l=document.createElement('link');
+      l.rel='preload';l.as='image';l.href=hero.data;
+      document.head.appendChild(l);
+    }
+  }catch(e){}
+})();
+</script>
 <title id="page-title">MS Hotel | Ushuaia, Patagonia</title>
 <meta name="description" content="MS Hotel Ushuaia — Alojamiento familiar en el corazón de Ushuaia, Tierra del Fuego. Habitaciones y departamentos con desayuno incluido, WiFi y estacionamiento gratuito.">
 <link rel="canonical" href="https://mshotelushuaia.com.ar/">
@@ -205,6 +224,28 @@ section{padding:6rem 4rem;scroll-margin-top:90px;}
 .form-submit .btn-icon{flex-shrink:0;}
 .form-submit:hover{background:var(--gold-light);transform:translateY(-1px);}
 .form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.booking-cta-btn{width:100%;padding:1.1rem;background:var(--gold);border:none;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s,transform 0.2s;display:flex;align-items:center;justify-content:center;gap:0.7rem;margin-bottom:1.6rem;}
+.booking-cta-btn:hover{background:var(--gold-light);transform:translateY(-1px);}
+.booking-cta-note{text-align:center;font-size:0.72rem;color:rgba(168,204,232,0.6);margin-top:-1.2rem;margin-bottom:1.8rem;}
+.booking-divider{display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;color:rgba(168,204,232,0.5);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;}
+.booking-divider::before,.booking-divider::after{content:'';flex:1;height:1px;background:rgba(168,204,232,0.2);}
+.booking-modal{display:none;position:fixed;inset:0;background:rgba(8,15,30,0.96);z-index:1100;align-items:center;justify-content:center;padding:1.5rem;}
+.booking-modal.open{display:flex;}
+.booking-modal-box{position:relative;width:100%;max-width:900px;height:88vh;background:var(--cream);border:1px solid rgba(168,204,232,0.2);}
+.booking-modal-box iframe{width:100%;height:100%;border:0;display:block;}
+.booking-modal-close{position:absolute;top:-3rem;right:0;background:none;border:1px solid rgba(255,255,255,0.3);color:white;font-size:1.3rem;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.booking-modal-close:hover{border-color:var(--gold);color:var(--gold-light);}
+.booking-modal-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--cream);}
+/* Pantalla de carga: se muestra al instante (no depende de ninguna fuente ni imagen externa,
+   solo de este CSS que ya viaja dentro del HTML) y se oculta apenas la página tiene contenido
+   real para mostrar, o a los 4 segundos como máximo, pase lo que pase. */
+#page-loader{position:fixed;inset:0;z-index:9999;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s ease,visibility 0.5s ease;}
+#page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+#page-loader .loader-logo{font-family:Georgia,'Times New Roman',serif;font-size:1.9rem;letter-spacing:0.04em;color:var(--white);margin-bottom:1.4rem;}
+#page-loader .loader-logo span{color:var(--gold-light);font-weight:400;}
+#page-loader .loader-bar{width:110px;height:2px;background:rgba(255,255,255,0.15);position:relative;overflow:hidden;}
+#page-loader .loader-bar::after{content:'';position:absolute;left:-40%;top:0;height:100%;width:40%;background:var(--gold);animation:loaderSlide 1.1s ease-in-out infinite;}
+@keyframes loaderSlide{0%{left:-40%;}100%{left:100%;}}
 .distance-list{display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1rem;margin-bottom:2rem;}
 .distance-chip{font-size:0.78rem;padding:0.5rem 1rem;background:rgba(74,144,217,0.15);border:1px solid rgba(74,144,217,0.3);color:var(--ice);border-radius:20px;}
 .map-wrap{border:1px solid rgba(168,204,232,0.15);border-radius:2px;overflow:hidden;background:rgba(255,255,255,0.03);}
@@ -316,6 +357,11 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
 </style>
 </head>
 <body>
+
+<div id="page-loader">
+  <div class="loader-logo">MS <span>Hotel</span></div>
+  <div class="loader-bar"></div>
+</div>
 
 <nav>
   <a href="#inicio" class="nav-logo" id="nav-logo-text">MS <span>Hotel</span></a>
@@ -444,6 +490,9 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
     </div>
     <div class="contact-form reveal">
       <h3 data-i18n="form_title">Consultar disponibilidad</h3>
+      <button type="button" class="booking-cta-btn" onclick="openBookingModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span data-i18n="booking_cta_btn">Verificar disponibilidad y reservar online</span></button>
+      <p class="booking-cta-note" data-i18n="booking_cta_note">Reservá directo con nosotros, sin intermediarios</p>
+      <div class="booking-divider"><span data-i18n="booking_divider">o escribinos directamente</span></div>
       <p style="font-size:0.82rem;color:var(--ice);margin-bottom:1.5rem;opacity:0.8;" data-i18n="form_intro">Completá el formulario y te redirigimos a WhatsApp con toda la info lista.</p>
       <div class="form-row">
         <div class="form-group"><label data-i18n="form_label_nombre">Nombre completo *</label><input type="text" id="form-nombre" placeholder="Tu nombre" data-i18n-placeholder="form_placeholder_nombre"/></div>
@@ -517,6 +566,14 @@ footer{background:#080f1e;padding:2.5rem 4rem;display:flex;justify-content:space
   <button class="lightbox-nav" id="lb-prev" onclick="lbNav(-1)">‹</button>
   <img id="lb-img" src="" alt=""/>
   <button class="lightbox-nav" id="lb-next" onclick="lbNav(1)">›</button>
+</div>
+
+<div class="booking-modal" id="booking-modal">
+  <div class="booking-modal-box">
+    <button class="booking-modal-close" onclick="closeBookingModal()">✕</button>
+    <div class="booking-modal-loading" id="booking-modal-loading" data-i18n="booking_modal_loading">Cargando motor de reservas...</div>
+    <iframe id="booking-modal-iframe" src="" title="Motor de reservas - MS Hotel" loading="lazy"></iframe>
+  </div>
 </div>
 
 <div id="admin-modal">
@@ -956,6 +1013,7 @@ const I18N={
     contact_h4_address:'Dirección',contact_h4_phone:'Teléfono / WhatsApp',contact_h4_email:'Email',
     contact_h4_checkinout:'Check-in / Check-out',contact_h4_parking:'Estacionamiento',
     checkin_from:'Check-in desde las',checkout_until:'Check-out hasta las',late_checkout_label:'Late check-out',
+    booking_cta_btn:'Verificar disponibilidad y reservar online',booking_cta_note:'Reservá directo con nosotros, sin intermediarios',booking_divider:'o escribinos directamente',booking_modal_loading:'Cargando motor de reservas...',
     form_title:'Consultar disponibilidad',form_intro:'Completá el formulario y te redirigimos a WhatsApp con toda la info lista.',
     form_label_nombre:'Nombre completo *',form_placeholder_nombre:'Tu nombre',
     form_label_personas:'Cantidad de personas *',form_select_placeholder:'Seleccioná...',
@@ -992,6 +1050,7 @@ const I18N={
     contact_h4_address:'Address',contact_h4_phone:'Phone / WhatsApp',contact_h4_email:'Email',
     contact_h4_checkinout:'Check-in / Check-out',contact_h4_parking:'Parking',
     checkin_from:'Check-in from',checkout_until:'Check-out until',late_checkout_label:'Late check-out',
+    booking_cta_btn:'Check availability and book online',booking_cta_note:'Book directly with us, no intermediaries',booking_divider:'or message us directly',booking_modal_loading:'Loading booking engine...',
     form_title:'Check Availability',form_intro:"Fill out the form and we'll redirect you to WhatsApp with everything ready.",
     form_label_nombre:'Full name *',form_placeholder_nombre:'Your name',
     form_label_personas:'Number of guests *',form_select_placeholder:'Select...',
@@ -1028,6 +1087,7 @@ const I18N={
     contact_h4_address:'Endereço',contact_h4_phone:'Telefone / WhatsApp',contact_h4_email:'Email',
     contact_h4_checkinout:'Check-in / Check-out',contact_h4_parking:'Estacionamento',
     checkin_from:'Check-in a partir das',checkout_until:'Check-out até as',late_checkout_label:'Late check-out',
+    booking_cta_btn:'Verificar disponibilidade e reservar online',booking_cta_note:'Reserve direto conosco, sem intermediários',booking_divider:'ou nos escreva diretamente',booking_modal_loading:'Carregando motor de reservas...',
     form_title:'Consultar disponibilidade',form_intro:'Preencha o formulário e te redirecionamos ao WhatsApp com tudo pronto.',
     form_label_nombre:'Nome completo *',form_placeholder_nombre:'Seu nome',
     form_label_personas:'Número de pessoas *',form_select_placeholder:'Selecione...',
@@ -1722,6 +1782,31 @@ function lbNav(dir){lbIndex=(lbIndex+dir+lbPhotos.length)%lbPhotos.length;docume
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
 document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();});
 
+// ── MOTOR DE RESERVAS (MiniHotel) ──
+// El iframe del motor solo se carga la primera vez que alguien hace clic en "Verificar
+// disponibilidad": así, para cualquier visita que no llegue a reservar, la página no gasta
+// nada de tiempo ni de datos en cargar el motor de terceros.
+const BOOKING_ENGINE_URL='https://frame2.hotelpms.io/BookingFrameClient/hotel/F4FC622D35C032090DA46DC9FBAED68D/e2d8af9e-82cf-4b24-ba19-fc7b08142f0e/book/rooms?currency=ARS&language=es-ES&rp=';
+let bookingIframeLoaded=false;
+function openBookingModal(){
+  const modal=document.getElementById('booking-modal');
+  const iframe=document.getElementById('booking-modal-iframe');
+  const loading=document.getElementById('booking-modal-loading');
+  if(!bookingIframeLoaded){
+    iframe.onload=()=>{ if(loading) loading.style.display='none'; };
+    iframe.src=BOOKING_ENGINE_URL;
+    bookingIframeLoaded=true;
+  }
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeBookingModal(){
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('booking-modal').addEventListener('click',function(e){if(e.target===this)closeBookingModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('booking-modal').classList.contains('open'))closeBookingModal();});
+
 // ── MENÚ MÓVIL ──
 function toggleMobileMenu(){document.getElementById('nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-links').classList.remove('open');}));
@@ -2183,6 +2268,17 @@ function observeReveals(){
   document.querySelectorAll('.reveal:not(.visible)').forEach(el=>revealObserver.observe(el));
 }
 
+// ── PANTALLA DE CARGA ──
+// Se oculta apenas hay algo real para mostrar (de la caché o de la nube, lo que llegue primero),
+// y como red de seguridad, a los 4 segundos se oculta sola pase lo que pase: así nadie se queda
+// mirando la pantalla de carga trabada si algo de la red falla o tarda de más.
+function hidePageLoader(){
+  const loader=document.getElementById('page-loader');
+  if(!loader||loader.classList.contains('hidden')) return;
+  loader.classList.add('hidden');
+}
+setTimeout(hidePageLoader,4000);
+
 // ── INICIALIZACIÓN ──
 // Primero mostramos lo último que sepamos (de la caché del navegador, si existe) para que
 // la página se vea lista al instante. Después, siempre pedimos los datos frescos a la nube
@@ -2203,6 +2299,7 @@ function observeReveals(){
   if(!hadCache){ try{ renderServices(); }catch(e){console.error(e);} }
   try{ applyLanguage(currentLang); }catch(e){ console.error('Error aplicando idioma inicial:',e); }
   observeReveals();
+  if(hadCache) hidePageLoader();
   // Paso 2: pedir los datos actuales a la nube. Pase lo que pase (éxito, error o timeout),
   // al final siempre se vuelve a pintar la página con lo que se haya podido obtener.
   try{
@@ -2219,6 +2316,7 @@ function observeReveals(){
     console.error('Error pintando la página:',e);
   }
   observeReveals();
+  hidePageLoader();
   try{ saveCacheSnapshot(); }catch(e){}
 })();
 </script>
